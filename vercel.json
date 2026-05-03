@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "connect.henrymer.de"
+        }
+      ],
+      "destination": "/links",
+      "permanent": false
+    }
+  ]
+}
