@@ -1,13 +1,15 @@
 import { Badge } from "@/components/ui/badge";
+import GitHubStats from "@/components/github-section";
 import SectionHeading from "@/components/section-heading";
 import SiteFooter from "@/components/site-footer";
 import {
-  getProjectInfosSortedByPriority,
-  type ProjectInfo,
-} from "@/lib/project-infos";
+  getSubsiteProjects,
+  type SubsiteProject,
+} from "@/lib/subsite-projects";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
-function ProjectGrid({ projects }: { projects: ProjectInfo[] }) {
+function ProjectGrid({ projects }: { projects: SubsiteProject[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {projects.map((project) => (
@@ -29,6 +31,14 @@ function ProjectGrid({ projects }: { projects: ProjectInfo[] }) {
           </div>
 
           <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/projects/${project.slug}`}
+              className="inline-flex items-center gap-2 rounded-base border border-border/30 bg-background px-3 py-1.5 text-sm font-heading text-foreground shadow-sm transition-opacity hover:opacity-80"
+            >
+              Details
+              <ArrowUpRight className="size-4" />
+            </Link>
+
             {project.links.map((link) => (
               <a
                 key={link.href}
@@ -49,7 +59,7 @@ function ProjectGrid({ projects }: { projects: ProjectInfo[] }) {
 }
 
 export default function Page() {
-  const projects = getProjectInfosSortedByPriority();
+  const projects = getSubsiteProjects();
   const featuredProjects = projects.slice(0, 2);
   const otherProjects = projects.slice(2);
 
@@ -64,6 +74,7 @@ export default function Page() {
           Germany. Turning complex problems into efficient, real-world
           solutions.{" "}
         </p>
+        <GitHubStats username="henrymmey" />
       </section>
 
       <section
@@ -119,7 +130,7 @@ export default function Page() {
         id="about"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="04" title="Skills" />
+        <SectionHeading index="03" title="Skills" />
 
         <div className="mt-6 space-y-8 text-foreground">
           <div>
@@ -153,18 +164,17 @@ export default function Page() {
         id="projects"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="03" title="Featured Projects" />
-        <ProjectGrid projects={featuredProjects} />
+        <SectionHeading index="04" title="Projects" />
+        <ProjectGrid projects={projects} />
 
         <div className="mt-6">
-          <a
-            href="https://jumpstone.is-cool.dev/projects"
-            rel="noreferrer"
+          <Link
+            href="/projects"
             className="inline-flex items-center gap-2.5 rounded-base border border-border/30 bg-main px-5 py-2.5 text-base font-heading text-main-foreground shadow-sm transition-opacity hover:opacity-80"
           >
-            View all projects
+            All projects
             <ArrowUpRight className="size-5" />
-          </a>
+          </Link>
         </div>
       </section>
 
