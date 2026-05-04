@@ -25,7 +25,7 @@ const LINKS = [
   {
     id: "discord",
     label: "Discord",
-    href: "https://discord.com/users/123456789",
+    href: "https://discord.com/users/1008346032230387752",
     badge: "discord-color.png",
   },
   {
