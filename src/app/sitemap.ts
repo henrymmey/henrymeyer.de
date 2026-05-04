@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.8,
     },
     {
@@ -33,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2024-01-01"),
       changeFrequency: "yearly",
       priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/links`,
+      lastModified: new Date("2025-05-03"),
+      changeFrequency: "yearly",
+      priority: 0.9,
     },
   ];
 
