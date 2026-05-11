@@ -35,15 +35,15 @@ const LINKS = [
     badge: "modrinth-color.png",
   },
   {
-    id: "devportfolio",
-    label: "Developer Portfolio/Website",
-    href: "https://jumpstone.is-cool.dev/",
-    badge: "icons8-globe.png",
-  },
-  {
     id: "website",
     label: "Website",
     href: "https://jumpstone4477.de/",
+    badge: "icons8-globe.png",
+  },
+  {
+    id: "projects",
+    label: "Projects",
+    href: "https://jumpstone4477.de/projects",
     badge: "icons8-globe.png",
   },
   {

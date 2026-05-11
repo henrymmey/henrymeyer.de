@@ -104,6 +104,14 @@ export default function SiteHeader({
               Projects
             </a>
             <a
+              href="/links"
+              className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
+                isCompact ? "text-sm" : "text-base"
+              }`}
+            >
+              Links
+            </a>
+            <a
               href="/contact"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
                 isCompact ? "text-sm" : "text-base"

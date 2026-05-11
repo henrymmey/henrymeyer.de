@@ -52,12 +52,21 @@ export default async function SiteFooter() {
                 )}
               </li>
               <li>
-                <a
-                  className="underline underline-offset-2"
-                  href="https://jumpstone.is-cool.dev"
-                >
-                  Developer Portfolio
-                </a>
+                {isSubsiteDomain ? (
+                  <a
+                    className="underline underline-offset-2"
+                    href={toMainDomain("/links")}
+                  >
+                    Links
+                  </a>
+                ) : (
+                  <Link
+                    className="underline underline-offset-2"
+                    href={toMainDomain("/links")}
+                  >
+                    Links
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
