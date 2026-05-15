@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description:
       "Get in touch for software projects, collaborations, and inquiries.",
     type: "website",
-    url: "https://jumpstone4477.de/contact",
+    url: `${process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de"}/contact`,
   },
 };
 

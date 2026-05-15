@@ -37,13 +37,13 @@ const LINKS = [
   {
     id: "website",
     label: "Website",
-    href: "https://jumpstone4477.de/",
+    href: process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de",
     badge: "icons8-globe.png",
   },
   {
     id: "projects",
     label: "Projects",
-    href: "https://jumpstone4477.de/projects",
+    href: (process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de") + "/projects",
     badge: "icons8-globe.png",
   },
   {

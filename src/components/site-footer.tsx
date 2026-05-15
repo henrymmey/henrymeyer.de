@@ -6,7 +6,7 @@ export default async function SiteFooter() {
   const host = (await headers()).get("host")?.toLowerCase() ?? "";
   const isSubsiteDomain =
     host === "jumpstone.is-cool.dev" || host.endsWith(".vercel.app");
-  const rootDomain = "https://jumpstone4477.de";
+  const rootDomain = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
   const toMainDomain = (path: string) =>
     isSubsiteDomain ? `${rootDomain}${path}` : path;
 

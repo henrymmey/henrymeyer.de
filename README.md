@@ -104,4 +104,4 @@ Note: The old Website is licensed under CC BY NC SA 4.0. For more information, v
 
 ## Support
 
-For questions, issues, or feedback about this website, please reach out through my [contact page](https://jumpstone4477.de/contact).
+For questions, issues, or feedback about this website, please reach out through my [contact page](https://henrymeyer.de/contact).

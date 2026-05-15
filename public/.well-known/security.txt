@@ -1,4 +1,4 @@
-Contact: mailto:security@jumpstone4477.de
+Contact: mailto:security@henrymeyer.de
 Expires: 2026-12-31T23:00:00.000Z
 Preferred-Languages: de, en
-Canonical: https://jumpstone4477.de/.well-known/security.txt
+Canonical: https://henrymeyer.de/.well-known/security.txt

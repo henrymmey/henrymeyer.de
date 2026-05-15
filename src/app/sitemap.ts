@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getProjectSlugs } from "@/lib/project-infos";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://jumpstone4477.de";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
 
   const projectEntries = getProjectSlugs().map((slug) => ({
     url: `${baseUrl}/projects/${slug}`,

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
       "Community guidelines for respectful and inclusive interaction across JumpStone spaces.",
     type: "website",
-    url: "https://jumpstone4477.de/code-of-conduct",
+    url: `${process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de"}/code-of-conduct`,
   },
 };
 

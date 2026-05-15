@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy",
     description: "Privacy policy for the JumpStone website.",
     type: "website",
-    url: "https://jumpstone4477.de/legal/privacy",
+    url: `${process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de"}/legal/privacy`,
   },
 };
 
