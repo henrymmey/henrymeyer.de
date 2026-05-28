@@ -34,7 +34,7 @@ export default async function ContactPage() {
   const cookieStore = await cookies();
   const isUnlocked = cookieStore.get("contact_unlocked")?.value === "1";
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-  const discordUsername = "jumpstone4477";
+  const discordUsername = "henrymmey";
 
   const email1 = process.env.CONTACT_EMAIL_1;
   const additionalEmails = [
