@@ -6,7 +6,12 @@ import SiteHeader from "@/components/site-header";
 export default function SiteChrome() {
   const pathname = usePathname();
 
-  if (pathname === "/links" || pathname.startsWith("/links/")) {
+  if (
+    pathname === "/links" ||
+    pathname.startsWith("/links/") ||
+    pathname === "/meyerwolke" ||
+    pathname.startsWith("/meyerwolke/")
+  ) {
     return null;
   }
 
