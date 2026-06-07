@@ -4,6 +4,16 @@
       "source": "/connect",
       "destination": "/links",
       "permanent": true
+    },
+    {
+      "source": "/legal/imprint",
+      "destination": "https://hmlabs.eu/legal/imprint",
+      "permanent": true
+    },
+    {
+      "source": "/legal/privacy",
+      "destination": "https://hmlabs.eu/legal/privacy",
+      "permanent": true
     }
   ]
 }
