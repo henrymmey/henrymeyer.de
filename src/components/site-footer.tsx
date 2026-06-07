@@ -205,7 +205,7 @@ export default async function SiteFooter() {
         </div>
 
         <div className="mt-4 rounded-base border border-border/30 bg-main px-4 py-3 text-sm text-main-foreground">
-          HenryMM Website © 2025 - 2026 by Henry Meyer. Licensed under GPL-3.0.
+          © 2026 Henry Meyer. Code licensed under GPL-3.0.
         </div>
       </div>
     </footer>
