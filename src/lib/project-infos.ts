@@ -35,7 +35,7 @@ const projectInfos: ProjectInfo[] = [
       },
       { label: "GitHub", href: "https://github.com/jumpstone-gaming" },
     ],
-    priority: 4,
+    priority: 3,
     publishedAt: "2026-03-09",
   },
   {
@@ -63,7 +63,7 @@ const projectInfos: ProjectInfo[] = [
         href: "https://github.com/henrymmey/link-shortener",
       },
     ],
-    priority: 5,
+    priority: 4,
     publishedAt: "2026-04-01",
   },
   {
@@ -82,27 +82,8 @@ const projectInfos: ProjectInfo[] = [
         href: "https://aiforbeginners.henrymeyer.de",
       },
     ],
-    priority: 3,
+    priority: 2,
     publishedAt: "2026-05-10",
-  },
-  {
-    slug: "hmlabs",
-    title: "HMLabs",
-    description:
-      "HMLabs is an independent developer collective focused on innovative open-source projects, digital tools, and high-performance server infrastructure.",
-    tags: ["Developers", "Projects"],
-    links: [
-      {
-        label: "Organization",
-        href: "https://github.com/HMLabs-dev",
-      },
-      {
-        label: "Website",
-        href: "https://hmlabs.eu",
-      },
-    ],
-    priority: 3,
-    publishedAt: "2026-06-04",
   },
 ];
 
