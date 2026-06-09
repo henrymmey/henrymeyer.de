@@ -81,56 +81,39 @@ export default function Page() {
         id="about"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="02" title="About Me" />
+        <SectionHeading index="02" title="About" />
         <div className="mt-6 space-y-8 text-foreground">
           <div>
-            <h3 className="text-lg font-semibold">Getting Started</h3>
             <p className="text-sm leading-relaxed md:text-base">
-              My journey into technology didn't start with a textbook — it
-              started with a challenge. Curious about how online worlds are
-              built and managed, I co-founded a Minecraft server and dove
-              headfirst into Java development. What began as a gaming project
-              quickly turned into a deep fascination with code and everything it
-              makes possible.{" "}
-            </p>
-
-            <h3 className="text-lg font-semibold">Hardware & Hands-On</h3>
-            <p className="text-sm leading-relaxed md:text-base">
-              Growing up with a father who is an electrical engineer, I've
-              always been drawn to the full picture — whether it's writing
-              automation scripts, wiring up a garden house, or building local
-              networks. That hands-on mindset led me to projects like
-              Akku-Craft, a hardware-meets-software build that recently secured
-              1st place at the regional Jugend forscht competition.{" "}
-            </p>
-
-            <h3 className="text-lg font-semibold">Learning by Doing</h3>
-            <p className="text-sm leading-relaxed md:text-base">
-              My early steps in software included experiments like GrüneEule, an
-              open-source browser tool collection. While that project has since
-              retired, it taught me more than any tutorial could. I'm a firm
-              believer in learning by doing — using a modern toolkit of AI and
-              technical resources to pick up new skills fast.{" "}
-            </p>
-
-            <h3 className="text-lg font-semibold">The Full Stack</h3>
-            <p className="text-sm leading-relaxed md:text-base">
-              Managing servers over the years also introduced me to the power of
-              Linux. Today I'm comfortable in environments like NGINX and
-              Apache, and working with panels like Pterodactyl and Pelican. For
-              me, programming has never been just a hobby — it's about
-              understanding the entire stack, from the physical cable to the
-              final line of code.{" "}
+              Young self-taught software developer & hardware enthusiast from
+              Germany. Turning complex problems into efficient, real-world
+              solutions.
             </p>
           </div>
         </div>
       </section>
 
       <section
-        id="about"
+        id="codingtime"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="03" title="Skills" />
+        <SectionHeading index="03" title="Coding Time" />
+
+        <div className="mt-6 space-y-8 text-foreground">
+          <div>
+            <img
+              src="https://github-readme-stats.hackclub.dev/api/wakatime?username=36150&api_domain=hackatime.hackclub.com&theme=darcula&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8"
+              alt="Hackatime Coding Stats"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="skills"
+        className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
+      >
+        <SectionHeading index="04" title="Skills" />
 
         <div className="mt-6 space-y-8 text-foreground">
           <div>
@@ -164,7 +147,7 @@ export default function Page() {
         id="projects"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="04" title="Projects" />
+        <SectionHeading index="05" title="Projects" />
         <ProjectGrid projects={projects} />
 
         <div className="mt-6">
