@@ -2,7 +2,7 @@ import SiteFooter from "@/components/site-footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Code of Conduct | JumpStone",
+  title: "Code of Conduct",
   description:
     "Community guidelines for respectful and inclusive interaction across JumpStone spaces and projects.",
   robots: {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Code of Conduct | JumpStone",
+    title: "Code of Conduct",
     description:
       "Community guidelines for respectful and inclusive interaction across JumpStone spaces.",
     type: "website",
