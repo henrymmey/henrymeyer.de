@@ -1,6 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import GitHubStats from "@/components/github-section";
+import HackatimeStats from "@/components/hackatime-stats";
 import SectionHeading from "@/components/section-heading";
+import SkillIcons from "@/components/skill-icons";
 import SiteFooter from "@/components/site-footer";
 import {
   getSubsiteProjects,
@@ -101,10 +103,7 @@ export default function Page() {
 
         <div className="mt-6 space-y-8 text-foreground">
           <div>
-            <img
-              src="https://github-readme-stats.hackclub.dev/api/wakatime?username=36150&api_domain=hackatime.hackclub.com&theme=darcula&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8"
-              alt="Hackatime Coding Stats"
-            />
+            <HackatimeStats />
           </div>
         </div>
       </section>
@@ -118,27 +117,21 @@ export default function Page() {
         <div className="mt-6 space-y-8 text-foreground">
           <div>
             <h3 className="mb-4 text-xl font-bold">Currently learning</h3>
-            <img
-              src="https://skillicons.dev/icons?i=js,ts,githubactions"
-              alt="Currently learning"
-            />
+            <SkillIcons icons="js,ts,githubactions" label="Currently learning" />
           </div>
 
           <div>
             <h3 className="mb-4 text-xl font-bold">Tools</h3>
-            <img
-              src="https://skillicons.dev/icons?i=git,github,githubactions,cloudflare,docker,mysql,arduino,bash,powershell&perline=10"
-              alt="Tools"
-              className="max-w-full"
+            <SkillIcons
+              icons="git,github,githubactions,cloudflare,docker,mysql,arduino,bash,powershell"
+              label="Tools"
+              perline={10}
             />
           </div>
 
           <div>
             <h3 className="mb-4 text-xl font-bold">Programming Languages</h3>
-            <img
-              src="https://skillicons.dev/icons?i=html,css,js,ts"
-              alt="Programming Languages"
-            />
+            <SkillIcons icons="html,css,js,ts" label="Programming Languages" />
           </div>
         </div>
       </section>
