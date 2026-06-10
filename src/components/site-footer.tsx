@@ -85,6 +85,23 @@ export default async function SiteFooter() {
                   </Link>
                 )}
               </li>
+              <li>
+                {isSubsiteDomain ? (
+                  <a
+                    className="underline underline-offset-2"
+                    href={toMainDomain("/tor")}
+                  >
+                    Tor
+                  </a>
+                ) : (
+                  <Link
+                    className="underline underline-offset-2"
+                    href={toMainDomain("/tor")}
+                  >
+                    Tor
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
 
