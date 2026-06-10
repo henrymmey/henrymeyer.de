@@ -15,5 +15,16 @@
       "destination": "https://hmlabs.eu/legal/privacy",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Onion-Location",
+          "value": "http://2bhhtuncptca3p3spmvs3ctgz4s533fomrhotw32lavqko4emr7ruoid.onion/$1"
+        }
+      ]
+    }
   ]
 }
