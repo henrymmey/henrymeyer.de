@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
+import { ClarityProvider } from "@/components/clarity-provider";
 import SiteChrome from "@/components/site-chrome";
 import { ThemeModeProvider } from "@/components/theme-mode-provider";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -129,7 +129,7 @@ export default function RootLayout({
     >
       <head />
       <body className="min-h-full flex flex-col">
-        <Analytics />
+        <ClarityProvider />
         <ThemeModeProvider>
           <SiteChrome />
 
