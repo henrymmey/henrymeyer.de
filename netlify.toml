@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[redirects]]
+  from = "/connect"
+  to = "/links"
+  status = 301
+
+[[redirects]]
+  from = "/legal/imprint"
+  to = "https://hmlabs.eu/legal/imprint"
+  status = 301
+
+[[redirects]]
+  from = "/legal/privacy"
+  to = "https://hmlabs.eu/legal/privacy"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Onion-Location = "http://2bhhtuncptca3p3spmvs3ctgz4s533fomrhotw32lavqko4emr7ruoid.onion/*"
