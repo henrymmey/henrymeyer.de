@@ -112,14 +112,14 @@ export default async function SiteFooter() {
                 {isSubsiteDomain ? (
                   <a
                     className="underline underline-offset-2"
-                    href={toMainDomain("/legal/imprint")}
+                    href={toMainDomain("https://hmlabs.eu/legal/imprint")}
                   >
                     Imprint
                   </a>
                 ) : (
                   <Link
                     className="underline underline-offset-2"
-                    href={toMainDomain("/legal/imprint")}
+                    href={toMainDomain("https://hmlabs.eu/legal/imprint")}
                   >
                     Imprint
                   </Link>
@@ -129,14 +129,14 @@ export default async function SiteFooter() {
                 {isSubsiteDomain ? (
                   <a
                     className="underline underline-offset-2"
-                    href={toMainDomain("/legal/privacy")}
+                    href={toMainDomain("https://hmlabs.eu/legal/privacy")}
                   >
                     Privacy Policy
                   </a>
                 ) : (
                   <Link
                     className="underline underline-offset-2"
-                    href={toMainDomain("/legal/privacy")}
+                    href={toMainDomain("https://hmlabs.eu/legal/privacy")}
                   >
                     Privacy Policy
                   </Link>
@@ -146,14 +146,14 @@ export default async function SiteFooter() {
                 {isSubsiteDomain ? (
                   <a
                     className="underline underline-offset-2"
-                    href={toMainDomain("/code-of-conduct")}
+                    href={toMainDomain("https://hmlabs.eu/code-of-conduct")}
                   >
                     Code of Conduct
                   </a>
                 ) : (
                   <Link
                     className="underline underline-offset-2"
-                    href={toMainDomain("/code-of-conduct")}
+                    href={toMainDomain("https://hmlabs.eu/code-of-conduct")}
                   >
                     Code of Conduct
                   </Link>
