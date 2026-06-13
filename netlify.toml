@@ -17,6 +17,20 @@
   to = "https://hmlabs.eu/legal/privacy"
   status = 301
 
+# Redirect von jumpstone4477.de auf henrymeyer.de
+[[redirects]]
+  from = "https://jumpstone4477.de/*"
+  to = "https://henrymeyer.de/:splat"
+  status = 301
+  force = true
+
+# Redirect von www.jumpstone4477.de auf henrymeyer.de
+[[redirects]]
+  from = "https://www.jumpstone4477.de/*"
+  to = "https://henrymeyer.de/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
