@@ -219,6 +219,12 @@ export default async function SiteFooter() {
               </li>
             </ul>
           </div>
+
+          <div className="rounded-base border border-border/30 bg-background p-6 flex items-center justify-center">
+            <a href="https://www.netlify.com">
+              <img src="https://www.netlify.com/assets/badges/netlify-badge-light.svg" alt="Deploys by Netlify" className="h-16" />
+            </a>
+          </div>
         </div>
 
         <div className="mt-4 rounded-base border border-border/30 bg-main px-4 py-3 text-sm text-main-foreground">

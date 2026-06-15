@@ -132,22 +132,31 @@ export default function LinksPage() {
           </div>
         </div>
 
-        <footer className="mt-12 flex items-center gap-4 text-xs text-zinc-500 sm:text-sm">
-          <Link
-            href="/legal/imprint"
-            className="transition-colors hover:text-zinc-300"
-          >
-            Imprint
-          </Link>
-          <span aria-hidden="true" className="text-zinc-700">
-            •
-          </span>
-          <Link
-            href="/legal/privacy"
-            className="transition-colors hover:text-zinc-300"
-          >
-            Privacy Policy
-          </Link>
+        <footer className="mt-12 flex flex-col items-center gap-4 text-xs text-zinc-500 sm:text-sm">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/legal/imprint"
+              className="transition-colors hover:text-zinc-300"
+            >
+              Imprint
+            </Link>
+            <span aria-hidden="true" className="text-zinc-700">
+              •
+            </span>
+            <Link
+              href="/legal/privacy"
+              className="transition-colors hover:text-zinc-300"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+          <a href="https://www.netlify.com">
+            <img
+              src="https://www.netlify.com/assets/badges/netlify-badge-light.svg"
+              alt="Deploys by Netlify"
+              className="h-10"
+            />
+          </a>
         </footer>
       </div>
     </main>
