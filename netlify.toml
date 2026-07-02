@@ -8,13 +8,13 @@
   status = 301
 
 [[redirects]]
-  from = "/legal/imprint"
-  to = "https://hmlabs.eu/legal/imprint"
+  from = "/meyerwolke/legal/imprint"
+  to = "/legal/imprint"
   status = 301
 
 [[redirects]]
-  from = "/legal/privacy"
-  to = "https://hmlabs.eu/legal/privacy"
+  from = "/meyerwolke/legal/privacy"
+  to = "/legal/privacy"
   status = 301
 
 # Redirect von jumpstone4477.de auf henrymeyer.de
@@ -34,10 +34,4 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Onion-Location = "http://2bhhtuncptca3p3spmvs3ctgz4s533fomrhotw32lavqko4emr7ruoid.onion/*"
-
-[[headers]]
-  for = "/.well-known/matrix/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Content-Type = "application/json"
+    Onion-Location = "http://2bhhtuncptca3p3spmvs3ctgz4s533fomrhotw32lavqko4emr7ruoid.onion"
