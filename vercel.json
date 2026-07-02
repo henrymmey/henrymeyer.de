@@ -6,13 +6,13 @@
       "permanent": true
     },
     {
-      "source": "/legal/imprint",
-      "destination": "https://hmlabs.eu/legal/imprint",
+      "source": "/meyerwolke/legal/imprint",
+      "destination": "/legal/imprint",
       "permanent": true
     },
     {
-      "source": "/legal/privacy",
-      "destination": "https://hmlabs.eu/legal/privacy",
+      "source": "/meyerwolke/legal/privacy",
+      "destination": "/legal/privacy",
       "permanent": true
     }
   ],
