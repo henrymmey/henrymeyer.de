@@ -112,8 +112,8 @@ export default function SiteHeader({
               target="_blank"
               rel="noreferrer"
               aria-label="ID Portal"
-              className={`inline-flex items-center justify-center rounded-base bg-foreground px-4 font-heading text-background shadow-sm transition-all duration-300 hover:opacity-80 ${
-                isCompact ? "h-8 text-sm" : "h-11 text-base"
+              className={`inline-flex items-center justify-center rounded-base border border-border/30 bg-main font-heading text-main-foreground shadow-sm transition-all duration-300 hover:opacity-80 ${
+                isCompact ? "size-8 text-sm" : "size-11 text-base"
               }`}
             >
               ID
