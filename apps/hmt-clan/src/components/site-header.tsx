@@ -106,7 +106,18 @@ export default function SiteHeader({
             </Link>
           </nav>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            <Link
+              href="https://id.hmt-clan.henrymeyer.de"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="ID Portal"
+              className={`inline-flex items-center justify-center rounded-base bg-foreground px-4 font-heading text-background shadow-sm transition-all duration-300 hover:opacity-80 ${
+                isCompact ? "h-8 text-sm" : "h-11 text-base"
+              }`}
+            >
+              ID
+            </Link>
             {socialLinks.map((link) => (
               <a
                 key={link.href}
