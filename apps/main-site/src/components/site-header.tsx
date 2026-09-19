@@ -1,7 +1,9 @@
 "use client";
 
 import { useThemeMode } from "@/components/theme-mode-provider";
-import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 type SiteHeaderProps = {
   logoSrc?: string;
@@ -37,6 +39,8 @@ export default function SiteHeader({
 }: SiteHeaderProps) {
   const { effectiveMode } = useThemeMode();
   const [isCompact, setIsCompact] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuOpenedAtScrollY = useRef<number | null>(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -44,6 +48,14 @@ export default function SiteHeader({
     const onScroll = () => {
       const currentScrollY = window.scrollY;
       const isScrollingDown = currentScrollY > lastScrollY;
+
+      if (
+        menuOpenedAtScrollY.current !== null &&
+        Math.abs(currentScrollY - menuOpenedAtScrollY.current) > 48
+      ) {
+        menuOpenedAtScrollY.current = null;
+        setIsMenuOpen(false);
+      }
 
       if (currentScrollY <= 40) {
         setIsCompact(false);
@@ -74,7 +86,7 @@ export default function SiteHeader({
               : "rounded-base border border-border/30 p-4 shadow-sm"
           }`}
         >
-          <a href="/" className="inline-flex items-center gap-3">
+          <Link href="/" className="inline-flex items-center gap-3">
             <img
               src={logoSrc}
               alt={`${siteName} Logo`}
@@ -89,20 +101,20 @@ export default function SiteHeader({
             >
               {siteName}
             </span>
-          </a>
+          </Link>
 
           <nav
             aria-label="Primary"
-            className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-4 whitespace-nowrap"
+            className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-4 whitespace-nowrap md:flex"
           >
-            <a
+            <Link
               href="/projects"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
                 isCompact ? "text-sm" : "text-base"
               }`}
             >
               Projects
-            </a>
+            </Link>
             <a
               href="https://gaming.henrymeyer.de"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
@@ -111,25 +123,25 @@ export default function SiteHeader({
             >
               HM Gaming
             </a>
-            <a
+            <Link
               href="/links"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
                 isCompact ? "text-sm" : "text-base"
               }`}
             >
               Links
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
                 isCompact ? "text-sm" : "text-base"
               }`}
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="hidden flex-wrap gap-2 md:flex">
             {socialLinks.map((link) => (
               <a
                 key={link.href}
@@ -153,7 +165,86 @@ export default function SiteHeader({
               </a>
             ))}
           </div>
+
+          <button
+            type="button"
+            className="inline-flex size-11 items-center justify-center rounded-base border border-border/30 bg-secondary-background shadow-sm transition-colors hover:bg-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => {
+              if (isMenuOpen) {
+                menuOpenedAtScrollY.current = null;
+                setIsMenuOpen(false);
+                return;
+              }
+
+              menuOpenedAtScrollY.current = window.scrollY;
+              setIsMenuOpen(true);
+            }}
+          >
+            {isMenuOpen ? (
+              <X className="size-5" aria-hidden="true" />
+            ) : (
+              <Menu className="size-5" aria-hidden="true" />
+            )}
+          </button>
         </header>
+
+        {isMenuOpen && (
+          <div
+            id="mobile-navigation"
+            className="mt-2 space-y-4 rounded-base border border-border/30 bg-secondary-background/95 p-4 shadow-sm backdrop-blur supports-backdrop-filter:bg-secondary-background/85 md:hidden"
+          >
+            <nav aria-label="Mobile primary" className="grid gap-1">
+              <Link
+                href="/projects"
+                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Projects
+              </Link>
+              <a
+                href="https://gaming.henrymeyer.de"
+                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                HM Gaming
+              </a>
+              <Link
+                href="/links"
+                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Links
+              </Link>
+              <Link
+                href="/contact"
+                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Contact
+              </Link>
+            </nav>
+
+            <div className="flex items-center gap-2 border-t border-border/30 pt-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.href}
+                  className="inline-flex size-10 items-center justify-center rounded-base border border-border/30 bg-secondary-background shadow-sm transition-colors hover:bg-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.label}
+                  title={link.label}
+                >
+                  <img
+                    src={`/badges/${link.iconName}${effectiveMode === "light" ? "-dark" : ""}.png`}
+                    alt=""
+                    aria-hidden="true"
+                    className="size-5 object-contain"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
