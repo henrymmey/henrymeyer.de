@@ -7,6 +7,10 @@ export default async function SiteFooter() {
   const isSubsiteDomain =
     host === "jumpstone.is-cool.dev" || host.endsWith(".vercel.app");
   const rootDomain = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
+  const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
+  const commitUrl = commitSha
+    ? `https://github.com/henrymmey/henrymeyer.de/commit/${commitSha}`
+    : "https://github.com/henrymmey/henrymeyer.de/commits/main";
   const toMainDomain = (path: string) =>
     isSubsiteDomain ? `${rootDomain}${path}` : path;
 
@@ -230,7 +234,18 @@ export default async function SiteFooter() {
         </div>
 
         <div className="mt-4 rounded-base border border-border/30 bg-main px-4 py-3 text-sm text-main-foreground">
-          © 2026 Henry Meyer. Code licensed under GPL-3.0.
+          <div>© 2026 Henry Meyer. Code licensed under GPL-3.0.</div>
+          <div className="mt-1 text-xs text-main-foreground/70">
+            Running on{" "}
+            <a
+              className="underline underline-offset-2"
+              href={commitUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {commitSha ? commitSha.slice(0, 7) : "main"}
+            </a>
+          </div>
         </div>
       </div>
     </footer>
