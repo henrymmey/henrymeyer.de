@@ -7,6 +7,11 @@ export type ProjectInfo = {
   slug: string;
   title: string;
   description: string;
+  role?: string;
+  showRole?: boolean;
+  showTags?: boolean;
+  showDetailsButton?: boolean;
+  showInSitemap?: boolean;
   tags: string[];
   links: ProjectLink[];
   priority: number;
@@ -26,6 +31,11 @@ const projectInfos: ProjectInfo[] = [
     slug: "js-gaming",
     title: "HM Gaming",
     description: "Modpacks, resource packs, and mods for Minecraft.",
+    role: "Founder",
+    showRole: true,
+    showTags: false,
+    showDetailsButton: false,
+    showInSitemap: false,
     tags: ["Java", "Design"],
     links: [
       {
@@ -37,7 +47,7 @@ const projectInfos: ProjectInfo[] = [
         href: "https://modrinth.com/user/Fg5L4UzB",
       },
     ],
-    priority: 3,
+    priority: 2,
     publishedAt: "2026-03-09",
   },
   {
@@ -45,10 +55,15 @@ const projectInfos: ProjectInfo[] = [
     title: "Akku-Craft",
     description:
       "A modular power-bank platform focused on hardware reliability and expandability.",
+    role: "Co-Founder, Hardware Engineering",
+    showRole: true,
+    showTags: false,
+    showDetailsButton: false,
+    showInSitemap: false,
     tags: ["Arduino", "BMS", "Hardware"],
     links: [
+      { label: "Website", href: "https://akku-craft.eu" },
       { label: "GitHub", href: "https://github.com/akku-craft" },
-      { label: "Wiki", href: "https://github.com/akku-craft/wiki/wiki" },
     ],
     priority: 1,
     publishedAt: "2025-10-25",
@@ -59,6 +74,11 @@ const projectInfos: ProjectInfo[] = [
     title: "Awesome AI for Beginners",
     description:
       "A curated list of resources for learning artificial intelligence.",
+    role: "",
+    showRole: false,
+    showTags: false,
+    showDetailsButton: false,
+    showInSitemap: false,
     tags: ["AI", "Awesome List"],
     links: [
       {
@@ -70,7 +90,7 @@ const projectInfos: ProjectInfo[] = [
         href: "https://aiforbeginners.henrymeyer.de",
       },
     ],
-    priority: 2,
+    priority: 3,
     publishedAt: "2026-05-10",
   },
 ];

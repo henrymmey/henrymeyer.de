@@ -1,15 +1,17 @@
 import type { MetadataRoute } from "next";
-import { getProjectSlugs } from "@/lib/project-infos";
+import { getProjectInfos } from "@/lib/project-infos";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
 
-  const projectEntries = getProjectSlugs().map((slug) => ({
-    url: `${baseUrl}/projects/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const projectEntries = getProjectInfos()
+    .filter((project) => project.showInSitemap !== false)
+    .map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
 
   const routes: MetadataRoute.Sitemap = [
     {

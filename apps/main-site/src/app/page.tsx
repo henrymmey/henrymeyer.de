@@ -20,26 +20,35 @@ function ProjectGrid({ projects }: { projects: SubsiteProject[] }) {
           className="rounded-base border border-border/30 bg-secondary-background p-5 shadow-sm"
         >
           <h3 className="mb-3 text-xl font-heading">{project.title}</h3>
+          {project.showRole && project.role ? (
+            <p className="mb-3 text-sm font-heading text-foreground/70">
+              {project.role}
+            </p>
+          ) : null}
           <p className="mb-4 text-sm leading-relaxed text-foreground/80">
             {project.description}
           </p>
 
-          <div className="mb-5 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="neutral">
-                {tag}
-              </Badge>
-            ))}
-          </div>
+          {project.showTags !== false ? (
+            <div className="mb-5 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <Badge key={tag} variant="neutral">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          ) : null}
 
           <div className="flex flex-wrap gap-2">
-            <Link
-              href={`/projects/${project.slug}`}
-              className="inline-flex items-center gap-2 rounded-base border border-border/30 bg-background px-3 py-1.5 text-sm font-heading text-foreground shadow-sm transition-opacity hover:opacity-80"
-            >
-              Details
-              <ArrowUpRight className="size-4" />
-            </Link>
+            {project.showDetailsButton !== false ? (
+              <Link
+                href={`/projects/${project.slug}`}
+                className="inline-flex items-center gap-2 rounded-base border border-border/30 bg-background px-3 py-1.5 text-sm font-heading text-foreground shadow-sm transition-opacity hover:opacity-80"
+              >
+                Details
+                <ArrowUpRight className="size-4" />
+              </Link>
+            ) : null}
 
             {project.links.map((link) => (
               <a

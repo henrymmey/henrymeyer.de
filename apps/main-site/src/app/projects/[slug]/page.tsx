@@ -92,6 +92,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <h1 className="mb-3 text-3xl font-heading leading-tight sm:text-5xl">
           {project.title}
         </h1>
+        {project.showRole && project.role ? (
+          <p className="mb-3 text-sm font-heading text-main-foreground/80">
+            {project.role}
+          </p>
+        ) : null}
         <p className="max-w-3xl text-base leading-relaxed">
           {project.description}
         </p>
