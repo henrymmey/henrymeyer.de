@@ -126,7 +126,7 @@ export default function Page() {
           <div>
             <h3 className="mb-4 text-xl font-bold">Tools</h3>
             <SkillIcons
-              icons="git,github,githubactions,cloudflare,docker,mysql,arduino,bash,powershell"
+              icons="git,github,githubactions,cloudflare,docker,arduino,bash,powershell"
               label="Tools"
               perline={10}
             />
@@ -134,7 +134,7 @@ export default function Page() {
 
           <div>
             <h3 className="mb-4 text-xl font-bold">Programming Languages</h3>
-            <SkillIcons icons="html,css,js,ts" label="Programming Languages" />
+            <SkillIcons icons="html,js,ts" label="Programming Languages" />
           </div>
         </div>
       </section>
