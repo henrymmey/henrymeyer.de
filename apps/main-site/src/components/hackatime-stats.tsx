@@ -1,10 +1,12 @@
 const HACKATIME_URL =
-  "https://github-readme-stats.hackclub.dev/api/wakatime?username=36150&api_domain=hackatime.hackclub.com&theme=darcula&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8";
+  "https://github-readme-stats.hackclub.dev/api/wakatime?username=36150&api_domain=hackatime.hackclub.com&theme=darcula&custom_title=Hackatime+Stats&layout=compact&cache_seconds=3600&langs_count=8";
 
 export default async function HackatimeStats() {
+  let base64: string;
+
   try {
     const res = await fetch(HACKATIME_URL, {
-      cache: "no-store",
+      next: { revalidate: 3600 },
     });
 
     if (!res.ok) {
@@ -12,14 +14,7 @@ export default async function HackatimeStats() {
     }
 
     const svg = await res.text();
-    const base64 = Buffer.from(svg).toString("base64");
-
-    return (
-      <img
-        src={`data:image/svg+xml;base64,${base64}`}
-        alt="Hackatime Coding Stats"
-      />
-    );
+    base64 = Buffer.from(svg).toString("base64");
   } catch {
     return (
       <p className="text-sm text-foreground/60">
@@ -27,4 +22,11 @@ export default async function HackatimeStats() {
       </p>
     );
   }
+
+  return (
+    <img
+      src={`data:image/svg+xml;base64,${base64}`}
+      alt="Hackatime Coding Stats"
+    />
+  );
 }

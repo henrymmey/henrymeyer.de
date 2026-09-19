@@ -1,18 +1,11 @@
 import Link from "next/link";
-import { headers } from "next/headers";
 import ThemeModeSelect from "@/components/theme-mode-select";
 
-export default async function SiteFooter() {
-  const host = (await headers()).get("host")?.toLowerCase() ?? "";
-  const isSubsiteDomain =
-    host === "jumpstone.is-cool.dev" || host.endsWith(".vercel.app");
-  const rootDomain = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
+export default function SiteFooter() {
   const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
   const commitUrl = commitSha
     ? `https://github.com/henrymmey/henrymeyer.de/commit/${commitSha}`
     : "https://github.com/henrymmey/henrymeyer.de/commits/main";
-  const toMainDomain = (path: string) =>
-    isSubsiteDomain ? `${rootDomain}${path}` : path;
 
   return (
     <footer className="mt-8 border-t border-border/30 bg-secondary-background ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]">
@@ -22,106 +15,37 @@ export default async function SiteFooter() {
             <h3 className="mb-3 text-sm font-heading">Navigation</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/")}
-                  >
-                    Home
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/")}
-                  >
-                    Home
-                  </Link>
-                )}
+                <Link className="underline underline-offset-2" href="/">
+                  Home
+                </Link>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/contact")}
-                  >
-                    Contact
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/contact")}
-                  >
-                    Contact
-                  </Link>
-                )}
+                <Link className="underline underline-offset-2" href="/contact">
+                  Contact
+                </Link>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/projects")}
-                  >
-                    Projects
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/projects")}
-                  >
-                    Projects
-                  </Link>
-                )}
+                <Link className="underline underline-offset-2" href="/projects">
+                  Projects
+                </Link>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("https://gaming.henrymeyer.de")}
-                  >
-                    HM Gaming
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("https://gaming.henrymeyer.de")}
-                  >
-                    HM Gaming
-                  </Link>
-                )}
+                <a
+                  className="underline underline-offset-2"
+                  href="https://gaming.henrymeyer.de"
+                >
+                  HM Gaming
+                </a>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/links")}
-                  >
-                    Links
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/links")}
-                  >
-                    Links
-                  </Link>
-                )}
+                <Link className="underline underline-offset-2" href="/links">
+                  Links
+                </Link>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/tor")}
-                  >
-                    Tor
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/tor")}
-                  >
-                    Tor
-                  </Link>
-                )}
+                <Link className="underline underline-offset-2" href="/tor">
+                  Tor
+                </Link>
               </li>
             </ul>
           </div>
@@ -130,55 +54,28 @@ export default async function SiteFooter() {
             <h3 className="mb-3 text-sm font-heading">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/legal/imprint")}
-                  >
-                    Imprint
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/legal/imprint")}
-                  >
-                    Imprint
-                  </Link>
-                )}
+                <Link
+                  className="underline underline-offset-2"
+                  href="/legal/imprint"
+                >
+                  Imprint
+                </Link>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/legal/privacy")}
-                  >
-                    Privacy Policy
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/legal/privacy")}
-                  >
-                    Privacy Policy
-                  </Link>
-                )}
+                <Link
+                  className="underline underline-offset-2"
+                  href="/legal/privacy"
+                >
+                  Privacy Policy
+                </Link>
               </li>
               <li>
-                {isSubsiteDomain ? (
-                  <a
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/code-of-conduct")}
-                  >
-                    Code of Conduct
-                  </a>
-                ) : (
-                  <Link
-                    className="underline underline-offset-2"
-                    href={toMainDomain("/code-of-conduct")}
-                  >
-                    Code of Conduct
-                  </Link>
-                )}
+                <Link
+                  className="underline underline-offset-2"
+                  href="/code-of-conduct"
+                >
+                  Code of Conduct
+                </Link>
               </li>
             </ul>
           </div>
