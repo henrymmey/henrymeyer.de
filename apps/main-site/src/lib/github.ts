@@ -1,25 +1,12 @@
 export type GitHubProfile = {
   public_repos: number;
   followers: number;
-  following: number;
 };
 
-export type GitHubRepo = {
-  id: number;
-  name: string;
-  html_url: string;
-  description: string | null;
-  language: string | null;
-  stargazers_count: number;
-  fork: boolean;
-  updated_at: string;
-};
-
-type GitHubData = {
-  profile: GitHubProfile | null;
-  repos: GitHubRepo[] | null;
+export type GitHubStats = {
+  publicRepos: number | null;
+  followers: number | null;
   commits: number | null;
-  hasError: boolean;
 };
 
 function createGitHubHeaders(): HeadersInit {
@@ -35,30 +22,22 @@ function createGitHubHeaders(): HeadersInit {
   return headers;
 }
 
-export async function getGitHubData(
-  username: string,
-  repoLimit = 12,
-): Promise<GitHubData> {
+export async function getGitHubData(username: string): Promise<GitHubStats> {
   const headers = createGitHubHeaders();
+  const requestOptions = {
+    headers,
+    next: { revalidate: 21600 },
+    signal: AbortSignal.timeout(5000),
+  };
 
-  const [profileResponse, reposResponse, commitsResponse] = await Promise.all([
-    fetch(`https://api.github.com/users/${username}`, {
-      headers,
-      next: { revalidate: 60 * 30 },
-    }),
-    fetch(
-      `https://api.github.com/users/${username}/repos?sort=updated&per_page=${repoLimit}`,
-      {
-        headers,
-        next: { revalidate: 60 * 30 },
-      },
-    ),
+  const [profileResponse, commitsResponse] = await Promise.all([
+    fetch(`https://api.github.com/users/${username}`, requestOptions),
     fetch(`https://api.github.com/search/commits?q=author:${username}`, {
+      ...requestOptions,
       headers: {
         ...headers,
         Accept: "application/vnd.github.cloak-preview+json",
       },
-      next: { revalidate: 60 * 30 },
     }),
   ]);
 
@@ -66,22 +45,11 @@ export async function getGitHubData(
     ? ((await profileResponse.json()) as GitHubProfile)
     : null;
 
-  const repos = reposResponse.ok
-    ? ((await reposResponse.json()) as GitHubRepo[])
-        .filter((repo) => !repo.fork)
-        .sort(
-          (a, b) =>
-            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
-        )
-    : null;
-
   const commitsData = commitsResponse.ok ? await commitsResponse.json() : null;
-  const commits = commitsData ? commitsData.total_count : null;
 
   return {
-    profile,
-    repos,
-    commits,
-    hasError: !profileResponse.ok || !reposResponse.ok,
+    publicRepos: profile?.public_repos ?? null,
+    followers: profile?.followers ?? null,
+    commits: commitsData ? commitsData.total_count : null,
   };
 }
