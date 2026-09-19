@@ -31,8 +31,14 @@ const LINKS = [
   {
     id: "modrinth",
     label: "Modrinth",
-    href: "https://modrinth.com/organization/jumpstone-gaming",
+    href: "https://modrinth.com/user/Fg5L4UzB",
     badge: "modrinth-color.png",
+  },
+  {
+    id: "curseforge",
+    label: "CurseForge",
+    href: "https://www.curseforge.com/members/henrymmey",
+    badge: "curseforge.svg",
   },
   {
     id: "website",
@@ -43,14 +49,21 @@ const LINKS = [
   {
     id: "projects",
     label: "Projects",
-    href: (process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de") + "/projects",
+    href:
+      (process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de") + "/projects",
     badge: "icons8-globe.png",
   },
   {
     id: "contact",
-    label: "Contact",
+    label: "Contact (Mail)",
     href: "mailto:hello@henrymeyer.de",
     badge: "icons8-email.png",
+  },
+  {
+    id: "hm-gaming",
+    label: "HM Gaming",
+    href: "https://gaming.henrymeyer.de",
+    badge: "hm.png",
   },
 ];
 
@@ -150,13 +163,6 @@ export default function LinksPage() {
               Privacy Policy
             </Link>
           </div>
-          <a href="https://www.netlify.com">
-            <img
-              src="https://www.netlify.com/assets/badges/netlify-badge-light.svg"
-              alt="Deploys by Netlify"
-              className="h-10"
-            />
-          </a>
         </footer>
       </div>
     </main>
