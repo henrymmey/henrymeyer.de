@@ -94,7 +94,7 @@ export default function SiteFooterContent({
             </div>
 
             <nav aria-label="Footer Navigation">
-              <p className="mb-4 font-pixel text-[10px] uppercase tracking-[0.2em] text-grass">
+              <p className="mb-4 font-pixel text-sm uppercase tracking-[0.2em] text-grass">
                 Entdecken
               </p>
               <ul className="space-y-2.5 text-sm">
@@ -125,7 +125,7 @@ export default function SiteFooterContent({
             </nav>
 
             <nav aria-label="Rechtliches">
-              <p className="mb-4 font-pixel text-[10px] uppercase tracking-[0.2em] text-grass">
+              <p className="mb-4 font-pixel text-sm uppercase tracking-[0.2em] text-grass">
                 Rechtliches
               </p>
               <ul className="space-y-2.5 text-sm">
