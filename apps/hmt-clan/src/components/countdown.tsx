@@ -46,15 +46,23 @@ export default function Countdown() {
     return () => clearInterval(id);
   }, []);
 
+  const isReached = remaining === "reached";
+
   return (
-    <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-center shadow-sm md:p-8">
+    <section
+      className={`mb-8 rounded-base border p-6 text-center shadow-sm md:p-8 ${
+        isReached
+          ? "border-emerald-500/40 bg-emerald-500/10 dark:border-emerald-500/50 dark:bg-emerald-500/15"
+          : "border-border/30 bg-main"
+      }`}
+    >
       <h2 className="mb-2 text-2xl font-heading text-main-foreground sm:text-3xl">
         Bald ist es soweit!
       </h2>
       <p className="mb-6 text-sm text-foreground/60">02.10.2026 · 20:00 Uhr</p>
 
-      {remaining === "reached" ? (
-        <p className="font-heading text-xl text-main-foreground sm:text-2xl">
+      {isReached ? (
+        <p className="font-heading text-xl text-emerald-700 dark:text-emerald-400 sm:text-2xl">
           Das Event hat begonnen!
         </p>
       ) : (
