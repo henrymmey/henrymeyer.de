@@ -10,6 +10,7 @@
     "show": false,
     "showDetailsButton": true,
     "done": false,
+    "icon": "map",
     "links": [
       {
         "displayName": "Example",

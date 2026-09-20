@@ -3,6 +3,17 @@ export interface EventLink {
   url: string;
 }
 
+export type EventIcon =
+  | "chest"
+  | "sword"
+  | "map"
+  | "pickaxe"
+  | "emerald"
+  | "redstone"
+  | "ender-pearl"
+  | "grass"
+  | "crafting-table";
+
 export interface EventConfig {
   name: string;
   slug: string;
@@ -14,5 +25,6 @@ export interface EventConfig {
   show: boolean;
   showDetailsButton: boolean;
   done: boolean;
+  icon?: EventIcon;
   links?: EventLink[];
 }

@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import SiteChrome from "@/components/site-chrome";
 import { ConsentProvider } from "@/components/consent-provider";
 import ConsentDialog from "@/components/consent-dialog";
 import CookieBanner from "@/components/cookie-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,7 +18,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const pixel = Silkscreen({
+  variable: "--font-silkscreen",
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
+
 const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app";
+
+const siteDescription =
+  "HMT Clan – Eine Gruppe von Freunden, die gemeinsam auf TheScape Minecraft spielt.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -26,10 +35,37 @@ export const metadata: Metadata = {
     default: "HMT Clan",
     template: "%s | HMT Clan",
   },
-  description: "The official HMT Clan site.",
+  description: siteDescription,
   alternates: {
     canonical: baseUrl,
   },
+  applicationName: "HMT Clan",
+  creator: "Henry Meyer",
+  keywords: [
+    "HMT Clan",
+    "Minecraft",
+    "TheScape",
+    "Minecraft Clan",
+    "Minecraft Community",
+    "Survival",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: "HMT Clan",
+    url: baseUrl,
+    title: "HMT Clan",
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HMT Clan",
+    description: siteDescription,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b0e0b",
 };
 
 export default function RootLayout({
@@ -39,11 +75,10 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="de"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} ${pixel.variable} h-full antialiased dark`}
     >
-      <head />
       <body className="min-h-full flex flex-col">
         <ConsentProvider>
           <SiteChrome />

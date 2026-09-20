@@ -1,17 +1,21 @@
-import SiteFooter from "@/components/site-footer";
 import type { Metadata } from "next";
+import SiteFooter from "@/components/site-footer";
+import PageIntro from "@/components/minecraft/page-intro";
+import BlockFrame from "@/components/minecraft/block-frame";
+import MinecraftButton from "@/components/minecraft/minecraft-button";
+import { MaterialIcon, type MaterialIconName } from "@/components/minecraft/minecraft-icons";
 
 export const metadata: Metadata = {
-  title: { absolute: "Contact | HMT Clan" },
+  title: "Kontakt | HMT Clan",
   description:
-    "Get in touch with HMT Clan. Contact information for the crew and inquiries.",
+    "Kontakt zum HMT Clan: Discord, Server-Einladung und E-Mail für Anfragen an die Crew.",
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Contact HMT Clan",
-    description: "Get in touch with the HMT Clan crew and inquiries.",
+    title: "Kontakt | HMT Clan",
+    description: "Kontakt zum HMT Clan über Discord und E-Mail.",
     type: "website",
     url: `${process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app"}/contact`,
   },
@@ -22,54 +26,117 @@ const discordId = "1008346032230387752";
 const discordServerInvite = "8aWmBuYURK";
 const contactEmail = "hmt-clan@henrymeyer.de";
 
+function ContactRow({
+  icon,
+  label,
+  children,
+}: {
+  icon: MaterialIconName;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-start gap-3 border-b border-white/5 py-4 last:border-none">
+      <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-block border border-black/50 bg-surface-2">
+        <MaterialIcon name={icon} className="size-4" />
+      </span>
+      <div>
+        <p className="font-pixel text-[9px] uppercase tracking-[0.2em] text-muted">
+          {label}
+        </p>
+        <div className="mt-1 text-sm leading-relaxed text-foreground">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ContactPage() {
   return (
-    <main className="relative mx-auto w-full max-w-6xl px-4 pb-0 md:px-8 md:pb-0">
-      <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
-        <h1 className="mb-2 text-3xl font-heading md:text-4xl">Contact</h1>
-      </section>
+    <main>
+      <PageIntro
+        eyebrow="Kontakt"
+        eyebrowIcon="chest"
+        title="Kontakt"
+        description="Wie du den HMT Clan erreichst – über Discord oder direkt per E-Mail."
+      />
 
-      <section className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm md:p-8">
-        <div className="rounded-base border border-border/30 bg-background p-5 shadow-sm">
-          <h2 className="mb-3 text-xl font-heading">Discord</h2>
-          <p className="text-sm leading-relaxed md:text-base">
-            <span className="font-heading">User: </span>
-            <a
-              href={`https://discord.com/users/${discordId}`}
-              className="underline underline-offset-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              @{discordUsername}
-            </a>
+      <div className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8 md:py-16">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <BlockFrame
+            header={
+              <>
+                <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-[#efe8d8]">
+                  <MaterialIcon name="chest" className="size-4" />
+                  Discord
+                </span>
+              </>
+            }
+            bodyClassName="p-5 md:p-6"
+          >
+            <ContactRow icon="chest" label="User">
+              <a
+                href={`https://discord.com/users/${discordId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline decoration-emerald/40 underline-offset-2 transition-colors hover:text-emerald"
+              >
+                @{discordUsername}
+              </a>
+            </ContactRow>
+            <ContactRow icon="grass" label="Server">
+              <a
+                href={`https://discord.gg/${discordServerInvite}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline decoration-emerald/40 underline-offset-2 transition-colors hover:text-emerald"
+              >
+                HMT Clan Discord-Server
+              </a>
+            </ContactRow>
+            <div className="pt-4">
+              <MinecraftButton
+                href={`https://discord.gg/${discordServerInvite}`}
+                external
+                variant="primary"
+              >
+                Server beitreten
+              </MinecraftButton>
+            </div>
+          </BlockFrame>
 
-            <br />
-            <span className="font-heading">Server: </span>
-            <a
-              href={`https://discord.gg/${discordServerInvite}`}
-              className="underline underline-offset-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              HMT Clan Discord-Server
-            </a>
-          </p>
+          <BlockFrame
+            header={
+              <>
+                <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-[#efe8d8]">
+                  <MaterialIcon name="emerald" className="size-4" />
+                  E-Mail
+                </span>
+              </>
+            }
+            bodyClassName="p-5 md:p-6"
+          >
+            <ContactRow icon="emerald" label="E-Mail">
+              <a
+                href={`mailto:${contactEmail}`}
+                className="text-foreground underline decoration-emerald/40 underline-offset-2 transition-colors hover:text-emerald"
+              >
+                {contactEmail}
+              </a>
+            </ContactRow>
+            <p className="pb-2 pt-4 text-sm leading-relaxed text-muted">
+              Für organisatorische Anfragen, Presse oder wenn du Teil der
+              Community werden möchtest – schreib uns gerne.
+            </p>
+            <div className="pt-3">
+              <MinecraftButton href={`mailto:${contactEmail}`} variant="stone">
+                E-Mail schreiben
+              </MinecraftButton>
+            </div>
+          </BlockFrame>
         </div>
-      </section>
-
-      <article className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm md:p-8">
-        <section className="rounded-base border border-border/30 bg-background p-5 shadow-sm">
-          <h2 className="mb-3 text-xl font-heading">Email</h2>
-          <p className="text-sm leading-relaxed md:text-base">
-            <a
-              href={`mailto:${contactEmail}`}
-              className="underline underline-offset-2"
-            >
-              {contactEmail}
-            </a>
-          </p>
-        </section>
-      </article>
+      </div>
 
       <SiteFooter />
     </main>

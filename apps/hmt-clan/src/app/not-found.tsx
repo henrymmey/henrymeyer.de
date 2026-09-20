@@ -1,103 +1,61 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Compass, Home, Mail } from "lucide-react";
-
+import Image from "next/image";
 import SiteFooter from "@/components/site-footer";
+import MinecraftButton from "@/components/minecraft/minecraft-button";
+import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 
 export const metadata: Metadata = {
-  title: "404",
+  title: "404 | HMT Clan",
 };
 
 export default function NotFound() {
   return (
-    <main className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 md:px-8">
-      <div className="flex flex-1 flex-col justify-center gap-8 py-12 md:py-16">
-        <section className="relative rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
-          <img
-            src="/commandblock.gif"
-            alt="Animated command block"
-            className="mb-6 h-40 w-full rounded-base object-cover sm:absolute sm:right-6 md:right-8 sm:top-1/2 sm:-translate-y-1/2 sm:mb-0 sm:aspect-square sm:h-[calc(100%-3rem)] sm:w-auto sm:rounded-none"
-          />
-          <div className="sm:pr-72 md:pr-80">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-base border border-main-foreground/40 bg-main-foreground/10 px-3 py-1 text-xs font-heading">
-              <span className="font-mono text-[11px]">404</span>
-              Seite nicht gefunden
-            </p>
-            <h1 className="mb-3 max-w-[24ch] text-3xl font-heading leading-tight sm:text-4xl">
-              Diese Seite existiert nicht.
-            </h1>
-            <p className="text-base leading-relaxed">
-              Die Seite wurde möglicherweise verschoben oder die URL ist falsch.
-              Verwenden Sie eine der Schnelllinks unten, um mit der Erkundung
-              des HMT Clan fortzufahren.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 rounded-base border border-border/30 bg-secondary-background px-3 py-1.5 text-sm font-heading text-foreground shadow-sm transition-opacity hover:opacity-80"
-              >
-                <Home className="size-4" />
-                Zurück zur Startseite
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-base border border-border/30 bg-background px-3 py-1.5 text-sm font-heading text-foreground shadow-sm transition-opacity hover:opacity-80"
-              >
-                <Mail className="size-4" />
-                Kontaktiere uns
-              </Link>
-            </div>
-          </div>
-        </section>
+    <main>
+      <section className="relative mx-auto flex min-h-[72svh] w-full max-w-7xl flex-col items-center justify-center overflow-hidden px-4 py-16 text-center md:px-8">
+        <div
+          aria-hidden="true"
+          className="texture texture-obsidian tex-24 absolute inset-0 -z-10 opacity-70"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-10 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-redstone/10 blur-[110px]"
+        />
 
-        <section className="rounded-base border border-border/30 bg-secondary-background p-5 shadow-sm">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/30 bg-background px-3 py-1 text-xs font-heading text-foreground/70">
-            <Compass className="size-4" />
-            Schnelllinks
-          </div>
-          <p className="mb-4 text-sm leading-relaxed text-foreground/80">
-            Beliebte Seiten im Überblick
-          </p>
-          <div className="grid gap-2 sm:grid-cols-3">
-            <Link
-              href="/events"
-              className="inline-flex items-center justify-between rounded-base border border-border/30 bg-background px-3 py-2 text-sm font-heading shadow-sm transition-opacity hover:opacity-80"
-            >
-              Events
-              <span
-                aria-hidden="true"
-                className="font-mono text-xs text-foreground/70"
-              >
-                {"->"}
-              </span>
-            </Link>
-            <Link
-              href="/calendar"
-              className="inline-flex items-center justify-between rounded-base border border-border/30 bg-background px-3 py-2 text-sm font-heading shadow-sm transition-opacity hover:opacity-80"
-            >
-              Kalender
-              <span
-                aria-hidden="true"
-                className="font-mono text-xs text-foreground/70"
-              >
-                {"->"}
-              </span>
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-between rounded-base border border-border/30 bg-background px-3 py-2 text-sm font-heading shadow-sm transition-opacity hover:opacity-80"
-            >
-              Kontakt
-              <span
-                aria-hidden="true"
-                className="font-mono text-xs text-foreground/70"
-              >
-                {"->"}
-              </span>
-            </Link>
-          </div>
-        </section>
-      </div>
+        <Image
+          src="/commandblock.gif"
+          alt="Animierter Befehlsblock"
+          width={120}
+          height={120}
+          className="mb-8 h-auto w-32 opacity-90 md:w-40"
+        />
+
+        <MinecraftBadge variant="redstone" className="mb-5 gap-2 px-3 py-1.5">
+          404 · Anzeigefehler
+        </MinecraftBadge>
+
+        <h1 className="font-pixel text-3xl uppercase leading-tight text-foreground md:text-5xl">
+          Diese Seite existiert{" "}
+          <span className="text-redstone">nicht.</span>
+        </h1>
+
+        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted">
+          Da ist nur Stein und Luft. Die Seite wurde möglicherweise verschoben
+          oder die URL ist falsch – nutze eine der Schnelllinks, um zur Welt
+          zurückzukehren.
+        </p>
+
+        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <MinecraftButton href="/" variant="primary">
+            Zur Startseite
+          </MinecraftButton>
+          <MinecraftButton href="/events" variant="stone">
+            Events
+          </MinecraftButton>
+          <MinecraftButton href="/contact" variant="ghost">
+            Kontakt
+          </MinecraftButton>
+        </div>
+      </section>
 
       <SiteFooter />
     </main>

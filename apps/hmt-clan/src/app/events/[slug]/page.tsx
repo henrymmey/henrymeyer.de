@@ -1,12 +1,18 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
 import EventBody from "@/components/event-body";
+import MinecraftBadge from "@/components/minecraft/minecraft-badge";
+import { MaterialIcon } from "@/components/minecraft/minecraft-icons";
+import { getEventMaterialIcon } from "@/components/events/event-material";
 import {
   getEventBySlug,
   getEventDescription,
   getAllEventSlugs,
 } from "@/lib/events";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import type { EventConfig } from "@/lib/events/types";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -28,17 +34,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: { absolute: `${event.name} | HMT Clan` },
+    title: `${event.name} | HMT Clan`,
     description: event.description,
   };
 }
 
-function formatDate(date: string): string {
-  return new Date(date + "T00:00:00").toLocaleDateString("de-DE", {
+function formatDate(event: EventConfig): string {
+  const date = new Date(event.date + "T00:00:00").toLocaleDateString("de-DE", {
     day: "2-digit",
     month: "long",
     year: "numeric",
   });
+  return event.showTime && event.time ? `${date} · ${event.time} Uhr` : date;
 }
 
 export default async function EventPage({ params }: Props) {
@@ -52,24 +59,51 @@ export default async function EventPage({ params }: Props) {
   const description = await getEventDescription(slug);
 
   return (
-    <main className="relative mx-auto w-full max-w-6xl px-4 pb-0 md:px-8 md:pb-0">
-      <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
-        <p className="mb-2 text-sm text-foreground/60">
-          {formatDate(event.date)}
-          {event.showTime && event.time ? ` · ${event.time} Uhr` : ""}
-        </p>
-        <h1 className="mb-3 text-3xl font-heading leading-tight sm:text-4xl">
-          <span className="text-foreground">{event.name}</span>
-        </h1>
-        <EventBody body={description} />
-      </section>
+    <main>
+      <div className="mx-auto w-full max-w-4xl px-4 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
+        <Link
+          href="/events"
+          className="mb-6 inline-flex items-center gap-1.5 font-pixel text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          Zu den Events
+        </Link>
 
-      <p className="mb-8 text-center text-sm text-foreground/40">
-        NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH
-        MOJANG OR MICROSOFT.
-        <br />
-        NICHT MIT THESCAPE VERBUNDEN.
-      </p>
+        <article className="overflow-hidden rounded-block border border-black/60 bg-surface-3 shadow-card">
+          <div className="texture texture-planks tex-24 relative border-b-2 border-black/50 bg-black/10 px-5 py-4">
+            <div className="relative flex flex-wrap items-center justify-between gap-2">
+              <span className="font-pixel text-[11px] font-medium uppercase tracking-[0.08em] text-[#f5f0e4] drop-shadow-[0_1px_0_rgb(0_0_0/0.6)]">
+                {formatDate(event)}
+              </span>
+              {event.done && (
+                <MinecraftBadge variant="redstone" icon="heart">
+                  Vorbei
+                </MinecraftBadge>
+              )}
+            </div>
+          </div>
+
+          <div className="p-6 md:p-10">
+            <span className="mb-5 flex size-12 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.05),inset_0_-3px_0_rgb(0_0_0/0.4),0_2px_0_rgb(0_0_0/0.4)]">
+              <MaterialIcon name={getEventMaterialIcon(event)} className="size-6" />
+            </span>
+
+            <h1 className="font-pixel text-2xl uppercase leading-tight text-foreground md:text-4xl">
+              {event.name}
+            </h1>
+
+            <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">
+              {event.description}
+            </p>
+
+            {description && (
+              <div className="mt-8 border-t border-white/5 pt-8">
+                <EventBody body={description} />
+              </div>
+            )}
+          </div>
+        </article>
+      </div>
 
       <SiteFooter />
     </main>

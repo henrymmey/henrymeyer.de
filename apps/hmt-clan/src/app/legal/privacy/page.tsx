@@ -1,11 +1,13 @@
+import type { Metadata } from "next";
 import SiteFooter from "@/components/site-footer";
 import LegalBody from "@/components/legal-body";
+import PageIntro from "@/components/minecraft/page-intro";
+import BlockFrame from "@/components/minecraft/block-frame";
 import { readFile } from "fs/promises";
 import { join } from "path";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { absolute: "Datenschutzerklärung | HMT Clan" },
+  title: "Datenschutzerklärung | HMT Clan",
   description: "Datenschutzerklärung für die HMT Clan Website.",
   robots: {
     index: true,
@@ -22,33 +24,30 @@ export const metadata: Metadata = {
 export default async function PrivacyPage() {
   const content = await readFile(
     join(process.cwd(), "src/content/legal/privacy.md"),
-    "utf-8"
+    "utf-8",
   );
 
   return (
-    <main className="relative mx-auto w-full max-w-6xl px-4 pb-0 md:px-8 md:pb-0">
-      <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
-        <h1 className="mb-2 text-3xl font-heading md:text-4xl">
-          Datenschutzerklärung
-        </h1>
-        <p className="max-w-3xl text-sm leading-relaxed md:text-base">
-          Informationen zur Verarbeitung personenbezogener Daten und zu Ihren
-          Datenschutzrechten.
-        </p>
-      </section>
+    <main>
+      <PageIntro
+        title="Datenschutzerklärung"
+        description="Informationen zur Verarbeitung personenbezogener Daten und zu Ihren Datenschutzrechten."
+      />
 
-      <article className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm md:p-8">
-        <section className="rounded-base border border-border/30 bg-background p-5 shadow-sm">
+      <div className="mx-auto w-full max-w-5xl px-4 py-12 md:px-8 md:py-16">
+        <BlockFrame
+          header={
+            <>
+              <span className="rounded-block border border-black/40 bg-black/45 px-2.5 py-1 font-pixel text-[11px] uppercase tracking-[0.14em] text-[#f5f0e4]">
+                Version · September 2026
+              </span>
+            </>
+          }
+          bodyClassName="p-5 md:p-8"
+        >
           <LegalBody content={content} />
-        </section>
-      </article>
-
-      <p className="mb-8 text-center text-sm text-foreground/40">
-        NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH
-        MOJANG OR MICROSOFT.
-        <br />
-        NICHT MIT THESCAPE VERBUNDEN.
-      </p>
+        </BlockFrame>
+      </div>
 
       <SiteFooter />
     </main>

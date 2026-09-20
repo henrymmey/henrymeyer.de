@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Clock, Coins, Eye, TrendingUp, Info, Gamepad2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Clock,
+  Coins,
+  Eye,
+  Gamepad2,
+  TrendingUp,
+} from "lucide-react";
 import SiteFooter from "@/components/site-footer";
+import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 import { getCrewMemberBySlug } from "@/lib/crew";
 import { getFullThescapeProfile } from "@/lib/thescape";
 import type { StatCategory, StatCard } from "@/lib/thescape";
@@ -22,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: { absolute: `${member.name} | HMT Clan` },
+    title: `${member.name} | HMT Clan`,
     description: `Crew-Mitglied ${member.name} (${member.rolle}) beim HMT Clan.`,
   };
 }
@@ -38,18 +48,20 @@ function HeaderStat({
 }) {
   return (
     <div className="flex items-center gap-2 text-sm">
-      <span className="text-foreground/50">{icon}</span>
-      <span className="text-main-foreground">{value}</span>
-      <span className="hidden sm:inline text-foreground/50">{label}</span>
+      <span className="text-muted">{icon}</span>
+      <span className="text-foreground">{value}</span>
+      <span className="hidden text-muted sm:inline">{label}</span>
     </div>
   );
 }
 
 function StatCardTile({ stat }: { stat: StatCard }) {
   return (
-    <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl text-center">
-      <p className="text-3xl font-bold text-white">{stat.value}</p>
-      <p className="mt-1 text-sm text-zinc-400">{stat.label}</p>
+    <div className="rounded-block border border-black/60 bg-surface-3 p-5 text-center shadow-card transition-transform duration-200 hover:-translate-y-px">
+      <p className="font-pixel text-2xl font-semibold text-emerald md:text-3xl">
+        {stat.value}
+      </p>
+      <p className="mt-1 text-xs text-muted md:text-sm">{stat.label}</p>
     </div>
   );
 }
@@ -57,11 +69,11 @@ function StatCardTile({ stat }: { stat: StatCard }) {
 function CategorySection({ category }: { category: StatCategory }) {
   return (
     <section>
-      <h2 className="mb-4 text-xl font-heading text-foreground flex items-center gap-2">
-        <TrendingUp className="h-5 w-5 text-green-500" aria-hidden="true" />
+      <h2 className="mb-4 flex items-center gap-2 font-pixel text-lg text-foreground md:text-xl">
+        <TrendingUp className="size-5 text-grass" aria-hidden="true" />
         {category.title}
       </h2>
-      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
         {category.stats.map((stat) => (
           <li key={`${category.title}-${stat.label}`}>
             <StatCardTile stat={stat} />
@@ -86,104 +98,113 @@ export default async function CrewMemberPage({ params }: Props) {
     profile.playTime || profile.lastSeen || profile.coins,
   );
 
+  const isFounder = member.rolle.trim().toLowerCase() === "gründer";
+
   return (
-    <main className="relative mx-auto w-full max-w-6xl px-4 pb-0 md:px-8 md:pb-0">
-      <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
-        {member.useskin === false && (
-          <img
-            src="/skins/blank.png"
-            alt={`Skin von ${member.minecraftUser}`}
-            width={600}
-            height={800}
-            className="mx-auto mb-6 w-32 rounded-base border border-border/30 shadow-sm sm:w-40"
-          />
-        )}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start sm:gap-6">
-          {member.useskin !== false && (
-            <img
-              src={`/skins/${member.minecraftUser}.png`}
-              alt={`Skin von ${member.minecraftUser}`}
-              width={600}
-              height={800}
-              className="w-32 shrink-0 rounded-base border border-border/30 shadow-sm sm:w-40"
-            />
-          )}
-          <div className="w-full text-center sm:text-left">
-            <p className="mb-2 text-sm text-foreground/60">{member.rolle}</p>
-            <h1 className="mb-4 text-3xl font-heading leading-tight sm:text-4xl">
-              <span className="text-foreground">{member.name}</span>
-            </h1>
+    <main>
+      <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
+        <Link
+          href="/crew"
+          className="mb-6 inline-flex items-center gap-1.5 font-pixel text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          Zurück
+        </Link>
 
-            {profile.level && (
-              <p className="mb-4 flex items-center justify-center gap-2 border-b border-border/30 pb-4 text-sm sm:justify-start">
-                <Gamepad2
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span className="text-foreground/70">InGame-Level:</span>
-                <span className="text-emerald-400 font-bold">
-                  {profile.level}
-                </span>
+        <section className="rounded-block border border-black/60 bg-surface-3 p-5 shadow-card md:p-8">
+          <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:gap-8">
+            <div className="relative shrink-0 rounded-block border-2 border-black/70 bg-surface-2 p-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.05),inset_0_-4px_0_rgb(0_0_0/0.4),0_2px_0_rgb(0_0_0/0.4)]">
+              <Image
+                src={
+                  member.useskin === false
+                    ? "/skins/blank.png"
+                    : `/skins/${member.minecraftUser}.png`
+                }
+                alt={`Skin von ${member.minecraftUser}`}
+                width={600}
+                height={800}
+                sizes="(min-width: 768px) 224px, 160px"
+                className="animate-float-slow h-auto w-40 rounded-[1px] object-contain md:w-56"
+                style={{ animationDuration: "7s" }}
+              />
+            </div>
+
+            <div className="w-full text-center md:text-left">
+              <MinecraftBadge
+                variant={isFounder ? "grass" : "stone"}
+                className="mb-3"
+              >
+                {member.rolle}
+              </MinecraftBadge>
+              <h1 className="font-pixel text-3xl uppercase leading-tight text-foreground md:text-5xl">
+                {member.name}
+              </h1>
+
+              {profile.level && (
+                <p className="mt-4 flex items-center justify-center gap-2 border-b border-white/5 pb-4 text-sm md:justify-start">
+                  <Gamepad2 className="size-4 text-muted" aria-hidden="true" />
+                  <span className="text-muted">InGame-Level:</span>
+                  <span className="font-bold text-emerald">
+                    {profile.level}
+                  </span>
+                </p>
+              )}
+
+              {hasHeaderStats && (
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t border-white/5 pt-4 md:justify-start">
+                  {profile.playTime && (
+                    <HeaderStat
+                      icon={<Clock className="size-4" aria-hidden="true" />}
+                      value={profile.playTime}
+                      label="Spielzeit"
+                    />
+                  )}
+                  {profile.lastSeen && (
+                    <HeaderStat
+                      icon={<Eye className="size-4" aria-hidden="true" />}
+                      value={profile.lastSeen}
+                      label="Zuletzt gesehen"
+                    />
+                  )}
+                  {profile.coins && (
+                    <HeaderStat
+                      icon={<Coins className="size-4" aria-hidden="true" />}
+                      value={profile.coins}
+                      label="Münzen"
+                    />
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-10 space-y-10">
+          {profile.categories.length > 0 ? (
+            profile.categories.map((category) => (
+              <CategorySection key={category.title} category={category} />
+            ))
+          ) : (
+            <div className="mx-auto max-w-2xl rounded-block border border-dashed border-black/50 bg-surface-3/60 px-6 py-12 text-center">
+              <Image
+                src="/textures/barrier.png"
+                alt=""
+                aria-hidden="true"
+                width={32}
+                height={32}
+                className="mx-auto mb-5 size-8 object-contain"
+              />
+              <p className="font-pixel text-base uppercase tracking-wide text-foreground md:text-lg">
+                Keine erweiterten Statistiken verfügbar
               </p>
-            )}
-
-            {hasHeaderStats && (
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t border-border/30 pt-4 sm:justify-start">
-                {profile.playTime && (
-                  <HeaderStat
-                    icon={<Clock className="h-4 w-4" aria-hidden="true" />}
-                    value={profile.playTime}
-                    label="Spielzeit"
-                  />
-                )}
-                {profile.lastSeen && (
-                  <HeaderStat
-                    icon={<Eye className="h-4 w-4" aria-hidden="true" />}
-                    value={profile.lastSeen}
-                    label="Zuletzt gesehen"
-                  />
-                )}
-                {profile.coins && (
-                  <HeaderStat
-                    icon={<Coins className="h-4 w-4" aria-hidden="true" />}
-                    value={profile.coins}
-                    label="Münzen"
-                  />
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-8 space-y-8">
-        {profile.categories.length > 0 ? (
-          profile.categories.map((category) => (
-            <CategorySection key={category.title} category={category} />
-          ))
-        ) : (
-          <div className="rounded-base border border-dashed border-border/40 bg-main px-6 py-10 text-center font-base shadow-sm">
-            <Info
-              className="mx-auto mb-3 h-8 w-8 text-foreground/40"
-              aria-hidden="true"
-            />
-            <p className="mb-1 font-heading text-lg text-main-foreground">
-              Keine erweiterten Statistiken verfügbar
-            </p>
-            <p className="text-sm text-foreground/60">
-              Für dieses Mitglied konnten aktuell keine Statistiken gefunden
-              werden. Schau später noch einmal vorbei.
-            </p>
-          </div>
-        )}
-      </section>
-
-      <p className="mb-8 text-center text-sm text-foreground/40">
-        NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH
-        MOJANG OR MICROSOFT.
-        <br />
-        NICHT MIT THESCAPE VERBUNDEN.
-      </p>
+              <p className="mt-3 text-sm text-muted">
+                Für dieses Mitglied konnten aktuell keine Statistiken gefunden
+                werden. Schau später noch einmal vorbei.
+              </p>
+            </div>
+          )}
+        </section>
+      </div>
 
       <SiteFooter />
     </main>

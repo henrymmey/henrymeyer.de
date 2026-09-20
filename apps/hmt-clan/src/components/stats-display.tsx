@@ -21,22 +21,22 @@ export default async function StatsDisplay({ slug }: StatsDisplayProps) {
   }
 
   return (
-    <div className="mt-2 flex items-center justify-center gap-4 text-sm text-gray-300">
+    <div className="mt-3 flex items-center justify-center gap-x-3 gap-y-1 text-xs text-muted">
       {showLevel && stats.level && (
-        <span className="flex items-center gap-1.5">
-          <Gamepad2 className="h-4 w-4 text-gray-400" aria-hidden="true" />
+        <span className="flex items-center gap-1">
+          <Gamepad2 className="size-3.5" aria-hidden="true" />
           Level {stats.level}
         </span>
       )}
       {showPlayTime && stats.playTime && (
-        <span className="flex items-center gap-1.5">
-          <Clock className="h-4 w-4" aria-hidden="true" />
+        <span className="flex items-center gap-1">
+          <Clock className="size-3.5" aria-hidden="true" />
           {stats.playTime}
         </span>
       )}
       {showCoins && stats.coins && (
-        <span className="flex items-center gap-1.5">
-          <Coins className="h-4 w-4" aria-hidden="true" />
+        <span className="flex items-center gap-1">
+          <Coins className="size-3.5" aria-hidden="true" />
           {stats.coins}
         </span>
       )}

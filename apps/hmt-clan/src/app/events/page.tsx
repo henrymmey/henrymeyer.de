@@ -1,22 +1,28 @@
+import type { Metadata } from "next";
 import SiteFooter from "@/components/site-footer";
 import EventCard from "@/components/event-card";
+import EventsEmpty from "@/components/events/events-empty";
+import PageIntro from "@/components/minecraft/page-intro";
+import SectionHeading from "@/components/minecraft/section-heading";
+import Reveal from "@/components/minecraft/reveal";
 import { getVisibleEvents } from "@/lib/events";
 import type { EventConfig } from "@/lib/events/types";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { absolute: "Events | HMT Clan" },
-  description: "Alle Events des HMT Clans.",
+  title: "Events | HMT Clan",
+  description: "Alle Events und Ankündigungen des HMT Clans auf einen Blick.",
 };
 
 function EventGrid({ events }: { events: EventConfig[] }) {
   if (events.length === 0) return null;
 
   return (
-    <ul className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {events.map((event) => (
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {events.map((event, index) => (
         <li key={event.slug}>
-          <EventCard event={event} />
+          <Reveal delay={Math.min(index * 60, 240)}>
+            <EventCard event={event} />
+          </Reveal>
         </li>
       ))}
     </ul>
@@ -30,47 +36,39 @@ export default function EventsPage() {
   const past = events.filter((e) => e.done);
 
   return (
-    <main className="relative mx-auto w-full max-w-6xl px-4 pb-0 md:px-8 md:pb-0">
-      <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
-        <h1 className="mb-3 text-3xl font-heading leading-tight sm:text-5xl">
-          <span className="text-foreground">Events</span>
-        </h1>
-        <p className="max-w-2xl text-base leading-relaxed">
-          Alle Events des HMT Clans auf einen Blick.
-        </p>
-      </section>
+    <main>
+      <PageIntro
+        title="Events"
+        description="Alle Events und Ankündigungen des HMT Clans auf einen Blick."
+      />
 
-      {upcoming.length === 0 && past.length === 0 ? (
-        <div className="mb-8 rounded-base border border-dashed border-border/40 bg-main px-6 py-10 text-center font-base shadow-sm">
-          <p className="mb-1 font-heading text-lg text-main-foreground">
-            Keine Events in Planung
-          </p>
-          <p className="text-sm text-foreground/60">
-            Aktuell sind keine Events veröffentlicht. Es sind aber bestimmt
-            bereits welche in Planung – schau später noch einmal vorbei.
-          </p>
-        </div>
-      ) : (
-        <>
-          {upcoming.length > 0 && <EventGrid events={upcoming} />}
+      <div className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8 md:py-16">
+        {upcoming.length === 0 && past.length === 0 ? (
+          <Reveal>
+            <EventsEmpty />
+          </Reveal>
+        ) : (
+          <>
+            {upcoming.length > 0 && (
+              <section className="mb-14">
+                <SectionHeading title="Kommende Events" />
+                <EventGrid events={upcoming} />
+              </section>
+            )}
 
-          {past.length > 0 && (
-            <section className="mb-8">
-              <h2 className="mb-6 text-2xl font-heading text-foreground sm:text-3xl">
-                Vergangene Events
-              </h2>
-              <EventGrid events={past} />
-            </section>
-          )}
-        </>
-      )}
+            {past.length > 0 && (
+              <section>
+                <SectionHeading
+                  title="Vergangene Events"
+                  description="Jo, das war schwer – und hat Spaß gemacht."
+                />
+                <EventGrid events={past} />
+              </section>
+            )}
+          </>
+        )}
+      </div>
 
-      <p className="mb-8 text-center text-sm text-foreground/40">
-        NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH
-        MOJANG OR MICROSOFT.
-        <br />
-        NICHT MIT THESCAPE VERBUNDEN.
-      </p>
       <SiteFooter />
     </main>
   );

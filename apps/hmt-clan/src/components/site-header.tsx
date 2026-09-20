@@ -1,242 +1,217 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
-type SiteHeaderProps = {
-  logoSrc?: string;
-  siteName?: string;
-};
-
-const socialLinks = [
+const NAV_ITEMS = [
+  { href: "/", label: "Home" },
+  { href: "/events", label: "Events" },
+  { href: "/crew", label: "Crew" },
+  { href: "/calendar", label: "Kalender" },
   {
-    href: "https://discord.gg/8aWmBuYURK",
-    iconName: "discord",
-    label: "Discord",
+    href: "https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/",
+    label: "Modpack",
+    external: true,
   },
 ];
 
+const DISCORD_INVITE = "https://discord.gg/8aWmBuYURK";
+
+function isActive(pathname: string, href: string): boolean {
+  if (href === "/") {
+    return pathname === "/";
+  }
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
 export default function SiteHeader({
   logoSrc = "/logo.png",
-  siteName = "HMT Clan",
-}: SiteHeaderProps) {
-  const [isCompact, setIsCompact] = useState(false);
+}: {
+  logoSrc?: string;
+}) {
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuOpenedAtScrollY = useRef<number | null>(null);
+  const [previousPathname, setPreviousPathname] = useState(pathname);
+
+  if (previousPathname !== pathname) {
+    setPreviousPathname(pathname);
+    setIsMenuOpen(false);
+  }
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY;
-
-      if (
-        menuOpenedAtScrollY.current !== null &&
-        Math.abs(currentScrollY - menuOpenedAtScrollY.current) > 48
-      ) {
-        menuOpenedAtScrollY.current = null;
-        setIsMenuOpen(false);
-      }
-
-      if (currentScrollY <= 40) {
-        setIsCompact(false);
-      } else if (isScrollingDown && currentScrollY > 60) {
-        setIsCompact(true);
-      } else if (!isScrollingDown && lastScrollY - currentScrollY > 10) {
-        setIsCompact(false);
-      }
-
-      lastScrollY = currentScrollY;
-    };
-
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <div
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        isCompact ? "px-0 pt-0" : "px-4 pt-4 md:px-8 md:pt-6"
-      }`}
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b border-black/40 transition-all duration-300",
+        scrolled
+          ? "bg-[#0b0e0b]/90 shadow-block backdrop-blur-md"
+          : "bg-[#0b0e0b]/60 backdrop-blur-sm",
+      )}
     >
-      <div className="mx-auto w-full max-w-6xl transition-all duration-300">
-        <header
-          className={`relative flex items-center justify-between bg-secondary-background/95 transition-all duration-300 backdrop-blur supports-backdrop-filter:bg-secondary-background/85 ${
-            isCompact
-              ? "rounded-none border-b border-border/30 p-2 md:px-6 shadow-sm"
-              : "rounded-base border border-border/30 p-4 shadow-sm"
-          }`}
+      <div aria-hidden="true" className="h-[3px] w-full bg-grass" />
+
+      <div className="mx-auto grid h-16 w-full max-w-7xl grid-cols-[1fr_auto] items-center gap-4 px-4 md:px-8 lg:grid-cols-[1fr_auto_1fr]">
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-3 justify-self-start"
         >
-          <Link href="/" className="inline-flex items-center gap-3">
-            <img
+          <span className="rounded-block border border-black/50 bg-surface-3 p-1 shadow-block transition-transform duration-200 group-hover:-translate-y-px">
+            <Image
               src={logoSrc}
-              alt={`${siteName} Logo`}
-              className={`rounded-base border border-border/30 bg-background shadow-sm transition-all duration-300 ${
-                isCompact ? "size-8 p-1" : "size-10 p-1.5"
-              }`}
+              alt="HMT Clan Logo"
+              width={32}
+              height={32}
+              className="size-8"
             />
-            <span
-              className={`font-semibold transition-all duration-300 ${
-                isCompact ? "text-lg" : "text-xl"
-              }`}
-            >
-              {siteName}
-            </span>
-          </Link>
+          </span>
+          <span className="font-pixel text-sm uppercase tracking-[0.12em] text-foreground md:text-base">
+            HMT <span className="text-grass">Clan</span>
+          </span>
+        </Link>
 
-          <nav
-            aria-label="Primary"
-            className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-4 whitespace-nowrap md:flex"
-          >
-            <Link
-              href="/pack"
-              target="_blank"
-              className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
-                isCompact ? "text-sm" : "text-base"
-              }`}
-            >
-              Modpack
-            </Link>
-            <Link
-              href="/events"
-              className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
-                isCompact ? "text-sm" : "text-base"
-              }`}
-            >
-              Events
-            </Link>
-            <Link
-              href="/contact"
-              className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
-                isCompact ? "text-sm" : "text-base"
-              }`}
-            >
-              Kontakt
-            </Link>
-          </nav>
-
-          <div className="hidden flex-wrap items-center gap-2 md:flex">
-            <Link
-              href="https://id.hmt-clan.henrymeyer.de"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="ID Portal"
-              className={`inline-flex items-center justify-center rounded-base border border-border/30 bg-main font-heading text-main-foreground shadow-sm transition-all duration-300 hover:opacity-80 ${
-                isCompact ? "size-8 text-sm" : "size-11 text-base"
-              }`}
-            >
-              ID
-            </Link>
-            {socialLinks.map((link) => (
-              <a
-                key={link.href}
-                className={`inline-flex items-center justify-center rounded-base border border-border/30 bg-secondary-background shadow-sm transition-all duration-300 hover:opacity-80 hover:bg-main ${
-                  isCompact ? "size-8" : "size-11"
-                }`}
-                href={link.href}
+        <nav
+          aria-label="Primary"
+          className="hidden items-center gap-5 lg:flex lg:gap-7"
+        >
+          {NAV_ITEMS.map((item) =>
+            item.external ? (
+              <Link
+                key={item.href}
+                href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={link.label}
-                title={link.label}
+                className={cn(
+                  "font-pixel text-sm uppercase tracking-[0.12em] transition-colors duration-150 hover:text-foreground",
+                  "text-muted",
+                )}
               >
-                <img
-                  src={`/badges/${link.iconName}.png`}
-                  alt=""
-                  aria-hidden="true"
-                  className={`object-contain transition-all duration-300 ${
-                    isCompact ? "size-4" : "size-5"
-                  }`}
-                />
-              </a>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            className="inline-flex size-11 items-center justify-center rounded-base border border-border/30 bg-secondary-background shadow-sm transition-colors hover:bg-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            onClick={() => {
-              if (isMenuOpen) {
-                menuOpenedAtScrollY.current = null;
-                setIsMenuOpen(false);
-                return;
-              }
-
-              menuOpenedAtScrollY.current = window.scrollY;
-              setIsMenuOpen(true);
-            }}
-          >
-            {isMenuOpen ? (
-              <X className="size-5" aria-hidden="true" />
+                {item.label}
+              </Link>
             ) : (
-              <Menu className="size-5" aria-hidden="true" />
-            )}
-          </button>
-        </header>
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={
+                  isActive(pathname, item.href) ? "page" : undefined
+                }
+                className={cn(
+                  "font-pixel text-sm uppercase tracking-[0.12em] transition-colors duration-150 hover:text-foreground",
+                  isActive(pathname, item.href) ? "text-grass" : "text-muted",
+                )}
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
+        </nav>
 
-        {isMenuOpen && (
-          <div
-            id="mobile-navigation"
-            className="mt-2 space-y-4 rounded-base border border-border/30 bg-secondary-background/95 p-4 shadow-sm backdrop-blur supports-backdrop-filter:bg-secondary-background/85 md:hidden"
+        <div className="hidden items-center justify-self-end gap-2 lg:flex">
+          <a
+            href={DISCORD_INVITE}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="HMT Clan Discord-Server"
+            title="Discord"
+            className="inline-flex size-9 items-center justify-center rounded-block border border-black/50 bg-surface-3 shadow-block transition-all duration-150 hover:-translate-y-px hover:bg-surface-hover active:translate-y-px active:shadow-none"
           >
-            <nav aria-label="Mobile primary" className="grid gap-1">
-              <Link
-                href="/pack"
-                target="_blank"
-                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                Modpack
-              </Link>
-              <Link
-                href="/events"
-                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                Events
-              </Link>
-              <Link
-                href="/contact"
-                className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                Kontakt
-              </Link>
-            </nav>
+            <Image
+              src="/badges/discord.png"
+              alt=""
+              aria-hidden="true"
+              width={20}
+              height={20}
+              className="size-5 object-contain"
+            />
+          </a>
+        </div>
 
-            <div className="flex items-center gap-2 border-t border-border/30 pt-4">
+        <button
+          type="button"
+          className="inline-flex size-9 items-center justify-center rounded-block border border-black/50 bg-surface-3 text-foreground shadow-block transition-colors hover:bg-surface-hover lg:hidden"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isMenuOpen ? "Menü schließen" : "Menü öffnen"}
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          {isMenuOpen ? (
+            <X className="size-5" aria-hidden="true" />
+          ) : (
+            <Menu className="size-5" aria-hidden="true" />
+          )}
+        </button>
+      </div>
+
+      <div
+        id="mobile-navigation"
+        className={cn(
+          "overflow-hidden border-t border-black/40 bg-[#0e120e]/95 backdrop-blur-md transition-[max-height,opacity] duration-200 lg:hidden",
+          isMenuOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0",
+        )}
+      >
+        <nav aria-label="Mobile primary" className="grid px-4 py-3">
+          {NAV_ITEMS.map((item) =>
+            item.external ? (
               <Link
-                href="https://id.hmt-clan.henrymeyer.de"
+                key={item.href}
+                href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex size-11 items-center justify-center rounded-base border border-border/30 bg-main font-heading text-main-foreground shadow-sm transition-colors hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                aria-label="ID Portal"
+                className="rounded-block px-3 py-2.5 font-pixel text-sm uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:bg-surface-3 hover:text-foreground"
               >
-                ID
+                {item.label}
               </Link>
-              {socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  className="inline-flex size-11 items-center justify-center rounded-base border border-border/30 bg-secondary-background shadow-sm transition-colors hover:bg-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  <img
-                    src={`/badges/${link.iconName}.png`}
-                    alt=""
-                    aria-hidden="true"
-                    className="size-5 object-contain"
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={
+                  isActive(pathname, item.href) ? "page" : undefined
+                }
+                className={cn(
+                  "rounded-block px-3 py-2.5 font-pixel text-sm uppercase tracking-[0.12em] transition-colors hover:bg-surface-3 hover:text-foreground",
+                  isActive(pathname, item.href)
+                    ? "bg-surface-3 text-grass"
+                    : "text-foreground/80",
+                )}
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
+        </nav>
+        <div className="flex items-center gap-2 border-t border-black/40 px-4 py-3">
+          <a
+            href={DISCORD_INVITE}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="HMT Clan Discord-Server"
+            className="inline-flex size-10 items-center justify-center rounded-block border border-black/50 bg-surface-3 shadow-block transition-colors hover:bg-surface-hover"
+          >
+            <Image
+              src="/badges/discord.png"
+              alt=""
+              aria-hidden="true"
+              width={20}
+              height={20}
+              className="size-5 object-contain"
+            />
+          </a>
+          <span className="ml-auto hidden text-[10px] font-pixel uppercase tracking-widest text-muted sm:block">
+            hmt-clan.vercel.app
+          </span>
+        </div>
       </div>
-    </div>
+    </header>
   );
 }
