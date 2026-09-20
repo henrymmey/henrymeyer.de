@@ -198,12 +198,7 @@ export default function Hero() {
           >
             Events
           </MinecraftButton>
-          <MinecraftButton
-            href="https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/"
-            variant="stone"
-            size="lg"
-            className="w-52 sm:w-auto"
-          >
+          <MinecraftButton href="/pack" variant="stone" size="lg" className="w-52 sm:w-auto">
             Modpack
           </MinecraftButton>
         </div>

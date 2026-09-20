@@ -7,16 +7,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
+const NAV_ITEMS: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/events", label: "Events" },
   { href: "/crew", label: "Crew" },
   { href: "/calendar", label: "Kalender" },
-  {
-    href: "https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/",
-    label: "Modpack",
-    external: true,
-  },
+  { href: "/pack", label: "Modpack" },
 ];
 
 const DISCORD_INVITE = "https://discord.gg/8aWmBuYURK";

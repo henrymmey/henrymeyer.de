@@ -7,16 +7,12 @@ import MinecraftButton from "@/components/minecraft/minecraft-button";
 
 const fullBleed = "ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]";
 
-const navLinks = [
+const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/events", label: "Events" },
   { href: "/crew", label: "Crew" },
   { href: "/calendar", label: "Kalender" },
-  {
-    href: "https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/",
-    label: "Modpack",
-    external: true,
-  },
+  { href: "/pack", label: "Modpack" },
 ];
 
 export default function SiteFooterContent({

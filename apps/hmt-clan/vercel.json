@@ -2,17 +2,12 @@
   "redirects": [
     {
       "source": "/hmt-pack",
-      "destination": "https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/",
-      "permanent": true
-    },
-    {
-      "source": "/pack",
-      "destination": "https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/",
+      "destination": "pack",
       "permanent": true
     },
     {
       "source": "/modpack",
-      "destination": "https://gaming.henrymeyer.de/projects/modpacks/hmt-pack/",
+      "destination": "pack",
       "permanent": true
     }
   ]
