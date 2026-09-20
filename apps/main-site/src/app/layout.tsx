@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import SiteChrome from "@/components/site-chrome";
 import { ThemeModeProvider } from "@/components/theme-mode-provider";
@@ -135,6 +136,7 @@ export default function RootLayout({
           {children}
 
           <SpeedInsights />
+          <Analytics />
         </ThemeModeProvider>
       </body>
     </html>
