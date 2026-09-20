@@ -42,15 +42,6 @@ Die Speicherung erfolgt auf Grundlage von § 25 Abs. 2 Nr. 2 TDDDG (technisch no
 
 Google Fonts werden über das Paket next/font/google eingebunden. Die Schriftarten werden lokal in dieses Projekt integriert. Das bedeutet, dass beim Laden der Website keine Verbindung zu Google-Servern hergestellt wird und keine IP-Adressen an Google übermittelt werden.
 
-### Discord Widget
-
-Auf dieser Website wird ein Widget des Dienstes Discord (Discord Inc., 444 De Haro Street, Suite 200, San Francisco, CA 94107, USA) eingebunden.
-
-Das Widget ist standardmäßig deaktiviert. Erst wenn Sie über das Cookie-Banner, die Einstellungen oder direkt am Platzhalter des Widgets Ihre Einwilligung erteilen, wird die Verbindung zu den Servern von Discord hergestellt und das Widget geladen. Dabei werden personenbezogene Daten (insbesondere Ihre IP-Adresse sowie technische Browserdaten) an Discord übertragen.
-
-- Rechtsgrundlage: Die Datenverarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO.
-- Widerruf der Einwilligung: Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen oder ändern. Klicken Sie dazu im Fußbereich (Footer) dieser Website auf den Link „Cookie-Einstellungen“, um den Einstellungs-Dialog erneut zu öffnen und Ihre Auswahl anzupassen.
-
 ### Google Kalender
 
 Auf dieser Website wird der Event-Kalender als eingebetteter Kalender des Dienstes Google Kalender (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) eingebunden. Der Kalender ist unter https://hmt-clan.vercel.app/calendar sowie auf der Startseite verfügbar.
@@ -59,6 +50,12 @@ Der Kalender ist standardmäßig deaktiviert. Erst wenn Sie über das Cookie-Ban
 
 - Rechtsgrundlage: Die Datenverarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO.
 - Widerruf der Einwilligung: Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen oder ändern. Klicken Sie dazu im Fußbereich (Footer) dieser Website auf den Link „Cookie-Einstellungen“, um den Einstellungs-Dialog erneut zu öffnen und Ihre Auswahl anzupassen.
+
+### Vercel Analytics und Vercel Speed Insights
+
+Auf dieser Website werden die Dienste Vercel Analytics und Vercel Speed Insights (Vercel Inc., 340 Brannan Street, Suite 100, San Francisco, CA 94107, USA) eingesetzt. Vercel Analytics erfasst anonymisierte Besucher- und Seitenaufruf-Statistiken, Vercel Speed Insights erhebt technische Leistungsdaten (Web Vitals). Dabei werden Daten an Vercel übermittelt. Es werden keine Cookies gesetzt.
+
+- Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Auswertung und Optimierung der Website).
 
 ## 6. Externe Links
 

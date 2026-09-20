@@ -3,6 +3,8 @@ import SiteChrome from "@/components/site-chrome";
 import { ConsentProvider } from "@/components/consent-provider";
 import ConsentDialog from "@/components/consent-dialog";
 import CookieBanner from "@/components/cookie-banner";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -50,6 +52,8 @@ export default function RootLayout({
 
           <CookieBanner />
           <ConsentDialog />
+          <Analytics />
+          <SpeedInsights />
         </ConsentProvider>
       </body>
     </html>
