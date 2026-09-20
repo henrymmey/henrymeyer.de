@@ -55,7 +55,7 @@ export default function Countdown() {
 
       {remaining === "reached" ? (
         <p className="font-heading text-xl text-main-foreground sm:text-2xl">
-          Jetzt ist es soweit!
+          Das Event hat begonnen!
         </p>
       ) : (
         <div className="mx-auto grid max-w-2xl grid-cols-3 gap-3 sm:gap-4">
