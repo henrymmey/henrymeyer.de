@@ -69,7 +69,7 @@ export default function ConsentDialog() {
 
         <div className="p-6">
           <p className="text-sm leading-relaxed text-muted">
-            Für externe Dienste wie den Discord-Server benötigen wir deine
+            Für externe Dienste wie Google Calendar benötigen wir deine
             Einwilligung. Du kannst deine Wahl hier jederzeit ändern.
           </p>
           <p className="mt-4 text-xs leading-relaxed">
@@ -83,10 +83,20 @@ export default function ConsentDialog() {
             .
           </p>
           <div className="mt-6 flex gap-3">
-            <MinecraftButton type="button" variant="primary" onClick={grant} className="flex-1">
+            <MinecraftButton
+              type="button"
+              variant="primary"
+              onClick={grant}
+              className="flex-1"
+            >
               Akzeptieren
             </MinecraftButton>
-            <MinecraftButton type="button" variant="stone" onClick={deny} className="flex-1">
+            <MinecraftButton
+              type="button"
+              variant="stone"
+              onClick={deny}
+              className="flex-1"
+            >
               Ablehnen
             </MinecraftButton>
           </div>

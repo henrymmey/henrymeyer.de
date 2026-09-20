@@ -18,7 +18,7 @@ export default function CookieBanner() {
       className="fixed bottom-4 right-4 z-50 w-80 max-w-[calc(100vw-2rem)] rounded-block border border-black/60 bg-surface-3 p-4 shadow-lift"
     >
       <p className="mb-4 text-sm leading-relaxed text-muted">
-        Für externe Dienste wie den Discord-Server benötigen wir deine
+        Für externe Dienste wie Google Calendar benötigen wir deine
         Einwilligung. Du kannst diese jederzeit widerrufen. Details findest du
         in der{" "}
         <Link
@@ -30,10 +30,22 @@ export default function CookieBanner() {
         .
       </p>
       <div className="flex gap-2">
-        <MinecraftButton type="button" variant="primary" size="sm" onClick={grant} className="flex-1">
+        <MinecraftButton
+          type="button"
+          variant="primary"
+          size="sm"
+          onClick={grant}
+          className="flex-1"
+        >
           Akzeptieren
         </MinecraftButton>
-        <MinecraftButton type="button" variant="stone" size="sm" onClick={deny} className="flex-1">
+        <MinecraftButton
+          type="button"
+          variant="stone"
+          size="sm"
+          onClick={deny}
+          className="flex-1"
+        >
           Ablehnen
         </MinecraftButton>
       </div>
