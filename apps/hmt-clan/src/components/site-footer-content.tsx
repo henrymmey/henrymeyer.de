@@ -40,7 +40,7 @@ export default function SiteFooterContent({
           <div className="texture texture-grass-side tex-32 absolute inset-0" />
         </div>
         <div
-          className={`${fullBleed} texture texture-dirt tex-32 relative h-6 w-[100vw] border-t border-black/40`}
+          className={`${fullBleed} texture texture-dirt tex-32 relative h-6 w-[100vw]`}
         >
           <div className="absolute inset-0 bg-black/15" />
         </div>
@@ -218,7 +218,7 @@ export default function SiteFooterContent({
       />
       <div
         aria-hidden="true"
-        className={`${fullBleed} texture texture-stone tex-32 h-8 w-[100vw] border-t border-black/50`}
+        className={`${fullBleed} texture texture-stone tex-32 h-8 w-[100vw]`}
       />
       <div
         aria-hidden="true"
