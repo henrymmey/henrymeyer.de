@@ -214,7 +214,15 @@ export default function SiteFooterContent({
 
       <div
         aria-hidden="true"
-        className={`${fullBleed} texture texture-dirt tex-32 h-16 w-[100vw] border-t border-black/50`}
+        className={`${fullBleed} texture texture-dirt tex-32 h-4 w-[100vw] border-t border-black/50`}
+      />
+      <div
+        aria-hidden="true"
+        className={`${fullBleed} texture texture-stone tex-32 h-8 w-[100vw] border-t border-black/50`}
+      />
+      <div
+        aria-hidden="true"
+        className={`${fullBleed} texture texture-obsidian tex-32 h-8 w-[100vw] border-t border-black/60`}
       />
     </footer>
   );
