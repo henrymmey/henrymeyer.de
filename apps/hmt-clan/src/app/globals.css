@@ -53,6 +53,7 @@
   --texture-planks: url("/textures/planks.png");
   --texture-sand: url("/textures/sand.png");
   --texture-obsidian: url("/textures/obsidian.png");
+  --texture-bedrock: url("/textures/bedrock.png");
 }
 
 .dark {
@@ -228,6 +229,9 @@
   }
   .texture-obsidian {
     background-image: var(--texture-obsidian);
+  }
+  .texture-bedrock {
+    background-image: var(--texture-bedrock);
   }
 
   .tex-16 {

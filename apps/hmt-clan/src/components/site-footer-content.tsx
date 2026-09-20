@@ -222,7 +222,7 @@ export default function SiteFooterContent({
       />
       <div
         aria-hidden="true"
-        className={`${fullBleed} texture texture-obsidian tex-32 h-8 w-[100vw] border-t border-black/60`}
+        className={`${fullBleed} texture texture-bedrock tex-32 h-8 w-[100vw]`}
       />
     </footer>
   );
