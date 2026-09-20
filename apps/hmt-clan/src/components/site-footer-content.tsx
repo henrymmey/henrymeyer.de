@@ -88,7 +88,7 @@ export default function SiteFooterContent({
                   variant="stone"
                   size="sm"
                 >
-                  ID Portal
+                  HMT ID
                 </MinecraftButton>
               </div>
             </div>
