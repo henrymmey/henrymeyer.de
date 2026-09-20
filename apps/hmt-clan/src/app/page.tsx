@@ -1,4 +1,5 @@
 import SiteFooter from "@/components/site-footer";
+import Countdown from "@/components/countdown";
 import EventCard from "@/components/event-card";
 import DiscordWidget from "@/components/discord-widget";
 import CalendarWidget from "@/components/calendar-widget";
@@ -23,6 +24,8 @@ export default function Page() {
           spielt.
         </p>
       </section>
+
+      <Countdown />
 
       <section id="events" className="mb-8">
         <h2 className="mb-6 text-2xl font-heading text-foreground sm:text-3xl">
