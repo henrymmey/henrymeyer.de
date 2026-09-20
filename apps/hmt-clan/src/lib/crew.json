@@ -36,21 +36,12 @@
     "slug": "_benjix"
   },
   {
-    "name": "Fischfarmer",
-    "rolle": "Spieler",
-    "minecraftUser": "Fischfarmer",
-    "useskin": true,
-    "thescape_slug": "",
-    "priority": 5,
-    "slug": "fischfarmer"
-  },
-  {
     "name": "JB130987",
     "rolle": "Spieler",
     "minecraftUser": "JB130987",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 6,
+    "priority": 5,
     "slug": "jb130987"
   },
   {
@@ -59,7 +50,7 @@
     "minecraftUser": "Thies_OG",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 7,
+    "priority": 6,
     "slug": "thies_og"
   },
   {
@@ -68,7 +59,7 @@
     "minecraftUser": "D1909",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 8,
+    "priority": 7,
     "slug": "d1909"
   },
   {
@@ -77,7 +68,7 @@
     "minecraftUser": "Antxn11756",
     "useskin": false,
     "thescape_slug": "",
-    "priority": 9,
+    "priority": 8,
     "slug": "antxn11756"
   },
   {
@@ -86,7 +77,7 @@
     "minecraftUser": "Nikzo_45",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 10,
+    "priority": 9,
     "slug": "nikzo_45"
   },
   {
@@ -95,7 +86,7 @@
     "minecraftUser": "Dubairegelt",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 11,
+    "priority": 10,
     "slug": "dubairegelt"
   },
   {
@@ -104,7 +95,7 @@
     "minecraftUser": "eyoTom",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 12,
+    "priority": 11,
     "slug": "eyotom"
   },
   {
@@ -113,7 +104,7 @@
     "minecraftUser": "Saugstaube013",
     "useskin": true,
     "thescape_slug": "",
-    "priority": 13,
+    "priority": 12,
     "slug": "saugstaube013"
   }
 ]
