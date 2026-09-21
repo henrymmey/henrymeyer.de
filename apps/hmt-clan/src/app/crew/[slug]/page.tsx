@@ -85,7 +85,7 @@ export default async function CrewMemberPage({ params }: Props) {
 
   const labyUrl =
     member.showLaby && member.labySlug
-      ? `https://laby.net/@${member.labySlug}`
+      ? `https://laby.net/de/@${member.labySlug}`
       : null;
 
   return (
@@ -118,12 +118,12 @@ export default async function CrewMemberPage({ params }: Props) {
 
             <div className="w-full text-center md:text-left">
               <div className="mb-3 flex flex-wrap justify-center gap-1.5 md:justify-start">
-              {roles.map((role) => (
-                <MinecraftBadge key={role} variant={roleVariant(role)}>
-                  {role}
-                </MinecraftBadge>
-              ))}
-            </div>
+                {roles.map((role) => (
+                  <MinecraftBadge key={role} variant={roleVariant(role)}>
+                    {role}
+                  </MinecraftBadge>
+                ))}
+              </div>
               <h1 className="font-pixel text-3xl uppercase leading-tight text-foreground md:text-5xl">
                 {member.name}
               </h1>
