@@ -1,0 +1,369 @@
+openapi: 3.1.0
+info:
+  title: HMT Clan API
+  version: 1.0.0
+  description: |
+    Öffentliche API der Website des HMT Clans.
+
+    Bereitgestellt werden die Events, die Crew-Mitglieder sowie
+    Statistiken einzelner Spieler vom TheScape-Server.
+
+    **Hinweise:**
+    - Die API verwendet derzeit **keine Authentifizierung**. Alle
+      Ressourcen sind öffentlich lesbar.
+    - Events werden nur ausgeliefert, wenn sie in
+      `src/lib/events.json` mit `show: true` markiert sind.
+    - Die Statistiken werden      abgerufen und für eine Stunde zwischengespeichert. Ist ein
+      Spieler nicht (mehr) auffindbar, werden `null`-Werte geliefert.
+servers:
+  - url: https://hmt-clan.henrymeyer.de
+    description: Produktion
+  - url: http://localhost:3000
+    description: Lokale Entwicklung
+tags:
+  - name: Events
+    description: Events und Ankündigungen des HMT Clans.
+  - name: Crew
+    description: Mitglieder des HMT Clans.
+  - name: Stats
+    description: Spielerstatistiken von Mitgliedern des HMT Clans.
+  - name: Documentation
+    description: Bereitstellung der OpenAPI-Spezifikation.
+paths:
+  /api/events:
+    get:
+      tags:
+        - Events
+      summary: Alle sichtbaren Events
+      description: >
+        Liefert alle Events mit `show: true`, sortiert nach Datum
+        (aufsteigend).
+      operationId: listEvents
+      responses:
+        "200":
+          description: Liste der sichtbaren Events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EventConfig"
+  /api/events/{slug}:
+    get:
+      tags:
+        - Events
+      summary: Einzelnes Event
+      description: Liefert ein sichtbares Event anhand seines Slugs.
+      operationId: getEvent
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Slug des Events (z. B. `thescape-server-launch`).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Das angefragte Event.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventConfig"
+              examples:
+                thescapeServerLaunch:
+                  summary: TheScape Server Launch
+                  value:
+                    name: TheScape Server Launch
+                    slug: thescape-server-launch
+                    description: Der TheScape Server startet nach einem Jahr wieder. Und wir spielen mit.
+                    priority: 1
+                    date: "2026-10-02"
+                    time: "20:00"
+                    showTime: true
+                    show: true
+                    showDetailsButton: true
+                    done: false
+                    icon: /events/wooden_sword.png
+                    links:
+                      - displayName: TheScape Website
+                        url: https://thescape.de
+        "404":
+          description: Es existiert kein sichtbares Event mit diesem Slug.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/crew:
+    get:
+      tags:
+        - Crew
+      summary: Alle Crew-Mitglieder
+      description: >
+        Liefert alle Crew-Mitglieder, sortiert nach `priority`
+        (aufsteigend).
+      operationId: listCrew
+      responses:
+        "200":
+          description: Liste der Crew-Mitglieder.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CrewMember"
+  /api/crew/{slug}:
+    get:
+      tags:
+        - Crew
+      summary: Einzelnes Crew-Mitglied
+      description: Liefert ein Crew-Mitglied anhand seines Slugs.
+      operationId: getCrewMember
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Slug des Crew-Mitglieds (z. B. `jumpstone4477`).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Das angefragte Crew-Mitglied.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CrewMember"
+              examples:
+                jumpstone4477:
+                  summary: JumpStone4477
+                  value:
+                    name: JumpStone4477
+                    rolle: Gründer
+                    minecraftUser: JumpStone4477
+                    useskin: true
+                    thescape_slug: herrrbennn-efde06a2-c348-493d-abe5-004fe97afef3
+                    priority: 1
+                    slug: jumpstone4477
+        "404":
+          description: Es existiert kein Crew-Mitglied mit diesem Slug.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/stats/{slug}:
+    get:
+      tags:
+        - Stats
+      summary: TheScape-Statistiken eines Spielers
+      description: >
+        Fragt die Statistiken des Spielers live vom TheScape-Server
+        ab. Die Daten werden für eine Stunde zwischengespeichert.
+        Ist der Spieler nicht auffindbar oder das Abrufen fehlgeschlagen,
+        werden alle Felder als `null` geliefert (Status 200).
+      operationId: getThescapeStats
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: >
+            TheScape-Slug des Spielers, z. B.
+            `herrrbennn-efde06a2-c348-493d-abe5-004fe97afef3`.
+            Leere oder unbekannte Slugs liefern `null`-Werte.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: >
+            Statistiken des Spielers. Jedes Feld kann `null` sein, wenn
+            der Spieler nicht gefunden wurde.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ThescapeStats"
+  /api/openapi.yaml:
+    get:
+      tags:
+        - Documentation
+      summary: OpenAPI-Spezifikation
+      description: Liefert diese OpenAPI-3.1-Spezifikation als YAML.
+      operationId: getOpenApiSpec
+      responses:
+        "200":
+          description: Die OpenAPI-Spezifikation im YAML-Format.
+          content:
+            application/yaml:
+              schema:
+                type: string
+components:
+  securitySchemes: {}
+  schemas:
+    EventLink:
+      type: object
+      description: Verlinkung im Rahmen eines Events (z. B. Website oder Discord-Event).
+      properties:
+        displayName:
+          type: string
+          description: Anzeigename des Links.
+          example: TheScape Website
+        url:
+          type: string
+          format: uri
+          description: Ziel-URL des Links.
+          example: https://thescape.de
+      required:
+        - displayName
+        - url
+    EventIcon:
+      oneOf:
+        - type: string
+          description: Yin- oder Block-Icon aus einem festen Set.
+          enum:
+            - chest
+            - sword
+            - map
+            - pickaxe
+            - emerald
+            - redstone
+            - ender-pearl
+            - grass
+            - crafting-table
+        - type: string
+          description: Pfad zu einem eigenen Icon-Bild.
+          pattern: "^/.*"
+    EventConfig:
+      type: object
+      description: Konfiguration eines einzelnen Events.
+      properties:
+        name:
+          type: string
+          description: Name des Events.
+          example: TheScape Server Launch
+        slug:
+          type: string
+          description: URL-Slug des Events.
+          example: thescape-server-launch
+        description:
+          type: string
+          description: Kurzbeschreibung des Events.
+        priority:
+          type: integer
+          format: int32
+          description: Sortierpriorität (niedrigere Werte zuerst).
+          example: 1
+        date:
+          type: string
+          format: date
+          description: Datum des Events (ISO 8601, `YYYY-MM-DD`).
+          example: "2026-10-02"
+        time:
+          type: string
+          format: partial-time
+          description: Uhrzeit des Events als `HH:mm`, sofern vorhanden.
+          example: "20:00"
+        showTime:
+          type: boolean
+          description: Ob die Uhrzeit angezeigt wird.
+        show:
+          type: boolean
+          description: |
+            Ob das Event öffentlich sichtbar ist. Nur Events mit
+            `show: true` werden über die API ausgeliefert.
+        showDetailsButton:
+          type: boolean
+          description: Ob der Detail-Button angezeigt wird.
+        done:
+          type: boolean
+          description: Ob das Event bereits stattgefunden hat.
+        icon:
+          anyOf:
+            - $ref: "#/components/schemas/EventIcon"
+            - type: "null"
+          description: Icon des Events, sofern vorhanden.
+        links:
+          type: array
+          description: Verlinkungen des Events, sofern vorhanden.
+          items:
+            $ref: "#/components/schemas/EventLink"
+      required:
+        - name
+        - slug
+        - description
+        - priority
+        - date
+        - showTime
+        - show
+        - showDetailsButton
+        - done
+    CrewMember:
+      type: object
+      description: Ein einzelnes Mitglied der HMT Clan Crew.
+      properties:
+        name:
+          type: string
+          description: Anzeigename des Mitglieds.
+          example: JumpStone4477
+        rolle:
+          type: string
+          description: Rolle im Clan (z. B. `Gründer` oder `Spieler`).
+          example: Gründer
+        minecraftUser:
+          type: string
+          description: Minecraft-Benutzername.
+          example: JumpStone4477
+        useskin:
+          type: boolean
+          description: Ob ein Minecraft-Skin angezeigt wird.
+        priority:
+          type: integer
+          format: int32
+          description: Sortierpriorität (niedrigere Werte zuerst).
+          example: 1
+        slug:
+          type: string
+          description: URL-Slug des Mitglieds.
+          example: jumpstone4477
+        thescape_slug:
+          type: string
+          description: TheScape-Slug für die Statistiken, sofern vorhanden.
+          example: herrrbennn-efde06a2-c348-493d-abe5-004fe97afef3
+      required:
+        - name
+        - rolle
+        - minecraftUser
+        - priority
+        - slug
+    ThescapeStats:
+      type: object
+      description: Gescrapte Statistiken eines Spielers vom TheScape-Server.
+      properties:
+        level:
+          type:
+            - string
+            - "null"
+          description: InGame-Level des Spielers.
+          example: "52"
+        playTime:
+          type:
+            - string
+            - "null"
+          description: Gesamtspielzeit.
+          example: 42 Tage 3 Stunden 15 Minuten
+        coins:
+          type:
+            - string
+            - "null"
+          description: Anzahl der Münzen.
+          example: 1.234.567
+      required:
+        - level
+        - playTime
+        - coins
+    Error:
+      type: object
+      description: Standard-Fehlerantwort.
+      properties:
+        error:
+          type: string
+          description: Fehlermeldung.
+          example: Event not found
+      required:
+        - error

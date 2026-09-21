@@ -36,10 +36,10 @@ importers:
         version: 0.5.20(tailwindcss@4.3.3)
       '@vercel/analytics':
         specifier: ^2.0.1
-        version: 2.0.1(next@16.2.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+        version: 2.0.1(next@16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@vercel/speed-insights':
         specifier: ^2.0.0
-        version: 2.0.0(next@16.2.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+        version: 2.0.0(next@16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -67,6 +67,9 @@ importers:
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
+      swagger-ui-dist:
+        specifier: ^5.33.0
+        version: 5.33.0
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.6.0
@@ -1633,6 +1636,9 @@ packages:
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+
+  '@scarf/scarf@1.4.0':
+    resolution: {integrity: sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==}
 
   '@shikijs/core@4.4.3':
     resolution: {integrity: sha512-QCR4q2ZO/ILJEuwiBMel4wdcTDb1JGwfjKTxPDF6x8ixOaluPrVqIn06C99AcRPhmYlBR56d/Fb+GN58GzExpg==}
@@ -4088,6 +4094,9 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
+  swagger-ui-dist@5.33.0:
+    resolution: {integrity: sha512-wpdK+m6BU5yj6pmUdMskZVTSWYG4DLglAx3sIhylloY37i8O37IrH+YEpqdXNfpaTGxILRBFzUqLF2jKqbfI7A==}
+
   tailwind-merge@2.6.1:
     resolution: {integrity: sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==}
 
@@ -5706,6 +5715,8 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
+  '@scarf/scarf@1.4.0': {}
+
   '@shikijs/core@4.4.3':
     dependencies:
       '@shikijs/primitive': 4.4.3
@@ -6063,7 +6074,17 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.12.2':
     optional: true
 
+  '@vercel/analytics@2.0.1(next@16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+    optionalDependencies:
+      next: 16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+
   '@vercel/analytics@2.0.1(next@16.2.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+    optionalDependencies:
+      next: 16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+
+  '@vercel/speed-insights@2.0.0(next@16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
     optionalDependencies:
       next: 16.2.2(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
@@ -8982,6 +9003,10 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.6.1
+
+  swagger-ui-dist@5.33.0:
+    dependencies:
+      '@scarf/scarf': 1.4.0
 
   tailwind-merge@2.6.1: {}
 
