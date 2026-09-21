@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
 export interface ThescapeStats {
   level: string | null;
   playTime: string | null;
@@ -49,6 +52,14 @@ export interface FullPlayerProfile {
 
 const BASE_URL = "https://thescape.de/spielersuche";
 const TTL_MS = 3600 * 1000;
+
+const ERFOLGE_DIR = join(process.cwd(), "public", "erfolge");
+
+function advancementIcon(name: string): string {
+  return existsSync(join(ERFOLGE_DIR, name))
+    ? `/erfolge/${name}`
+    : `https://thescape.de/fileadmin/advancement/${name}`;
+}
 
 type HtmlCacheEntry = {
   html: string;
@@ -258,9 +269,9 @@ function extractAdvancementCards(ulHtml: string): Advancement[] {
 
     const iconMatch =
       html.match(
-        /(?:data-src|src)="(https:\/\/thescape\.de\/fileadmin\/advancement\/[^"]+)"/,
+        /(?:data-src|src)="https:\/\/thescape\.de\/fileadmin\/advancement\/([^"]+)"/,
       );
-    const icon = iconMatch ? iconMatch[1] : "";
+    const icon = iconMatch ? advancementIcon(iconMatch[1]) : "";
 
     const h4Match = html.match(/<h4 class="text-brand">([\s\S]*?)<\/h4>/);
     const rawTitle = h4Match

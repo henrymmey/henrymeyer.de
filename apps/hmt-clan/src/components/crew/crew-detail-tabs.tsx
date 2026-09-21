@@ -90,7 +90,6 @@ function AdvancementCard({ advancement }: { advancement: Advancement }) {
         alt=""
         width={80}
         height={80}
-        unoptimized
         className={cn(
           "size-9 shrink-0 object-contain p-0.5",
           !advancement.unlocked && "opacity-40 grayscale",
