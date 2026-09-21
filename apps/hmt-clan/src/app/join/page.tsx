@@ -104,6 +104,13 @@ export default function JoinPage() {
                 TheScape Bewerbung
               </MinecraftButton>
             </section>
+            <p className="mt-3 text-xs text-muted/70">
+              NICHT MIT THESCAPE VERBUNDEN.
+              <br />
+              Wir sind eine unabhängige Gruppe, die auf dem TheScape-Server
+              spielt. Wir haben keine Verbindung zu den Betreibern von TheScape.
+            </p>
+            <p className="mt-3 text-xs text-muted/70"></p>
           </div>
         </div>
       </div>

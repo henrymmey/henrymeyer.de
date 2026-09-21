@@ -145,6 +145,14 @@ export default function SiteFooterContent({
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    href="/contact"
+                    className="text-muted transition-colors hover:text-foreground"
+                  >
+                    Kontakt
+                  </Link>
+                </li>
+                <li>
                   <button
                     type="button"
                     onClick={openDialog}
@@ -159,9 +167,9 @@ export default function SiteFooterContent({
 
           <div className="mt-12 border-t border-white/5 pt-6">
             <p className="text-sm text-muted">
-              © {new Date().getFullYear()} HMT Clan. Code lizenziert unter{" "}
+              © {new Date().getFullYear()} Henry Meyer. Code lizenziert unter{" "}
               <a
-                href="https://github.com/henrymmey"
+                href="https://github.com/henrymmey/henrymeyer.de/blob/main/apps/hmt-clan/LICENSE"
                 target="_blank"
                 rel="noreferrer"
                 className="text-foreground/80 underline decoration-emerald/40 underline-offset-2 hover:text-foreground"

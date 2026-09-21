@@ -136,8 +136,7 @@ export default function ContactPage() {
               </a>
             </ContactRow>
             <p className="pb-2 pt-4 text-sm leading-relaxed text-muted">
-              Für organisatorische Anfragen, Presse oder wenn du Teil der
-              Community werden möchtest – schreib uns gerne.
+              Für organisatorische Anfragen oder Presse - schreib uns gerne.
             </p>
             <div className="pt-3">
               <MinecraftButton href={`mailto:${contactEmail}`} variant="stone">
