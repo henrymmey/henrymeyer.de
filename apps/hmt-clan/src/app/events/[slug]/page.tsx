@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
 import EventBody from "@/components/event-body";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
+import MinecraftButton from "@/components/minecraft/minecraft-button";
 import { EventIconView } from "@/components/events/event-material";
 import {
   getEventBySlug,
@@ -92,6 +93,16 @@ export default async function EventPage({ params }: Props) {
             <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">
               {event.description}
             </p>
+
+            {event.links && event.links.length > 0 && (
+              <div className="mt-8 flex flex-wrap gap-3">
+                {event.links.map((link) => (
+                  <MinecraftButton key={link.url} href={link.url} external variant="stone">
+                    {link.displayName}
+                  </MinecraftButton>
+                ))}
+              </div>
+            )}
 
             {description && (
               <div className="mt-8 border-t border-white/5 pt-8">
