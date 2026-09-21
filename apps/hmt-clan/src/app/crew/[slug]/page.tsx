@@ -8,13 +8,12 @@ import {
   Coins,
   Eye,
   Gamepad2,
-  TrendingUp,
 } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
+import CrewDetailTabs from "@/components/crew/crew-detail-tabs";
 import { getCrewMemberBySlug } from "@/lib/crew";
 import { getFullThescapeProfile } from "@/lib/thescape";
-import type { StatCategory, StatCard } from "@/lib/thescape";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -52,35 +51,6 @@ function HeaderStat({
       <span className="text-foreground">{value}</span>
       <span className="hidden text-muted sm:inline">{label}</span>
     </div>
-  );
-}
-
-function StatCardTile({ stat }: { stat: StatCard }) {
-  return (
-    <div className="rounded-block border border-black/60 bg-surface-3 p-5 text-center shadow-card transition-transform duration-200 hover:-translate-y-px">
-      <p className="font-pixel text-2xl font-semibold text-emerald md:text-3xl">
-        {stat.value}
-      </p>
-      <p className="mt-1 text-xs text-muted md:text-sm">{stat.label}</p>
-    </div>
-  );
-}
-
-function CategorySection({ category }: { category: StatCategory }) {
-  return (
-    <section>
-      <h2 className="mb-4 flex items-center gap-2 font-pixel text-lg text-foreground md:text-xl">
-        <TrendingUp className="size-5 text-grass" aria-hidden="true" />
-        {category.title}
-      </h2>
-      <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
-        {category.stats.map((stat) => (
-          <li key={`${category.title}-${stat.label}`}>
-            <StatCardTile stat={stat} />
-          </li>
-        ))}
-      </ul>
-    </section>
   );
 }
 
@@ -179,11 +149,12 @@ export default async function CrewMemberPage({ params }: Props) {
           </div>
         </section>
 
-        <section className="mt-10 space-y-10">
-          {profile.categories.length > 0 ? (
-            profile.categories.map((category) => (
-              <CategorySection key={category.title} category={category} />
-            ))
+        <section className="mt-10">
+          {profile.categories.length > 0 || profile.achievements ? (
+            <CrewDetailTabs
+              categories={profile.categories}
+              achievements={profile.achievements ?? null}
+            />
           ) : (
             <div className="mx-auto max-w-2xl rounded-block border border-dashed border-black/50 bg-surface-3/60 px-6 py-12 text-center">
               <Image
