@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   ChartColumn,
   Check,
@@ -38,6 +39,41 @@ const SORT_OPTIONS: { id: SortKey; label: string; hint: string }[] = [
   { id: "date-asc", label: "Datum aufsteigend", hint: "Älteste zuerst" },
   { id: "date-desc", label: "Datum absteigend", hint: "Neueste zuerst" },
 ];
+
+const SORT_URL_VALUES: Record<SortKey, string> = {
+  standard: "standard",
+  "date-asc": "aufsteigend",
+  "date-desc": "absteigend",
+};
+
+const TAB_URL_VALUES: Record<TabId, string> = {
+  stats: "stats",
+  achievements: "erfolge",
+};
+
+function parseTab(value: string | null): TabId {
+  if (value === "erfolge" || value === "achievements") {
+    return "achievements";
+  }
+  return "stats";
+}
+
+function parseSort(value: string | null): SortKey {
+  if (value === "aufsteigend") {
+    return "date-asc";
+  }
+  if (value === "absteigend") {
+    return "date-desc";
+  }
+  return "standard";
+}
+
+function parseShowLocked(value: string | null): boolean {
+  if (value === null) {
+    return true;
+  }
+  return value !== "0" && value !== "false";
+}
 
 function StatCardTile({ stat }: { stat: StatCard }) {
   return (
@@ -201,11 +237,70 @@ export default function CrewDetailTabs({
   categories,
   achievements,
 }: CrewDetailTabsProps) {
-  const [active, setActive] = useState<TabId>("stats");
-  const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<SortKey>("standard");
-  const [showLocked, setShowLocked] = useState(true);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const urlQuery = searchParams?.get("suche") ?? "";
+
+  const [query, setQuery] = useState(urlQuery);
   const [menuOpen, setMenuOpen] = useState(false);
+  const typingRef = useRef(false);
+
+  const activeTab = parseTab(searchParams?.get("tab") ?? null);
+  const sort = parseSort(searchParams?.get("sort") ?? null);
+  const showLocked = parseShowLocked(searchParams?.get("gesperrt") ?? null);
+
+  const updateUrl = useCallback(
+    ({
+      tab,
+      suche,
+      sort: nextSort,
+      gesperrt,
+    }: {
+      tab?: TabId;
+      suche?: string | null;
+      sort?: SortKey;
+      gesperrt?: boolean;
+    }) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (tab !== undefined) {
+        params.set("tab", TAB_URL_VALUES[tab]);
+      }
+      if (suche !== undefined) {
+        if (suche) {
+          params.set("suche", suche);
+        } else {
+          params.delete("suche");
+        }
+      }
+      if (nextSort !== undefined) {
+        params.set("sort", SORT_URL_VALUES[nextSort]);
+      }
+      if (gesperrt !== undefined) {
+        params.set("gesperrt", gesperrt ? "1" : "0");
+      }
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [searchParams, pathname, router],
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      typingRef.current = false;
+      if (query !== urlQuery) {
+        updateUrl({ suche: query });
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [query, urlQuery, updateUrl]);
+
+  useEffect(() => {
+    if (!typingRef.current && query !== urlQuery) {
+      const timer = setTimeout(() => setQuery(urlQuery), 0);
+      return () => clearTimeout(timer);
+    }
+  }, [urlQuery, query]);
 
   const hasStats = categories.length > 0;
   const hasAchievements = achievements !== null;
@@ -215,8 +310,8 @@ export default function CrewDetailTabs({
       (tab.id === "achievements" && hasAchievements),
   );
 
-  const current = tabs.some((tab) => tab.id === active)
-    ? active
+  const current = tabs.some((tab) => tab.id === activeTab)
+    ? activeTab
     : tabs[0]?.id;
 
   const filteredGroups = useMemo(
@@ -240,7 +335,7 @@ export default function CrewDetailTabs({
                 type="button"
                 role="tab"
                 aria-selected={isActive}
-                onClick={() => setActive(tab.id)}
+                onClick={() => updateUrl({ tab: tab.id })}
                 className={cn(
                   "inline-flex items-center gap-2 rounded-block border px-4 py-2 font-pixel text-xs uppercase tracking-[0.12em] transition-colors",
                   isActive
@@ -289,7 +384,10 @@ export default function CrewDetailTabs({
               <input
                 type="search"
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {
+                        setQuery(event.target.value);
+                        typingRef.current = true;
+                      }}
                 placeholder="Erfolge durchsuchen…"
                 aria-label="Erfolge durchsuchen"
                 className="w-full rounded-block border border-black/50 bg-surface-3 py-2.5 pl-10 pr-4 font-pixel text-xs uppercase tracking-[0.1em] text-foreground placeholder:text-[10px] placeholder:normal-case placeholder:text-muted/70 shadow-[inset_0_2px_0_rgb(0_0_0/0.25),0_1px_0_rgb(255_255_255/0.04)] outline-none transition-colors focus:border-emerald/60"
@@ -342,7 +440,7 @@ export default function CrewDetailTabs({
                         type="button"
                         role="menuitemradio"
                         aria-checked={sort === option.id}
-                        onClick={() => setSort(option.id)}
+                        onClick={() => updateUrl({ sort: option.id })}
                         className={cn(
                           "flex w-full items-center gap-2 rounded-block border px-3 py-2 text-left transition-colors",
                           sort === option.id
@@ -379,7 +477,7 @@ export default function CrewDetailTabs({
                       type="button"
                       role="menuitemcheckbox"
                       aria-checked={showLocked}
-                      onClick={() => setShowLocked((value) => !value)}
+                      onClick={() => updateUrl({ gesperrt: !showLocked })}
                       className={cn(
                         "flex w-full items-center gap-2 rounded-block border px-3 py-2 text-left transition-colors",
                         showLocked

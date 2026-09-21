@@ -26,8 +26,7 @@ export default function CrewCard({ member }: { member: CrewMember }) {
             width={600}
             height={800}
             sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
-            className="animate-float-slow aspect-[3/4] w-full object-contain"
-            style={{ animationDuration: "7s" }}
+            className="aspect-[3/4] w-full object-contain"
           />
         </div>
         <div

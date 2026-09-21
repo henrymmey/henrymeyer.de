@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import {
   ArrowLeft,
   Clock,
@@ -94,8 +95,7 @@ export default async function CrewMemberPage({ params }: Props) {
                 width={600}
                 height={800}
                 sizes="(min-width: 768px) 224px, 160px"
-                className="animate-float-slow h-auto w-40 rounded-[1px] object-contain md:w-56"
-                style={{ animationDuration: "7s" }}
+                className="h-auto w-40 rounded-[1px] object-contain md:w-56"
               />
             </div>
 
@@ -151,10 +151,12 @@ export default async function CrewMemberPage({ params }: Props) {
 
         <section className="mt-10">
           {profile.categories.length > 0 || profile.achievements ? (
-            <CrewDetailTabs
-              categories={profile.categories}
-              achievements={profile.achievements ?? null}
-            />
+            <Suspense fallback={null}>
+              <CrewDetailTabs
+                categories={profile.categories}
+                achievements={profile.achievements ?? null}
+              />
+            </Suspense>
           ) : (
             <div className="mx-auto max-w-2xl rounded-block border border-dashed border-black/50 bg-surface-3/60 px-6 py-12 text-center">
               <Image

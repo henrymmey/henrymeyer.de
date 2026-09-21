@@ -1,0 +1,57 @@
+URL-Parameter für /crew/[slug]
+================================
+
+Die Detailseite eines Crew-Mitglieds unterstützt folgende Query-Parameter (?tags),
+über die Tab, Suche und Filter gesteuert werden können. Alle Parameter sind
+optional - ohne Angaben verhält sich die Seite genau wie gewohnt.
+
+Muster: /crew/jumpstone4477?tab=erfolge&suche=elytra&sort=absteigend&gesperrt=0
+
+
+1) tab - aktiver Tab
+   Werte:
+     stats     -> "Statistiken" (Standard)
+     erfolge   -> "Erfolge"
+   Beispiele:
+     /crew/jumpstone4477?tab=stats
+     /crew/jumpstone4477?tab=erfolge
+
+
+2) suche - Suchbegriff für die Erfolge
+   Durchsucht Titel und Beschreibung aller Erfolge (nur im "Erfolge"-Tab sichtbar).
+   Werte: beliebiger Text
+   Beispiele:
+     /crew/jumpstone4477?tab=erfolge&suche=diamant
+     /crew/jumpstone4477?tab=erfolge&suche=elytra
+   Hinweis: wird die Seite mit einem langen Text aufgerufen, besteht aus mehreren
+   Leerzeichen-getrennten Wörtern (URL-Encoding beachten, z.B. %20).
+
+
+3) sort - Sortierung der Erfolge
+   Werte:
+     standard    -> Standardreihenfolge wie sie der Server liefert (Standard)
+     aufsteigend -> nach Freischalt-Datum sortieren, älteste zuerst
+     absteigend  -> nach Freischalt-Datum sortieren, neueste zuerst
+   Erfolge ohne Datum (noch nicht freigeschaltet) stehen immer am Ende.
+   Beispiele:
+     /crew/jumpstone4477?tab=erfolge&sort=aufsteigend
+     /crew/jumpstone4477?tab=erfolge&sort=absteigend
+
+
+4) gesperrt - gesperrte (noch nicht freigeschaltete) Erfolge anzeigen/verstecken
+   Werte:
+     0 -> gesperrte Erfolge werden ausgeblendet (nur freigeschaltete sichtbar)
+     1 -> gesperrte Erfolge werden mit angezeigt (Standard)
+   Beispiele:
+     /crew/jumpstone4477?tab=erfolge&gesperrt=0
+     /crew/jumpstone4477?tab=erfolge&gesperrt=1
+
+
+Kombinationen
+-------------
+Alle Parameter lassen sich frei kombinieren:
+  /crew/jumpstone4477?tab=erfolge&suche=story&sort=aufsteigend&gesperrt=0
+  /crew/jumpstone4477?tab=stats&gesperrt=1
+
+Die Seite schreibt aktuelle Werte automatisch zurück in die URL, sodass z.B.
+ein ausgelinkter Link geteilt werden kann.
