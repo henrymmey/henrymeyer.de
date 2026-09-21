@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import PixelHeading from "@/components/minecraft/pixel-heading";
 import Reveal from "@/components/minecraft/reveal";
 
-const TARGET_TIMESTAMP = Date.UTC(2026, 9, 2, 18, 0, 0);
-const TARGET_LABEL = "02.10.2026 · 20:00 Uhr";
-
 type Remaining = {
   days: number;
   hours: number;
   minutes: number;
 };
 
-function getRemaining(now: number): Remaining | "reached" {
-  const diff = TARGET_TIMESTAMP - now;
+function getRemaining(
+  now: number,
+  targetTimestamp: number,
+): Remaining | "reached" {
+  const diff = targetTimestamp - now;
   if (diff <= 0) return "reached";
   const totalMinutes = Math.floor(diff / 60000);
   return {
@@ -43,17 +43,24 @@ function Slot({ value, label }: { value: string; label: string }) {
   );
 }
 
-export default function Countdown() {
+export default function Countdown({
+  targetTimestamp,
+  targetLabel,
+}: {
+  targetTimestamp: number;
+  targetLabel: string;
+}) {
   const [remaining, setRemaining] = useState<Remaining | "reached" | "pending">(
     "pending",
   );
 
   useEffect(() => {
-    const update = () => setRemaining(getRemaining(Date.now()));
+    const update = () =>
+      setRemaining(getRemaining(Date.now(), targetTimestamp));
     update();
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [targetTimestamp]);
 
   const isReached = remaining === "reached";
 
@@ -70,10 +77,10 @@ export default function Countdown() {
               as="h2"
               className="text-2xl text-[#efe8d8] drop-shadow-[0_2px_0_rgb(0_0_0/0.45)] md:text-4xl"
             >
-              Bald geht&apos;s los
+              Nächstes Event in
             </PixelHeading>
             <p className="mt-3 text-xs font-medium tracking-wide text-[#f5f0e4] drop-shadow-[0_1px_0_rgb(0_0_0/0.6)] md:text-sm">
-              {TARGET_LABEL}
+              {targetLabel}
             </p>
           </div>
 

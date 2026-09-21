@@ -8,20 +8,31 @@ import Reveal from "@/components/minecraft/reveal";
 import CrewCard from "@/components/crew/crew-card";
 import CalendarWidget from "@/components/calendar/calendar-widget";
 import { crew } from "@/lib/crew";
-import { getHomepageEvents } from "@/lib/events";
+import {
+  getHomepageEvents,
+  getNextEvent,
+  getEventStartTimestamp,
+  getEventTargetLabel,
+} from "@/lib/events";
 
 export const dynamic = "force-dynamic";
 
 export default function Page() {
   const members = [...crew].sort((a, b) => a.priority - b.priority);
   const events = getHomepageEvents();
+  const nextEvent = getNextEvent();
 
   return (
     <main>
       <Hero />
 
       <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
-        <Countdown />
+        {nextEvent && (
+          <Countdown
+            targetTimestamp={getEventStartTimestamp(nextEvent)}
+            targetLabel={getEventTargetLabel(nextEvent)}
+          />
+        )}
 
         <section id="events" className="py-8 md:py-16">
           <SectionHeading
