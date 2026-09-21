@@ -125,6 +125,7 @@ function extractName(html: string): string {
 function extractCategories(html: string): StatCategory[] {
   const boxRe = /class="p-6 relative mb-6"/g;
   const categories: StatCategory[] = [];
+  const seen = new Set<string>();
 
   let box: RegExpExecArray | null;
   const boxes: { start: number; end: number }[] = [];
@@ -151,13 +152,14 @@ function extractCategories(html: string): StatCategory[] {
     const title = decodeEntities(
       rawTitle.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
     );
-    if (!title) {
+    if (!title || seen.has(title)) {
       continue;
     }
 
     const stats = extractCategoryStats(segment, end);
     if (stats.length > 0) {
       categories.push({ title, stats });
+      seen.add(title);
     }
   }
 
