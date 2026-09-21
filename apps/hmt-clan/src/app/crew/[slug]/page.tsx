@@ -8,6 +8,7 @@ import {
   Clock,
   Coins,
   Eye,
+  ExternalLink,
   Gamepad2,
 } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
@@ -81,6 +82,11 @@ export default async function CrewMemberPage({ params }: Props) {
   );
 
   const roles = getMemberRoles(member);
+
+  const labyUrl =
+    member.showLaby && member.labySlug
+      ? `https://laby.net/@${member.labySlug}`
+      : null;
 
   return (
     <main>
@@ -156,6 +162,18 @@ export default async function CrewMemberPage({ params }: Props) {
                     />
                   )}
                 </div>
+              )}
+
+              {labyUrl && (
+                <a
+                  href={labyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 rounded-block border border-lapis-deep bg-lapis/10 px-4 py-2.5 font-pixel text-xs uppercase tracking-[0.12em] text-lapis shadow-[0_2px_0_rgb(0_0_0/0.5)] transition-all duration-150 hover:-translate-y-px hover:bg-lapis/20 hover:text-lapis active:translate-y-px active:shadow-none"
+                >
+                  <ExternalLink className="size-4" aria-hidden="true" />
+                  Laby Profil
+                </a>
               )}
             </div>
           </div>

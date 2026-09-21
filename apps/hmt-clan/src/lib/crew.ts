@@ -7,6 +7,8 @@ export interface CrewMember {
   rollen: string[];
   minecraftUser: string;
   useskin?: boolean;
+  showLaby?: boolean;
+  labySlug?: string;
   priority: number;
   slug: string;
   thescape_slug?: string;

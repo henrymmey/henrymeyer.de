@@ -322,6 +322,15 @@ components:
         useskin:
           type: boolean
           description: Ob ein Minecraft-Skin angezeigt wird.
+        showLaby:
+          type: boolean
+          description: Ob ein Link zum Laby.net-Profil angezeigt wird.
+        labySlug:
+          type: string
+          description: >-
+            Laby.net-Slug des Spielers für den externen Profillink
+            (`https://laby.net/@{labySlug}`).
+          example: JumpStone4477
         priority:
           type: integer
           format: int32

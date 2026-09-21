@@ -4,6 +4,8 @@
     "rollen": ["Gründer", "Redstone"],
     "minecraftUser": "JumpStone4477",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "JumpStone4477",
     "thescape_slug": "",
     "priority": 1,
     "slug": "jumpstone4477"
@@ -13,6 +15,8 @@
     "rollen": ["Gründer", "Redstone"],
     "minecraftUser": "SchildFlieger",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "SchildFlieger",
     "thescape_slug": "",
     "priority": 2,
     "slug": "schildflieger"
@@ -22,6 +26,8 @@
     "rollen": ["Spieler", "PvP"],
     "minecraftUser": "Netheriteman115",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "Netheriteman115",
     "thescape_slug": "",
     "priority": 3,
     "slug": "netheriteman115"
@@ -31,6 +37,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "_BenjiX",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "_BenjiX",
     "thescape_slug": "",
     "priority": 4,
     "slug": "_benjix"
@@ -40,6 +48,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "JB130987",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "JB130987",
     "thescape_slug": "",
     "priority": 5,
     "slug": "jb130987"
@@ -49,6 +59,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "Thies_OG",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "Thies_OG",
     "thescape_slug": "",
     "priority": 6,
     "slug": "thies_og"
@@ -58,6 +70,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "D1909",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "D1909",
     "thescape_slug": "",
     "priority": 7,
     "slug": "d1909"
@@ -67,6 +81,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "Antxn11756",
     "useskin": false,
+    "showLaby": false,
+    "labySlug": "",
     "thescape_slug": "",
     "priority": 8,
     "slug": "antxn11756"
@@ -76,6 +92,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "Nikzo_45",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "Nikzo_45",
     "thescape_slug": "",
     "priority": 9,
     "slug": "nikzo_45"
@@ -85,6 +103,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "Dubairegelt",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "Dubairegelt",
     "thescape_slug": "",
     "priority": 10,
     "slug": "dubairegelt"
@@ -94,6 +114,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "eyoTom",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "eyoTom",
     "thescape_slug": "",
     "priority": 11,
     "slug": "eyotom"
@@ -103,6 +125,8 @@
     "rollen": ["Spieler"],
     "minecraftUser": "Saugstaube013",
     "useskin": true,
+    "showLaby": true,
+    "labySlug": "Saugstaube013",
     "thescape_slug": "",
     "priority": 12,
     "slug": "saugstaube013"

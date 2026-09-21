@@ -43,6 +43,8 @@
   --hmt-redstone: #d14026;
   --hmt-magenta: #cc5396;
   --hmt-magenta-deep: #5c2244;
+  --hmt-lapis: #5a9fe0;
+  --hmt-lapis-deep: #1b3a66;
   --hmt-sand: #dbcf9f;
   --hmt-obsidian: #19101f;
 
@@ -99,6 +101,8 @@
   --color-redstone: var(--hmt-redstone);
   --color-magenta: var(--hmt-magenta);
   --color-magenta-deep: var(--hmt-magenta-deep);
+  --color-lapis: var(--hmt-lapis);
+  --color-lapis-deep: var(--hmt-lapis-deep);
   --color-sand: var(--hmt-sand);
   --color-obsidian: var(--hmt-obsidian);
 
