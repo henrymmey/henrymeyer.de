@@ -55,6 +55,7 @@
   --texture-stone: url("/textures/stone.png");
   --texture-cobblestone: url("/textures/cobblestone.png");
   --texture-planks: url("/textures/planks.png");
+  --texture-slime: url("/textures/slime.png");
   --texture-sand: url("/textures/sand.png");
   --texture-obsidian: url("/textures/obsidian.png");
   --texture-bedrock: url("/textures/bedrock.png");
@@ -231,6 +232,9 @@
   }
   .texture-planks {
     background-image: var(--texture-planks);
+  }
+  .texture-slime {
+    background-image: var(--texture-slime);
   }
   .texture-sand {
     background-image: var(--texture-sand);

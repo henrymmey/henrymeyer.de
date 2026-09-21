@@ -13,6 +13,7 @@ const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/crew", label: "Crew" },
   { href: "/calendar", label: "Kalender" },
   { href: "/pack", label: "Modpack" },
+  { href: "/join", label: "Beitreten" },
 ];
 
 export default function SiteFooterContent({

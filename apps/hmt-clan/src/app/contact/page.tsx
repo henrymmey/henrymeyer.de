@@ -3,7 +3,6 @@ import SiteFooter from "@/components/site-footer";
 import PageIntro from "@/components/minecraft/page-intro";
 import BlockFrame from "@/components/minecraft/block-frame";
 import MinecraftButton from "@/components/minecraft/minecraft-button";
-import { MaterialIcon, type MaterialIconName } from "@/components/minecraft/minecraft-icons";
 
 export const metadata: Metadata = {
   title: "Kontakt | HMT Clan",
@@ -27,26 +26,19 @@ const discordServerInvite = "8aWmBuYURK";
 const contactEmail = "hmt-clan@henrymeyer.de";
 
 function ContactRow({
-  icon,
   label,
   children,
 }: {
-  icon: MaterialIconName;
   label: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-3 border-b border-white/5 py-4 last:border-none">
-      <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-block border border-black/50 bg-surface-2">
-        <MaterialIcon name={icon} className="size-4" />
-      </span>
-      <div>
-        <p className="font-pixel text-[9px] uppercase tracking-[0.2em] text-muted">
-          {label}
-        </p>
-        <div className="mt-1 text-sm leading-relaxed text-foreground">
-          {children}
-        </div>
+    <div className="border-b border-white/5 py-4 last:border-none">
+      <p className="font-pixel text-[9px] uppercase tracking-[0.2em] text-muted">
+        {label}
+      </p>
+      <div className="mt-1 text-sm leading-relaxed text-foreground">
+        {children}
       </div>
     </div>
   );
@@ -56,26 +48,45 @@ export default function ContactPage() {
   return (
     <main>
       <PageIntro
-        eyebrow="Kontakt"
-        eyebrowIcon="chest"
         title="Kontakt"
         description="Wie du den HMT Clan erreichst – über Discord oder direkt per E-Mail."
       />
 
       <div className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8 md:py-16">
+        <BlockFrame
+          className="mb-6"
+          headerTexture="slime"
+          header={
+            <>
+              <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-[#efe8d8]">
+                Joine dem HMT Clan
+              </span>
+            </>
+          }
+          bodyClassName="p-5 md:p-6"
+        >
+          <p className="text-sm leading-relaxed text-muted">
+            Wenn du Teil des HMT Clans werden möchtest, hier entlang:
+          </p>
+          <div className="mt-4">
+            <MinecraftButton href="/join" variant="primary">
+              HMT beitreten
+            </MinecraftButton>
+          </div>
+        </BlockFrame>
+
         <div className="grid gap-6 lg:grid-cols-2">
           <BlockFrame
             header={
               <>
                 <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-[#efe8d8]">
-                  <MaterialIcon name="chest" className="size-4" />
                   Discord
                 </span>
               </>
             }
             bodyClassName="p-5 md:p-6"
           >
-            <ContactRow icon="chest" label="User">
+            <ContactRow label="User">
               <a
                 href={`https://discord.com/users/${discordId}`}
                 target="_blank"
@@ -85,7 +96,7 @@ export default function ContactPage() {
                 @{discordUsername}
               </a>
             </ContactRow>
-            <ContactRow icon="grass" label="Server">
+            <ContactRow label="Server">
               <a
                 href={`https://discord.gg/${discordServerInvite}`}
                 target="_blank"
@@ -110,14 +121,13 @@ export default function ContactPage() {
             header={
               <>
                 <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-[#efe8d8]">
-                  <MaterialIcon name="emerald" className="size-4" />
                   E-Mail
                 </span>
               </>
             }
             bodyClassName="p-5 md:p-6"
           >
-            <ContactRow icon="emerald" label="E-Mail">
+            <ContactRow label="E-Mail">
               <a
                 href={`mailto:${contactEmail}`}
                 className="text-foreground underline decoration-emerald/40 underline-offset-2 transition-colors hover:text-emerald"

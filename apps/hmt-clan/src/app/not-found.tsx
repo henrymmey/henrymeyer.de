@@ -30,12 +30,11 @@ export default function NotFound() {
         />
 
         <MinecraftBadge variant="redstone" className="mb-5 gap-2 px-3 py-1.5">
-          404 · Anzeigefehler
+          404 · Nicht gefunden
         </MinecraftBadge>
 
         <h1 className="font-pixel text-3xl uppercase leading-tight text-foreground md:text-5xl">
-          Diese Seite existiert{" "}
-          <span className="text-redstone">nicht.</span>
+          Diese Seite existiert <span className="text-redstone">nicht.</span>
         </h1>
 
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted">
