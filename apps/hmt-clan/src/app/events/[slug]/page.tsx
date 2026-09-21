@@ -5,8 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
 import EventBody from "@/components/event-body";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
-import { MaterialIcon } from "@/components/minecraft/minecraft-icons";
-import { getEventMaterialIcon } from "@/components/events/event-material";
+import { EventIconView } from "@/components/events/event-material";
 import {
   getEventBySlug,
   getEventDescription,
@@ -70,22 +69,20 @@ export default async function EventPage({ params }: Props) {
         </Link>
 
         <article className="overflow-hidden rounded-block border border-black/60 bg-surface-3 shadow-card">
-          <div className="texture texture-planks tex-24 relative border-b-2 border-black/50 bg-black/10 px-5 py-4">
+          <div className="texture texture-planks tex-24 relative border-b-2 border-black/50 bg-black/35 px-5 py-4">
             <div className="relative flex flex-wrap items-center justify-between gap-2">
-              <span className="font-pixel text-[11px] font-medium uppercase tracking-[0.08em] text-[#f5f0e4] drop-shadow-[0_1px_0_rgb(0_0_0/0.6)]">
+              <span className="font-pixel text-[11px] font-medium uppercase tracking-[0.08em] text-[#f5f0e4] drop-shadow-[0_1px_2px_rgb(0_0_0/0.9),0_1px_0_rgb(0_0_0/0.85)]">
                 {formatDate(event)}
               </span>
               {event.done && (
-                <MinecraftBadge variant="redstone" icon="heart">
-                  Vorbei
-                </MinecraftBadge>
+                <MinecraftBadge variant="redstone">Vorbei</MinecraftBadge>
               )}
             </div>
           </div>
 
           <div className="p-6 md:p-10">
             <span className="mb-5 flex size-12 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.05),inset_0_-3px_0_rgb(0_0_0/0.4),0_2px_0_rgb(0_0_0/0.4)]">
-              <MaterialIcon name={getEventMaterialIcon(event)} className="size-6" />
+              <EventIconView icon={event.icon} className="size-6" />
             </span>
 
             <h1 className="font-pixel text-2xl uppercase leading-tight text-foreground md:text-4xl">

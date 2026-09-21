@@ -3,7 +3,7 @@ export interface EventLink {
   url: string;
 }
 
-export type EventIcon =
+export type EventIconName =
   | "chest"
   | "sword"
   | "map"
@@ -13,6 +13,8 @@ export type EventIcon =
   | "ender-pearl"
   | "grass"
   | "crafting-table";
+
+export type EventIcon = EventIconName | `/${string}`;
 
 export interface EventConfig {
   name: string;

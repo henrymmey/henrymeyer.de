@@ -58,10 +58,7 @@ export default function EventsPage() {
 
             {past.length > 0 && (
               <section>
-                <SectionHeading
-                  title="Vergangene Events"
-                  description="Jo, das war schwer – und hat Spaß gemacht."
-                />
+                <SectionHeading title="Vergangene Events" />
                 <EventGrid events={past} />
               </section>
             )}

@@ -1,20 +1,24 @@
 [
   {
-    "name": "Example Event",
-    "slug": "example-event",
-    "description": "Description of Example Event.",
+    "name": "TheScape Server Launch",
+    "slug": "thescape-server-launch",
+    "description": "Der TheScape Server startet nach einem Jahr wieder. Und wir spielen mit.",
     "priority": 1,
-    "date": "2026-01-01",
-    "time": "19:00",
+    "date": "2026-10-02",
+    "time": "20:00",
     "showTime": true,
-    "show": false,
+    "show": true,
     "showDetailsButton": true,
     "done": false,
-    "icon": "map",
+    "icon": "/events/wooden_sword.png",
     "links": [
       {
-        "displayName": "Example",
-        "url": "https://example.com"
+        "displayName": "TheScape Website",
+        "url": "https://thescape.de"
+      },
+      {
+        "displayName": "Discord Event",
+        "url": "https://discord.com/events/1008744945718415391/1543006861878493194"
       }
     ]
   }

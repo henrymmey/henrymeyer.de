@@ -6,7 +6,7 @@ type Variant = "stone" | "grass" | "redstone" | "planks";
 const variantClasses: Record<Variant, string> = {
   stone: "border-black/40 bg-surface-3 text-muted",
   grass: "border-grass-deep bg-grass/15 text-grass",
-  redstone: "border-redstone/50 bg-redstone/15 text-redstone",
+  redstone: "border-[#8e2a17] bg-redstone text-[#fff6f2]",
   planks: "border-planks-dark/70 bg-planks/15 text-planks",
 };
 
