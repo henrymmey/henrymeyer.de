@@ -41,6 +41,8 @@
   --hmt-planks: #9c7a4c;
   --hmt-planks-dark: #6f5434;
   --hmt-redstone: #d14026;
+  --hmt-magenta: #cc5396;
+  --hmt-magenta-deep: #5c2244;
   --hmt-sand: #dbcf9f;
   --hmt-obsidian: #19101f;
 
@@ -95,6 +97,8 @@
   --color-planks: var(--hmt-planks);
   --color-planks-dark: var(--hmt-planks-dark);
   --color-redstone: var(--hmt-redstone);
+  --color-magenta: var(--hmt-magenta);
+  --color-magenta-deep: var(--hmt-magenta-deep);
   --color-sand: var(--hmt-sand);
   --color-obsidian: var(--hmt-obsidian);
 

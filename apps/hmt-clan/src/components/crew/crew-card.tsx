@@ -3,7 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import StatsDisplay from "@/components/stats-display";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
-import type { CrewMember } from "@/lib/crew";
+import { getMemberRoles, type CrewMember } from "@/lib/crew";
+
+function roleVariant(role: string) {
+  const key = role.trim().toLowerCase();
+  if (key === "gründer") {
+    return "grass";
+  }
+  if (key === "spieler") {
+    return "magenta";
+  }
+  return "stone";
+}
 
 export default function CrewCard({ member }: { member: CrewMember }) {
   const skinSrc =
@@ -11,7 +22,7 @@ export default function CrewCard({ member }: { member: CrewMember }) {
       ? "/skins/blank.png"
       : `/skins/${member.minecraftUser}.png`;
 
-  const isFounder = member.rolle.trim().toLowerCase() === "gründer";
+  const roles = getMemberRoles(member);
 
   return (
     <Link
@@ -39,13 +50,16 @@ export default function CrewCard({ member }: { member: CrewMember }) {
         <p className="font-pixel text-[15px] leading-tight text-main-foreground transition-colors duration-200 group-hover:text-grass">
           {member.name}
         </p>
-        <div className="mt-2 flex justify-center">
-          <MinecraftBadge
-            variant={isFounder ? "grass" : "stone"}
-            className="px-1.5 py-0.5"
-          >
-            {member.rolle}
-          </MinecraftBadge>
+        <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+          {roles.map((role) => (
+            <MinecraftBadge
+              key={role}
+              variant={roleVariant(role)}
+              className="px-1.5 py-0.5"
+            >
+              {role}
+            </MinecraftBadge>
+          ))}
         </div>
         <Suspense fallback={null}>
           <StatsDisplay slug={member.thescape_slug} />

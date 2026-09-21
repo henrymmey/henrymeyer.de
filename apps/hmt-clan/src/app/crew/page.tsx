@@ -4,7 +4,7 @@ import CrewOverview, {
   type CrewSearchCard,
 } from "@/components/crew/crew-overview";
 import CrewCard from "@/components/crew/crew-card";
-import { crew } from "@/lib/crew";
+import { crew, getMemberRoles } from "@/lib/crew";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +20,7 @@ export default function CrewPage() {
   const cards: CrewSearchCard[] = members.map((member) => ({
     key: member.minecraftUser,
     searchText:
-      `${member.name} ${member.rolle} ${member.minecraftUser}`.toLowerCase(),
+      `${member.name} ${getMemberRoles(member).join(" ")} ${member.minecraftUser}`.toLowerCase(),
     node: <CrewCard member={member} />,
   }));
 

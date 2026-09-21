@@ -137,7 +137,8 @@ paths:
                   summary: JumpStone4477
                   value:
                     name: JumpStone4477
-                    rolle: Gründer
+                    rollen:
+                      - Gründer
                     minecraftUser: JumpStone4477
                     useskin: true
                     thescape_slug: herrrbennn-efde06a2-c348-493d-abe5-004fe97afef3
@@ -301,9 +302,18 @@ components:
           type: string
           description: Anzeigename des Mitglieds.
           example: JumpStone4477
+        rollen:
+          type: array
+          description: Rollen im Clan (z. B. `Gründer` oder `Spieler`).
+          items:
+            type: string
+          example:
+            - Gründer
         rolle:
           type: string
-          description: Rolle im Clan (z. B. `Gründer` oder `Spieler`).
+          description: >-
+            Rolle im Clan (veraltet). Verwende stattdessen `rollen`, um
+            mehrere Rollen pro Mitglied zu setzen.
           example: Gründer
         minecraftUser:
           type: string
@@ -327,7 +337,7 @@ components:
           example: herrrbennn-efde06a2-c348-493d-abe5-004fe97afef3
       required:
         - name
-        - rolle
+        - rollen
         - minecraftUser
         - priority
         - slug

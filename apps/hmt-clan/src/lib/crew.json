@@ -1,7 +1,7 @@
 [
   {
     "name": "JumpStone4477",
-    "rolle": "Gründer",
+    "rollen": ["Gründer", "Redstone"],
     "minecraftUser": "JumpStone4477",
     "useskin": true,
     "thescape_slug": "",
@@ -10,7 +10,7 @@
   },
   {
     "name": "SchildFlieger",
-    "rolle": "Gründer",
+    "rollen": ["Gründer", "Redstone"],
     "minecraftUser": "SchildFlieger",
     "useskin": true,
     "thescape_slug": "",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Netheriteman115",
-    "rolle": "Spieler",
+    "rollen": ["Spieler", "PvP"],
     "minecraftUser": "Netheriteman115",
     "useskin": true,
     "thescape_slug": "",
@@ -28,7 +28,7 @@
   },
   {
     "name": "_BenjiX",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "_BenjiX",
     "useskin": true,
     "thescape_slug": "",
@@ -37,7 +37,7 @@
   },
   {
     "name": "JB130987",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "JB130987",
     "useskin": true,
     "thescape_slug": "",
@@ -46,7 +46,7 @@
   },
   {
     "name": "Thies_OG",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "Thies_OG",
     "useskin": true,
     "thescape_slug": "",
@@ -55,7 +55,7 @@
   },
   {
     "name": "D1909",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "D1909",
     "useskin": true,
     "thescape_slug": "",
@@ -64,7 +64,7 @@
   },
   {
     "name": ".Antxn11756",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "Antxn11756",
     "useskin": false,
     "thescape_slug": "",
@@ -73,7 +73,7 @@
   },
   {
     "name": "Nikzo_45",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "Nikzo_45",
     "useskin": true,
     "thescape_slug": "",
@@ -82,7 +82,7 @@
   },
   {
     "name": "Dubairegelt",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "Dubairegelt",
     "useskin": true,
     "thescape_slug": "",
@@ -91,7 +91,7 @@
   },
   {
     "name": "eyoTom",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "eyoTom",
     "useskin": true,
     "thescape_slug": "",
@@ -100,7 +100,7 @@
   },
   {
     "name": "Saugstaube013",
-    "rolle": "Spieler",
+    "rollen": ["Spieler"],
     "minecraftUser": "Saugstaube013",
     "useskin": true,
     "thescape_slug": "",

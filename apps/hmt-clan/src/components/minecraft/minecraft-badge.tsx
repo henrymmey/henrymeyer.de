@@ -1,13 +1,14 @@
 import { cn } from "@/lib/utils";
 import { MaterialIcon, type MaterialIconName } from "@/components/minecraft/minecraft-icons";
 
-type Variant = "stone" | "grass" | "redstone" | "planks";
+type Variant = "stone" | "grass" | "redstone" | "planks" | "magenta";
 
 const variantClasses: Record<Variant, string> = {
   stone: "border-black/40 bg-surface-3 text-muted",
   grass: "border-grass-deep bg-grass/15 text-grass",
   redstone: "border-[#8e2a17] bg-redstone text-[#fff6f2]",
   planks: "border-planks-dark/70 bg-planks/15 text-planks",
+  magenta: "border-magenta-deep bg-magenta/15 text-magenta",
 };
 
 export type MinecraftBadgeProps = {

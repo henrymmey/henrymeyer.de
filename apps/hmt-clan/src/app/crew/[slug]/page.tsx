@@ -13,8 +13,19 @@ import {
 import SiteFooter from "@/components/site-footer";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 import CrewDetailTabs from "@/components/crew/crew-detail-tabs";
-import { getCrewMemberBySlug } from "@/lib/crew";
+import { getCrewMemberBySlug, getMemberRoles } from "@/lib/crew";
 import { getFullThescapeProfile } from "@/lib/thescape";
+
+function roleVariant(role: string) {
+  const key = role.trim().toLowerCase();
+  if (key === "gründer") {
+    return "grass";
+  }
+  if (key === "spieler") {
+    return "magenta";
+  }
+  return "stone";
+}
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -33,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${member.name} | HMT Clan`,
-    description: `Crew-Mitglied ${member.name} (${member.rolle}) beim HMT Clan.`,
+    description: `Crew-Mitglied ${member.name} (${getMemberRoles(member).join(", ")}) beim HMT Clan.`,
   };
 }
 
@@ -69,7 +80,7 @@ export default async function CrewMemberPage({ params }: Props) {
     profile.playTime || profile.lastSeen || profile.coins,
   );
 
-  const isFounder = member.rolle.trim().toLowerCase() === "gründer";
+  const roles = getMemberRoles(member);
 
   return (
     <main>
@@ -100,12 +111,13 @@ export default async function CrewMemberPage({ params }: Props) {
             </div>
 
             <div className="w-full text-center md:text-left">
-              <MinecraftBadge
-                variant={isFounder ? "grass" : "stone"}
-                className="mb-3"
-              >
-                {member.rolle}
-              </MinecraftBadge>
+              <div className="mb-3 flex flex-wrap justify-center gap-1.5 md:justify-start">
+              {roles.map((role) => (
+                <MinecraftBadge key={role} variant={roleVariant(role)}>
+                  {role}
+                </MinecraftBadge>
+              ))}
+            </div>
               <h1 className="font-pixel text-3xl uppercase leading-tight text-foreground md:text-5xl">
                 {member.name}
               </h1>
