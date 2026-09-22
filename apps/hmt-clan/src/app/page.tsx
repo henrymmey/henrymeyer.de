@@ -6,6 +6,7 @@ import EventsEmpty from "@/components/events/events-empty";
 import SectionHeading from "@/components/minecraft/section-heading";
 import Reveal from "@/components/minecraft/reveal";
 import CrewCard from "@/components/crew/crew-card";
+import CrewJoinCard from "@/components/crew/crew-join-card";
 import CalendarWidget from "@/components/calendar/calendar-widget";
 import { crew } from "@/lib/crew";
 import {
@@ -69,6 +70,11 @@ export default function Page() {
                 </Reveal>
               </li>
             ))}
+            <li>
+              <Reveal delay={Math.min(members.length * 40, 300)}>
+                <CrewJoinCard />
+              </Reveal>
+            </li>
           </ul>
         </section>
 

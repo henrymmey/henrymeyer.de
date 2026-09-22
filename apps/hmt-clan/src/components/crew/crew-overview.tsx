@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 import SectionHeading from "@/components/minecraft/section-heading";
 import Reveal from "@/components/minecraft/reveal";
+import BlockFrame from "@/components/minecraft/block-frame";
+import MinecraftButton from "@/components/minecraft/minecraft-button";
 
 export type CrewSearchCard = {
   key: string;
@@ -28,7 +30,10 @@ export default function CrewOverview({ cards }: CrewOverviewProps) {
   }, [cards, query]);
 
   return (
-    <section id="crew" className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8 md:py-16">
+    <section
+      id="crew"
+      className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8 md:py-16"
+    >
       <SectionHeading
         title="Crew"
         description="Alle Mitglieder des HMT Clans auf einen Blick. Suche nach Name, Rolle oder Minecraft-Namen und klicke auf ein Mitglied für die Detailansicht."
@@ -78,6 +83,27 @@ export default function CrewOverview({ cards }: CrewOverviewProps) {
           </p>
         </div>
       )}
+
+      <Reveal delay={150}>
+        <BlockFrame
+          className="mt-8 md:mt-10"
+          headerTexture="slime"
+          header={
+            <span className="flex items-center gap-2 font-pixel text-sm uppercase tracking-[0.14em] text-[#efe8d8] md:text-base">
+              Du willst mitmachen?
+            </span>
+          }
+          bodyClassName="flex flex-col items-start gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6"
+        >
+          <p className="text-sm leading-relaxed text-muted">
+            Dann gucke hier vorbei und erfahre, wie du dem HMT Clan beitreten
+            kannst.
+          </p>
+          <MinecraftButton href="/join" variant="primary" className="shrink-0">
+            HMT Beitreten
+          </MinecraftButton>
+        </BlockFrame>
+      </Reveal>
     </section>
   );
 }
