@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllEventSlugs } from "@/lib/events";
+import { getAllSeasonSlugs } from "@/lib/season";
 import { crew } from "@/lib/crew";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app";
@@ -22,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/events`,
       lastModified: new Date(),
       changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/season`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
       priority: 0.8,
     },
     {
@@ -74,6 +81,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
+    });
+  }
+
+  for (const slug of getAllSeasonSlugs()) {
+    routes.push({
+      url: `${baseUrl}/season/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
     });
   }
 
