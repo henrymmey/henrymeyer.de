@@ -7,7 +7,7 @@
     "date": "2026-10-02",
     "time": "20:00",
     "showTime": true,
-    "show": true,
+    "show": false,
     "showDetailsButton": true,
     "done": false,
     "season": "season-14",
