@@ -70,7 +70,7 @@
     "labySlug": "_BenjiX",
     "thescape_slug": "",
     "priority": 4,
-    "slug": "_benjix",
+    "slug": "benjix",
     "seasons": [
       "season-13",
       "season-14"
@@ -122,7 +122,7 @@
     "labySlug": "Fischfarmer",
     "thescape_slug": "",
     "priority": 7,
-    "slug": "Fischfarmer",
+    "slug": "fischfarmer",
     "seasons": [
       "season-13"
     ],
@@ -224,7 +224,7 @@
     "labySlug": "Nikzo_45",
     "thescape_slug": "",
     "priority": 13,
-    "slug": "nikzo_45",
+    "slug": "nikzo-45",
     "seasons": [
       "season-14"
     ],
