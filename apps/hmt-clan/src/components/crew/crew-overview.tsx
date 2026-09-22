@@ -57,8 +57,10 @@ export default function CrewOverview({ cards }: CrewOverviewProps) {
       {filtered.length > 0 ? (
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
           {filtered.map((card, index) => (
-            <li key={card.key}>
-              <Reveal delay={Math.min(index * 45, 300)}>{card.node}</Reveal>
+            <li key={card.key} className="h-full">
+              <Reveal delay={Math.min(index * 45, 300)} className="h-full">
+                {card.node}
+              </Reveal>
             </li>
           ))}
         </ul>

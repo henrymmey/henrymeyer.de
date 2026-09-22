@@ -64,14 +64,14 @@ export default function Page() {
           />
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
             {members.map((member, index) => (
-              <li key={member.minecraftUser}>
-                <Reveal delay={Math.min(index * 40, 300)}>
+              <li key={member.minecraftUser} className="h-full">
+                <Reveal delay={Math.min(index * 40, 300)} className="h-full">
                   <CrewCard member={member} />
                 </Reveal>
               </li>
             ))}
-            <li>
-              <Reveal delay={Math.min(members.length * 40, 300)}>
+            <li className="h-full">
+              <Reveal delay={Math.min(members.length * 40, 300)} className="h-full">
                 <CrewJoinCard />
               </Reveal>
             </li>
