@@ -10,6 +10,7 @@
     "show": true,
     "showDetailsButton": true,
     "done": false,
+    "season": "season-14",
     "icon": "/events/wooden_sword.png",
     "links": [
       {

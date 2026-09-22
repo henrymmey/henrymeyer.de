@@ -10,6 +10,7 @@ const fullBleed = "ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]";
 const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/events", label: "Events" },
+  { href: "/season", label: "Seasons" },
   { href: "/crew", label: "Crew" },
   { href: "/calendar", label: "Kalender" },
   { href: "/pack", label: "Modpack" },

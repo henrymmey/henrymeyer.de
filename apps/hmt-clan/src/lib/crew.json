@@ -6,9 +6,11 @@
     "useskin": true,
     "showLaby": true,
     "labySlug": "JumpStone4477",
-    "thescape_slug": "",
+    "thescape_slug": "exceptionflug-d3b60b90-ec87-4f6f-a4b3-8c8e872d7ff5",
     "priority": 1,
-    "slug": "jumpstone4477"
+    "slug": "jumpstone4477",
+    "seasons": ["season-12", "season-13", "season-14"],
+    "inactive": false
   },
   {
     "name": "SchildFlieger",
@@ -19,7 +21,9 @@
     "labySlug": "SchildFlieger",
     "thescape_slug": "",
     "priority": 2,
-    "slug": "schildflieger"
+    "slug": "schildflieger",
+    "seasons": ["season-12", "season-13", "season-14"],
+    "inactive": false
   },
   {
     "name": "Netheriteman115",
@@ -30,7 +34,9 @@
     "labySlug": "Netheriteman115",
     "thescape_slug": "",
     "priority": 3,
-    "slug": "netheriteman115"
+    "slug": "netheriteman115",
+    "seasons": ["season-12", "season-13", "season-14"],
+    "inactive": false
   },
   {
     "name": "_BenjiX",
@@ -41,7 +47,61 @@
     "labySlug": "_BenjiX",
     "thescape_slug": "",
     "priority": 4,
-    "slug": "_benjix"
+    "slug": "_benjix",
+    "seasons": ["season-13", "season-14"],
+    "inactive": false
+  },
+  {
+    "name": "Temp3zt",
+    "rollen": ["Spieler"],
+    "minecraftUser": "Temp3zt",
+    "useskin": true,
+    "showLaby": true,
+    "labySlug": "Temp3zt",
+    "thescape_slug": "",
+    "priority": 5,
+    "slug": "temp3zt",
+    "seasons": ["season-13"],
+    "inactive": true
+  },
+  {
+    "name": "McNow",
+    "rollen": ["Spieler"],
+    "minecraftUser": "",
+    "useskin": false,
+    "showLaby": false,
+    "labySlug": "",
+    "thescape_slug": "",
+    "priority": 6,
+    "slug": "mcnow",
+    "seasons": ["season-13"],
+    "inactive": true
+  },
+  {
+    "name": "Fischfarmer",
+    "rollen": ["Spieler"],
+    "minecraftUser": "Fischfarmer",
+    "useskin": true,
+    "showLaby": true,
+    "labySlug": "Fischfarmer",
+    "thescape_slug": "",
+    "priority": 7,
+    "slug": "Fischfarmer",
+    "seasons": ["season-13"],
+    "inactive": true
+  },
+  {
+    "name": "Jänem",
+    "rollen": ["Spieler"],
+    "minecraftUser": "",
+    "useskin": false,
+    "showLaby": false,
+    "labySlug": "",
+    "thescape_slug": "",
+    "priority": 8,
+    "slug": "jaenem",
+    "seasons": ["season-13"],
+    "inactive": true
   },
   {
     "name": "JB130987",
@@ -51,8 +111,10 @@
     "showLaby": true,
     "labySlug": "JB130987",
     "thescape_slug": "",
-    "priority": 5,
-    "slug": "jb130987"
+    "priority": 9,
+    "slug": "jb130987",
+    "seasons": ["season-14"],
+    "inactive": false
   },
   {
     "name": "Thies_OG",
@@ -62,8 +124,10 @@
     "showLaby": true,
     "labySlug": "Thies_OG",
     "thescape_slug": "",
-    "priority": 6,
-    "slug": "thies_og"
+    "priority": 10,
+    "slug": "thies_og",
+    "seasons": ["season-14"],
+    "inactive": false
   },
   {
     "name": "D1909",
@@ -73,8 +137,10 @@
     "showLaby": true,
     "labySlug": "D1909",
     "thescape_slug": "",
-    "priority": 7,
-    "slug": "d1909"
+    "priority": 11,
+    "slug": "d1909",
+    "seasons": ["season-14"],
+    "inactive": false
   },
   {
     "name": ".Antxn11756",
@@ -84,8 +150,10 @@
     "showLaby": false,
     "labySlug": "",
     "thescape_slug": "",
-    "priority": 8,
-    "slug": "antxn11756"
+    "priority": 12,
+    "slug": "antxn11756",
+    "seasons": ["season-14"],
+    "inactive": false
   },
   {
     "name": "Nikzo_45",
@@ -95,8 +163,10 @@
     "showLaby": true,
     "labySlug": "Nikzo_45",
     "thescape_slug": "",
-    "priority": 9,
-    "slug": "nikzo_45"
+    "priority": 13,
+    "slug": "nikzo_45",
+    "seasons": ["season-14"],
+    "inactive": false
   },
   {
     "name": "Dubairegelt",
@@ -106,8 +176,9 @@
     "showLaby": true,
     "labySlug": "Dubairegelt",
     "thescape_slug": "",
-    "priority": 10,
-    "slug": "dubairegelt"
+    "priority": 14,
+    "slug": "dubairegelt",
+    "inactive": false
   },
   {
     "name": "eyoTom",
@@ -117,8 +188,10 @@
     "showLaby": true,
     "labySlug": "eyoTom",
     "thescape_slug": "",
-    "priority": 11,
-    "slug": "eyotom"
+    "priority": 15,
+    "slug": "eyotom",
+    "seasons": ["season-14"],
+    "inactive": false
   },
   {
     "name": "Saugstaube013",
@@ -128,7 +201,8 @@
     "showLaby": true,
     "labySlug": "Saugstaube013",
     "thescape_slug": "",
-    "priority": 12,
-    "slug": "saugstaube013"
+    "priority": 16,
+    "slug": "saugstaube013",
+    "inactive": false
   }
 ]

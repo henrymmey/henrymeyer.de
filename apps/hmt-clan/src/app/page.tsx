@@ -19,7 +19,9 @@ import {
 export const dynamic = "force-dynamic";
 
 export default function Page() {
-  const members = [...crew].sort((a, b) => a.priority - b.priority);
+  const members = [...crew]
+    .filter((member) => !member.inactive)
+    .sort((a, b) => a.priority - b.priority);
   const events = getHomepageEvents();
   const nextEvent = getNextEvent();
 
@@ -60,7 +62,7 @@ export default function Page() {
         <section id="crew" className="py-8 md:py-16">
           <SectionHeading
             title="Crew"
-            description="Die Gesichter hinter HMT Clan. Klicke auf ein Mitglied, um mehr zu erfahren."
+            description="Alle Mitglieder des HMT Clans auf einen Blick. Klicke auf ein Mitglied für die Detailansicht."
           />
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
             {members.map((member, index) => (
@@ -71,7 +73,10 @@ export default function Page() {
               </li>
             ))}
             <li className="h-full">
-              <Reveal delay={Math.min(members.length * 40, 300)} className="h-full">
+              <Reveal
+                delay={Math.min(members.length * 40, 300)}
+                className="h-full"
+              >
                 <CrewJoinCard />
               </Reveal>
             </li>

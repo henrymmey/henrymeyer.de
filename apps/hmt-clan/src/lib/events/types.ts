@@ -29,4 +29,6 @@ export interface EventConfig {
   done: boolean;
   icon?: EventIcon;
   links?: EventLink[];
+  /** Season-Slug, falls das Event einer Season zugeordnet ist. */
+  season?: string;
 }

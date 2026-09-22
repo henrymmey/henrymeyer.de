@@ -13,10 +13,19 @@ function roleVariant(role: string) {
   if (key === "spieler") {
     return "magenta";
   }
+  if (key === "inaktiv") {
+    return "redstone";
+  }
   return "stone";
 }
 
-export default function CrewCard({ member }: { member: CrewMember }) {
+export default function CrewCard({
+  member,
+  showStats = true,
+}: {
+  member: CrewMember;
+  showStats?: boolean;
+}) {
   const skinSrc =
     member.useskin === false
       ? "/skins/blank.png"
@@ -47,24 +56,26 @@ export default function CrewCard({ member }: { member: CrewMember }) {
       </div>
 
       <div className="relative flex flex-1 flex-col border-t border-white/5 px-3 pb-4 pt-3 text-center">
-        <p className="font-pixel text-[15px] leading-tight text-main-foreground transition-colors duration-200 group-hover:text-grass">
-          {member.name}
-        </p>
-        <div className="mt-2 flex flex-wrap justify-center gap-1.5">
-          {roles.map((role) => (
-            <MinecraftBadge
-              key={role}
-              variant={roleVariant(role)}
-              className="px-1.5 py-0.5"
-            >
-              {role}
-            </MinecraftBadge>
-          ))}
+          <p className="font-pixel text-[15px] leading-tight text-main-foreground transition-colors duration-200 group-hover:text-grass">
+            {member.name}
+          </p>
+          <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+            {roles.map((role) => (
+              <MinecraftBadge
+                key={role}
+                variant={roleVariant(role)}
+                className="px-1.5 py-0.5"
+              >
+                {role}
+              </MinecraftBadge>
+            ))}
+          </div>
+          {showStats && (
+            <Suspense fallback={null}>
+              <StatsDisplay slug={member.thescape_slug} />
+            </Suspense>
+          )}
         </div>
-        <Suspense fallback={null}>
-          <StatsDisplay slug={member.thescape_slug} />
-        </Suspense>
-      </div>
     </Link>
   );
 }

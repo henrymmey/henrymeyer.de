@@ -14,7 +14,8 @@ import {
 import SiteFooter from "@/components/site-footer";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 import CrewDetailTabs from "@/components/crew/crew-detail-tabs";
-import { getCrewMemberBySlug, getMemberRoles } from "@/lib/crew";
+import { getCrewMemberBySlug, getMemberRoles, getMemberSeasons } from "@/lib/crew";
+import { getSeasonBySlug } from "@/lib/season";
 import { getFullThescapeProfile } from "@/lib/thescape";
 
 function roleVariant(role: string) {
@@ -24,6 +25,9 @@ function roleVariant(role: string) {
   }
   if (key === "spieler") {
     return "magenta";
+  }
+  if (key === "inaktiv") {
+    return "redstone";
   }
   return "stone";
 }
@@ -82,6 +86,7 @@ export default async function CrewMemberPage({ params }: Props) {
   );
 
   const roles = getMemberRoles(member);
+  const seasons = getMemberSeasons(member);
 
   const labyUrl =
     member.showLaby && member.labySlug
@@ -101,19 +106,44 @@ export default async function CrewMemberPage({ params }: Props) {
 
         <section className="rounded-block border border-black/60 bg-surface-3 p-5 shadow-card md:p-8">
           <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:gap-8">
-            <div className="relative shrink-0 rounded-block border-2 border-black/70 bg-surface-2 p-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.05),inset_0_-4px_0_rgb(0_0_0/0.4),0_2px_0_rgb(0_0_0/0.4)]">
-              <Image
-                src={
-                  member.useskin === false
-                    ? "/skins/blank.png"
-                    : `/skins/${member.minecraftUser}.png`
-                }
-                alt={`Skin von ${member.minecraftUser}`}
-                width={600}
-                height={800}
-                sizes="(min-width: 768px) 224px, 160px"
-                className="h-auto w-40 rounded-[1px] object-contain md:w-56"
-              />
+            <div className="relative flex w-fit shrink-0 flex-col items-center gap-3">
+              <div className="relative shrink-0 rounded-block border-2 border-black/70 bg-surface-2 p-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.05),inset_0_-4px_0_rgb(0_0_0/0.4),0_2px_0_rgb(0_0_0/0.4)]">
+                <Image
+                  src={
+                    member.useskin === false
+                      ? "/skins/blank.png"
+                      : `/skins/${member.minecraftUser}.png`
+                  }
+                  alt={`Skin von ${member.minecraftUser}`}
+                  width={600}
+                  height={800}
+                  sizes="(min-width: 768px) 224px, 160px"
+                  className="h-auto w-40 rounded-[1px] object-contain md:w-56"
+                />
+              </div>
+
+              {seasons.length > 0 && (
+                <div className="w-40 shrink-0 md:w-56">
+                  <p className="mb-2 text-center font-pixel text-[9px] uppercase tracking-[0.12em] text-muted">
+                    Mitglied in folgenden Seasons
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-1.5">
+                    {seasons.map((seasonSlug) => {
+                      const season = getSeasonBySlug(seasonSlug);
+                      return (
+                        <Link key={seasonSlug} href={`/season/${seasonSlug}`}>
+                          <MinecraftBadge
+                            variant="stone"
+                            className="px-2 py-1 text-[10px] transition-colors hover:border-emerald/60 hover:text-grass"
+                          >
+                            {season?.name ?? seasonSlug}
+                          </MinecraftBadge>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="w-full text-center md:text-left">

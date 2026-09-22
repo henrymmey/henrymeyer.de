@@ -17,7 +17,17 @@ export const metadata: Metadata = {
 export default function CrewPage() {
   const members = [...crew].sort((a, b) => a.priority - b.priority);
 
-  const cards: CrewSearchCard[] = members.map((member) => ({
+  const active = members.filter((member) => !member.inactive);
+  const inactive = members.filter((member) => member.inactive);
+
+  const cards: CrewSearchCard[] = active.map((member) => ({
+    key: member.minecraftUser,
+    searchText:
+      `${member.name} ${getMemberRoles(member).join(" ")} ${member.minecraftUser}`.toLowerCase(),
+    node: <CrewCard member={member} />,
+  }));
+
+  const inactiveCards: CrewSearchCard[] = inactive.map((member) => ({
     key: member.minecraftUser,
     searchText:
       `${member.name} ${getMemberRoles(member).join(" ")} ${member.minecraftUser}`.toLowerCase(),
@@ -26,7 +36,7 @@ export default function CrewPage() {
 
   return (
     <main>
-      <CrewOverview cards={cards} />
+      <CrewOverview cards={cards} inactiveCards={inactiveCards} />
       <SiteFooter />
     </main>
   );

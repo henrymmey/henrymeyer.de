@@ -5,7 +5,6 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useConsent } from "@/components/consent-provider";
 import MinecraftButton from "@/components/minecraft/minecraft-button";
-import { MaterialIcon } from "@/components/minecraft/minecraft-icons";
 
 const CALENDAR_WIDGET_URL =
   "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&showTz=0&mode=WEEK&src=MWUxNDA2MjRiMDQ2NTgyNzM2NDA4NjA2ODYyZmRmYTBlZDUwZjliODcyODFkYzY0ZDFmNzM3MWE3MzMxNWQ1ZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237986cb";

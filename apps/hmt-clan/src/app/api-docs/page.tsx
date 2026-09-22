@@ -13,8 +13,6 @@ export default function ApiDocsPage() {
   return (
     <main>
       <PageIntro
-        eyebrow="API-Dokumentation"
-        eyebrowIcon="chest"
         title="API-Dokumentation"
         description="Interaktive Dokumentation der öffentlichen HMT-Clan-API. Endpoints lassen sich aufklappen und direkt per „Try it out“ testen."
       />

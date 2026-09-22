@@ -12,18 +12,31 @@ export interface CrewMember {
   priority: number;
   slug: string;
   thescape_slug?: string;
+  /** Season-Slugs – nur auf der Detailseite angezeigt. */
+  seasons?: string[];
+  /** Inaktive Mitglieder werden auf der Startseite ausgeblendet und auf /crew unter "Inaktiv" geführt. */
+  inactive?: boolean;
 }
 
 export const crew = crewData as CrewMember[];
 
 export function getMemberRoles(member: CrewMember): string[] {
+  let roles: string[];
   if (Array.isArray(member.rollen) && member.rollen.length > 0) {
-    return member.rollen;
+    roles = member.rollen;
+  } else if (member.rolle) {
+    roles = [member.rolle];
+  } else {
+    roles = [];
   }
-  if (member.rolle) {
-    return [member.rolle];
+  if (member.inactive) {
+    roles = [...roles, "Inaktiv"];
   }
-  return [];
+  return roles;
+}
+
+export function getMemberSeasons(member: CrewMember): string[] {
+  return member.seasons ?? [];
 }
 
 export function getCrewMemberBySlug(slug: string): CrewMember | null {

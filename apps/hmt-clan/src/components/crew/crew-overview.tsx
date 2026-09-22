@@ -16,9 +16,13 @@ export type CrewSearchCard = {
 
 type CrewOverviewProps = {
   cards: CrewSearchCard[];
+  inactiveCards?: CrewSearchCard[];
 };
 
-export default function CrewOverview({ cards }: CrewOverviewProps) {
+export default function CrewOverview({
+  cards,
+  inactiveCards = [],
+}: CrewOverviewProps) {
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -28,6 +32,14 @@ export default function CrewOverview({ cards }: CrewOverviewProps) {
     }
     return cards.filter((card) => card.searchText.includes(q));
   }, [cards, query]);
+
+  const filteredInactive = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      return inactiveCards;
+    }
+    return inactiveCards.filter((card) => card.searchText.includes(q));
+  }, [inactiveCards, query]);
 
   return (
     <section
@@ -65,25 +77,27 @@ export default function CrewOverview({ cards }: CrewOverviewProps) {
           ))}
         </ul>
       ) : (
-        <div className="mx-auto max-w-2xl rounded-block border border-black/50 bg-surface-3 px-6 py-12 text-center shadow-card">
-          <span className="mx-auto mb-5 flex size-12 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_2px_0_rgb(0_0_0/0.5)]">
-            <Image
-              src="/textures/barrier.png"
-              alt=""
-              aria-hidden="true"
-              width={32}
-              height={32}
-              className="size-6 object-contain"
-            />
-          </span>
-          <p className="font-pixel text-base uppercase tracking-wide text-foreground md:text-lg">
-            Keine Mitglieder gefunden
-          </p>
-          <p className="mt-3 text-sm text-muted">
-            Für &bdquo;{query}&ldquo; wurde kein passendes Crew-Mitglied
-            gefunden. Versuche es mit einem anderen Namen.
-          </p>
-        </div>
+        filteredInactive.length === 0 && (
+          <div className="mx-auto max-w-2xl rounded-block border border-black/50 bg-surface-3 px-6 py-12 text-center shadow-card">
+            <span className="mx-auto mb-5 flex size-12 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_2px_0_rgb(0_0_0/0.5)]">
+              <Image
+                src="/textures/barrier.png"
+                alt=""
+                aria-hidden="true"
+                width={32}
+                height={32}
+                className="size-6 object-contain"
+              />
+            </span>
+            <p className="font-pixel text-base uppercase tracking-wide text-foreground md:text-lg">
+              Keine Mitglieder gefunden
+            </p>
+            <p className="mt-3 text-sm text-muted">
+              Für &bdquo;{query}&ldquo; wurde kein passendes Crew-Mitglied
+              gefunden. Versuche es mit einem anderen Namen.
+            </p>
+          </div>
+        )
       )}
 
       <Reveal delay={150}>
@@ -106,6 +120,24 @@ export default function CrewOverview({ cards }: CrewOverviewProps) {
           </MinecraftButton>
         </BlockFrame>
       </Reveal>
+
+      {filteredInactive.length > 0 && (
+        <div className="mt-14">
+          <SectionHeading
+            title="Inaktiv"
+            description="Mitglieder, die aktuell nicht aktiv sind."
+          />
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
+            {filteredInactive.map((card, index) => (
+              <li key={card.key} className="h-full">
+                <Reveal delay={Math.min(index * 45, 300)} className="h-full">
+                  {card.node}
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

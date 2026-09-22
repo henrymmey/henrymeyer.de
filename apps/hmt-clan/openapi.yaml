@@ -5,8 +5,8 @@ info:
   description: |
     Öffentliche API der Website des HMT Clans.
 
-    Bereitgestellt werden die Events, die Crew-Mitglieder sowie
-    Statistiken einzelner Spieler vom TheScape-Server.
+    Bereitgestellt werden die Events, die Seasons, die Crew-Mitglieder
+    sowie Statistiken einzelner Spieler vom TheScape-Server.
 
     **Hinweise:**
     - Die API verwendet derzeit **keine Authentifizierung**. Alle
@@ -23,6 +23,8 @@ servers:
 tags:
   - name: Events
     description: Events und Ankündigungen des HMT Clans.
+  - name: Seasons
+    description: Seasons des HMT Clans mit Zeitspanne und Zuordnung.
   - name: Crew
     description: Mitglieder des HMT Clans.
   - name: Stats
@@ -89,6 +91,60 @@ paths:
                         url: https://thescape.de
         "404":
           description: Es existiert kein sichtbares Event mit diesem Slug.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/season:
+    get:
+      tags:
+        - Seasons
+      summary: Alle Seasons
+      description: >
+        Liefert alle Seasons, sortiert nach `priority` (aufsteigend).
+      operationId: listSeasons
+      responses:
+        "200":
+          description: Liste der Seasons.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SeasonConfig"
+  /api/season/{slug}:
+    get:
+      tags:
+        - Seasons
+      summary: Einzelne Season
+      description: Liefert eine Season anhand ihres Slugs.
+      operationId: getSeason
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Slug der Season (z. B. `season-14`).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Die angefragte Season.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SeasonConfig"
+              examples:
+                season14:
+                  summary: Season 14
+                  value:
+                    slug: season-14
+                    name: Season 14
+                    start: "2026-10-02"
+                    end: "2027-10-02"
+                    priority: 1
+                    showEvents: true
+        "404":
+          description: Es existiert keine Season mit diesem Slug.
           content:
             application/json:
               schema:
@@ -274,6 +330,12 @@ components:
         done:
           type: boolean
           description: Ob das Event bereits stattgefunden hat.
+        season:
+          type: string
+          description: >-
+            Slug der Season, der dieses Event zugeordnet ist, sofern
+            vorhanden.
+          example: season-14
         icon:
           anyOf:
             - $ref: "#/components/schemas/EventIcon"
@@ -294,6 +356,45 @@ components:
         - show
         - showDetailsButton
         - done
+    SeasonConfig:
+      type: object
+      description: Eine einzelne Season des HMT Clans.
+      properties:
+        slug:
+          type: string
+          description: URL-Slug der Season.
+          example: season-14
+        name:
+          type: string
+          description: Anzeigename der Season.
+          example: Season 14
+        start:
+          type: string
+          format: date
+          description: Startdatum der Season (ISO 8601, `YYYY-MM-DD`).
+          example: "2026-10-02"
+        end:
+          type: string
+          format: date
+          description: Enddatum der Season (ISO 8601, `YYYY-MM-DD`).
+          example: "2027-10-02"
+        priority:
+          type: integer
+          format: int32
+          description: Sortierpriorität (niedrigere Werte zuerst).
+          example: 1
+        showEvents:
+          type: boolean
+          description: >-
+            Ob die Events dieser Season öffentlich angezeigt werden.
+            Standard: `true`.
+          example: true
+      required:
+        - slug
+        - name
+        - start
+        - end
+        - priority
     CrewMember:
       type: object
       description: Ein einzelnes Mitglied der HMT Clan Crew.
@@ -344,6 +445,22 @@ components:
           type: string
           description: TheScape-Slug für die Statistiken, sofern vorhanden.
           example: herrrbennn-efde06a2-c348-493d-abe5-004fe97afef3
+        seasons:
+          type: array
+          description: >-
+            Slugs der Seasons, an denen das Mitglied teilgenommen hat,
+            sofern vorhanden.
+          items:
+            type: string
+          example:
+            - season-12
+            - season-13
+        inactive:
+          type: boolean
+          description: >-
+            Ob das Mitglied aktuell inaktiv ist. Inaktive Mitglieder
+            werden auf der Startseite ausgeblendet.
+          example: false
       required:
         - name
         - rollen

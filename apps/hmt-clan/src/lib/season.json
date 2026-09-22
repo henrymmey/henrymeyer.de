@@ -1,0 +1,25 @@
+[
+  {
+    "slug": "season-12",
+    "name": "Season 12",
+    "start": "2024-10-31",
+    "end": "2025-04-01",
+    "priority": 3,
+    "showEvents": false
+  },
+  {
+    "slug": "season-13",
+    "name": "Season 13",
+    "start": "2025-10-31",
+    "end": "2026-01-15",
+    "priority": 2,
+    "showEvents": false
+  },
+  {
+    "slug": "season-14",
+    "name": "Season 14",
+    "start": "2026-10-02",
+    "end": "2027-10-02",
+    "priority": 1
+  }
+]

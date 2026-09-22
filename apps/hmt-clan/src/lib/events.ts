@@ -88,6 +88,12 @@ export function getHomepageEvents(): EventConfig[] {
   return result;
 }
 
+export function getEventsBySeason(seasonSlug: string): EventConfig[] {
+  return EVENTS.filter(
+    (event) => event.season === seasonSlug && event.show,
+  ).sort(byDateAsc);
+}
+
 export function getAllEventSlugs(): string[] {
   return EVENTS.filter((e) => e.show).map((e) => e.slug);
 }
