@@ -14,6 +14,10 @@ Monorepo for [henrymeyer.de](https://henrymeyer.de), [gaming.henrymeyer.de](http
     └── ui/          # Shared UI components (@repo/ui)
 ```
 
+## Documentation
+
+- [HMT Clan Admin Dashboard (`docs/admin.md`)](docs/admin.md)
+
 ## Requirements
 
 - Node.js (LTS)

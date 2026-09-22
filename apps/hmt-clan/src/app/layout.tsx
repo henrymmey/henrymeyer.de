@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import SiteChrome from "@/components/site-chrome";
+import RootChrome from "@/components/root-chrome";
 import { ConsentProvider } from "@/components/consent-provider";
-import ConsentDialog from "@/components/consent-dialog";
-import CookieBanner from "@/components/cookie-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
@@ -81,12 +79,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ConsentProvider>
-          <SiteChrome />
+          <RootChrome>{children}</RootChrome>
 
-          {children}
-
-          <CookieBanner />
-          <ConsentDialog />
           <Analytics />
           <SpeedInsights />
         </ConsentProvider>
