@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { useEffect } from "react";
@@ -53,9 +54,21 @@ export default function ConsentDialog() {
       <div className="relative w-full max-w-md overflow-hidden rounded-block border border-black/60 bg-surface-3 shadow-lift">
         <div className="texture texture-stone tex-24 relative border-b-2 border-black/50 bg-black/10 px-6 py-4">
           <div className="relative flex items-start justify-between gap-4">
-            <h2 className="font-pixel text-base uppercase tracking-[0.12em] text-foreground">
-              Cookie-Einstellungen
-            </h2>
+            <div className="flex items-center gap-3">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_2px_0_rgb(0_0_0/0.5)]">
+                <Image
+                  src="/textures/cookie.png"
+                  alt=""
+                  aria-hidden="true"
+                  width={32}
+                  height={32}
+                  className="size-7 object-contain"
+                />
+              </span>
+              <h2 className="font-pixel text-base uppercase tracking-[0.12em] text-foreground">
+                Cookie-Einstellungen
+              </h2>
+            </div>
             <button
               type="button"
               aria-label="Schließen"

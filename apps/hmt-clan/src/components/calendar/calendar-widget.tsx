@@ -30,7 +30,14 @@ export default function CalendarWidget({
       {!fill && (
         <div className="texture texture-stone tex-24 relative flex items-center justify-between gap-3 border-b-2 border-black/50 bg-black/10 px-4 py-2.5">
           <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-foreground">
-            <MaterialIcon name="map" className="size-4" />
+            <Image
+              src="/textures/clock.png"
+              alt=""
+              aria-hidden="true"
+              width={16}
+              height={16}
+              className="size-4 object-contain"
+            />
             Event-Kalender
           </span>
           <Link
@@ -67,7 +74,14 @@ export default function CalendarWidget({
                 className="size-7 object-contain"
               />
             ) : (
-              <MaterialIcon name="chest" className="size-6" />
+              <Image
+                src="/textures/cookie.png"
+                alt=""
+                aria-hidden="true"
+                width={32}
+                height={32}
+                className="size-7 object-contain"
+              />
             )}
           </span>
           <p className="font-pixel text-base uppercase tracking-wide text-foreground">
