@@ -280,8 +280,11 @@ export async function ensureStagingBranch(): Promise<string> {
 
   const head = await getBranchHead(config, staging);
   if (head) {
+    // compare(base=staging, head=main): ahead_by = wie weit main dem
+    // Staging voraus ist, behind_by = eigene (pending) Commits des Staging.
+    // Fast-Forward nur, wenn main voraus ist UND Staging nichts Eigenes hat.
     const cmp = await compareBranches(config, staging, config.branch);
-    if (cmp.behind_by > 0 && cmp.ahead_by === 0) {
+    if (cmp.ahead_by > 0 && cmp.behind_by === 0) {
       const mainHead = await getBranchHead(config, config.branch);
       if (mainHead) {
         await updateBranchRef(config, staging, mainHead, true);
