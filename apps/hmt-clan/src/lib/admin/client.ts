@@ -17,6 +17,15 @@ interface ErrorBody {
   error?: string;
 }
 
+/** Signalisiert der (Admin-)UI, dass sich der Staging-Stand geaendert hat. */
+export const CHANGES_EVENT = "admin:changes";
+
+function notifyChanges() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event(CHANGES_EVENT));
+  }
+}
+
 async function apiFetch<T>(
   path: string,
   init?: RequestInit,
@@ -37,6 +46,10 @@ async function apiFetch<T>(
       data?.error ?? "Die Anfrage ist fehlgeschlagen.",
       response.status,
     );
+  }
+
+  if (init?.method && init.method !== "GET") {
+    notifyChanges();
   }
 
   return data as T;
@@ -129,7 +142,35 @@ export const adminApi = {
   // Overview & settings
   overview: () => adminGet<Overview>("/api/admin/overview"),
   settings: () => adminGet<SettingsResponse>("/api/admin/settings"),
+
+  // Staging
+  stagingStatus: () => adminGet<StagingStatus>("/api/admin/staging"),
+  flushStaging: () =>
+    adminMutation<FlushResult>("/api/admin/commit", "POST"),
+  discardStaging: () =>
+    adminMutation<DiscardResult>("/api/admin/discard", "POST"),
 };
+
+export interface StagingStatus {
+  configured: boolean;
+  mainBranch: string;
+  stagingBranch: string | null;
+  aheadBy: number;
+  behindBy: number;
+  hasChanges: boolean;
+  status: string;
+}
+
+export interface FlushResult {
+  mode: "none" | "fast-forward" | "merge";
+  commitsPushed: number;
+  sha: string | null;
+  merged: boolean;
+}
+
+export interface DiscardResult {
+  discards: number;
+}
 
 export type SettingsResponse = {
   auth: {

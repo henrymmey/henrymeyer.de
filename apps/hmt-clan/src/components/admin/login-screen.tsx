@@ -40,8 +40,8 @@ export function LoginScreen({ configured }: { configured: boolean }) {
 
           <div className="px-6 py-8 text-center">
             <p className="text-sm leading-relaxed text-muted">
-              Manage the HMT Clan website. Changes are committed directly to
-              GitHub via{" "}
+              Manage the HMT Clan website. Changes are collected as
+              individual commits and pushed together via{" "}
               <span className="text-foreground">the HMT Clan bot</span>.
             </p>
 

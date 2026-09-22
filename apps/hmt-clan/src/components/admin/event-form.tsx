@@ -153,10 +153,10 @@ export default function EventForm({
     try {
       if (isEdit) {
         await adminApi.updateEvent(event.slug, buildPayload());
-        toast.success("Gespeichert", "Das Event wurde auf GitHub committed.");
+        toast.success("Gespeichert", "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.");
       } else {
         const { event: created } = await adminApi.createEvent(buildPayload());
-        toast.success("Event erstellt", "Das Event wurde auf GitHub committed.");
+        toast.success("Event erstellt", "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.");
         router.push(`/admin/events/${created.slug}`);
       }
     } catch (cause) {

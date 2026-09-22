@@ -148,7 +148,7 @@ export default function MarkdownEditor({
     try {
       await adminApi.putMarkdown(slug, value);
       setDirty(false);
-      success("Gespeichert", "Das Markdown wurde auf GitHub committed.");
+      success("Gespeichert", "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.");
       onSaved?.(value);
     } catch (cause) {
       error(

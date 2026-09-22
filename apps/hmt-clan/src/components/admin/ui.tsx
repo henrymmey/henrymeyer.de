@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Loader2, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -441,7 +442,7 @@ export function Modal({
     lg: "max-w-2xl",
   };
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[90] flex items-center justify-center p-4"
       role="dialog"
@@ -479,7 +480,8 @@ export function Modal({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

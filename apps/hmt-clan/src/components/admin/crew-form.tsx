@@ -96,13 +96,13 @@ export default function CrewForm({
         await adminApi.updateMember(member.slug, buildPayload());
         toast.success(
           "Mitglied gespeichert",
-          "Die Änderungen wurden auf GitHub committed.",
+          "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.",
         );
       } else {
         await adminApi.createMember(buildPayload());
         toast.success(
           "Mitglied erstellt",
-          "Das Mitglied wurde auf GitHub committed.",
+          "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.",
         );
       }
       onClose();
@@ -124,7 +124,7 @@ export default function CrewForm({
       title={isEdit ? "Mitglied bearbeiten" : "Neues Mitglied"}
       description={
         isEdit
-          ? `Änderungen an "${member.name}" committen direkt auf GitHub.`
+          ? `Änderungen an "${member.name}" werden als Commit vorgemerkt und mit „Speichern” (oben rechts) gepusht.`
           : "Lege ein neues Crew-Mitglied an."
       }
       size="lg"

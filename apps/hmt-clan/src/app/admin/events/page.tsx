@@ -162,7 +162,7 @@ export default function AdminEventsPage() {
     setDeleting(true);
     try {
       await adminApi.deleteEvent(deleteTarget.slug);
-      toast.success("Event gelöscht", "Das Event wurde auf GitHub entfernt.");
+      toast.success("Event gelöscht", "Das Event wurde als offene Änderung vorgemerkt.");
       setDeleteTarget(null);
       await reload();
     } catch (cause) {
@@ -179,7 +179,7 @@ export default function AdminEventsPage() {
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Events"
-        description="Events verwalten und als JSON direkt auf GitHub committen."
+        description="Events verwalten. Änderungen werden einzeln committet und mit „Speichern“ (oben rechts) zusammen gepusht."
         actions={
           <Button href="/admin/events/new" variant="primary">
             <Plus className="size-4" aria-hidden="true" />
@@ -344,7 +344,7 @@ export default function AdminEventsPage() {
         onConfirm={confirmDelete}
         loading={deleting}
         title="Event löschen?"
-        description={`"${deleteTarget?.name}" wird dauerhaft aus events.json entfernt. Falls vorhanden, wird auch die Markdown-Datei gelöscht. Dieser Schritt committet direkt auf GitHub.`}
+        description={`"${deleteTarget?.name}" wird dauerhaft aus events.json entfernt. Falls vorhanden, wird auch die Markdown-Datei gelöscht. Der Vorgang wird als Commit vorgemerkt und mit „Speichern“ (oben rechts) auf main gepusht.`}
         confirmLabel="Löschen"
       />
     </div>

@@ -64,7 +64,8 @@ export default function EditEventPage() {
             {event.name}
           </h1>
           <p className="mt-1.5 text-sm text-muted">
-            Änderungen committen direkt auf GitHub.
+            Änderungen werden einzeln committet und mit „Speichern”
+            (oben rechts) zusammen gepusht.
           </p>
         </div>
         <Button variant="ghost" href={`/admin/events/${event.slug}/markdown`}>

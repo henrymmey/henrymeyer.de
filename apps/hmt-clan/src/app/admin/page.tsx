@@ -63,6 +63,28 @@ function GitHubCard({ overview }: { overview: Overview }) {
         </div>
       </dl>
 
+      {status.ok && status.staging && (
+        <div className="mt-5 rounded-base border border-black/40 bg-surface-2 px-3 py-2.5">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-xs uppercase tracking-[0.1em] text-muted">
+              Staging
+            </h3>
+            {status.staging.hasChanges ? (
+              <Pill variant="published">
+                {status.staging.aheadBy} offene Commits
+              </Pill>
+            ) : (
+              <Pill variant="default">Alles gepusht</Pill>
+            )}
+          </div>
+          <p className="mt-1.5 text-xs leading-relaxed text-muted">
+            {status.staging.stagingBranch ?? "admin-stage"} sammelt Änderungen –
+            „Speichern” (oben rechts) pusht alle zusammen auf{" "}
+            {status.staging.mainBranch}.
+          </p>
+        </div>
+      )}
+
       {!status.ok && status.error && (
         <p className="mt-3 rounded-base border border-redstone/40 bg-redstone/10 px-3 py-2 text-xs leading-relaxed text-redstone">
           {status.error}

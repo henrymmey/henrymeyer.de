@@ -17,7 +17,8 @@ export default function NewEventPage() {
           Neues Event
         </h1>
         <p className="mt-1.5 text-sm text-muted">
-          Das Event wird als Entwurf angelegt und auf GitHub committed.
+          Das Event wird als Entwurf angelegt und als Commit vorgemerkt –
+          mit „Speichern” oben rechts wird gepusht.
         </p>
       </div>
       <EventForm event={null} />

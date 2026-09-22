@@ -106,7 +106,7 @@ export default function AdminSeasonsPage() {
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Seasons"
-        description="Seasons mit Zeiträumen verwalten und direkt auf GitHub committen."
+        description="Seasons mit Zeiträumen verwalten. Änderungen werden einzeln committet und mit „Speichern“ (oben rechts) zusammen gepusht."
         actions={
           <Button variant="primary" onClick={openCreate}>
             <Plus className="size-4" aria-hidden="true" />

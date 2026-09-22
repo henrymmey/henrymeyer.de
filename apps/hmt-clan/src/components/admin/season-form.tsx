@@ -73,13 +73,13 @@ export default function SeasonForm({
         await adminApi.updateSeason(season.slug, buildPayload());
         toast.success(
           "Season gespeichert",
-          "Die Änderungen wurden auf GitHub committed.",
+          "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.",
         );
       } else {
         await adminApi.createSeason(buildPayload());
         toast.success(
           "Season erstellt",
-          "Die Season wurde auf GitHub committed.",
+          "Als Commit vorgemerkt – mit „Speichern” oben rechts wird gepusht.",
         );
       }
       onClose();
@@ -101,7 +101,7 @@ export default function SeasonForm({
       title={isEdit ? "Season bearbeiten" : "Neue Season"}
       description={
         isEdit
-          ? `Änderungen an "${season.name}" committen direkt auf GitHub.`
+          ? `Änderungen an "${season.name}" werden als Commit vorgemerkt und mit „Speichern” (oben rechts) gepusht.`
           : "Lege eine neue Season mit Zeitraum an."
       }
       size="md"

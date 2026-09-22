@@ -119,7 +119,7 @@ export default function AdminCrewPage() {
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Crew"
-        description="Crew-Mitglieder sortieren, bearbeiten und direkt auf GitHub committen."
+        description="Crew-Mitglieder sortieren, bearbeiten. Änderungen werden einzeln committet und mit „Speichern“ (oben rechts) zusammen gepusht."
         actions={
           <Button variant="primary" onClick={openCreate}>
             <Plus className="size-4" aria-hidden="true" />

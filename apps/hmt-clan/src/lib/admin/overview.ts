@@ -3,8 +3,10 @@ import { isGithubConfigured } from "@/lib/auth";
 import {
   GitHubError,
   getGithubConfig,
+  getStagingStatus,
   listCommits,
   type SimpleCommit,
+  type StagingStatus,
 } from "@/lib/github/github-service";
 import { CONTENT_DIRS, CONTENT_FILES } from "./paths";
 import { readAllEvents } from "./events";
@@ -19,6 +21,7 @@ export interface GithubStatus {
   branch: string;
   error: string | null;
   recentCommits: SimpleCommit[];
+  staging: StagingStatus | null;
 }
 
 export interface Overview {
@@ -97,19 +100,23 @@ export async function getGithubStatus(): Promise<GithubStatus> {
       ok: false,
       error: "GitHub API is not configured (HMT_GITHUB_TOKEN fehlt).",
       recentCommits: [],
+      staging: null,
     };
   }
 
   try {
-    const recentCommits = await getRecentCommits(10);
-    return { ...base, ok: true, error: null, recentCommits };
+    const [recentCommits, staging] = await Promise.all([
+      getRecentCommits(10),
+      getStagingStatus().catch(() => null),
+    ]);
+    return { ...base, ok: true, error: null, recentCommits, staging };
   } catch (error) {
     const message =
       error instanceof GitHubError
         ? error.message
         : "GitHub API is currently unavailable.";
     console.error("[admin] github status check failed:", error instanceof Error ? error.message : error);
-    return { ...base, ok: false, error: message, recentCommits: [] };
+    return { ...base, ok: false, error: message, recentCommits: [], staging: null };
   }
 }
 

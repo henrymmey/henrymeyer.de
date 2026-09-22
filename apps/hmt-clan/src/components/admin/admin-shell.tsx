@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { discordAvatarUrl } from "@/lib/auth/discord";
 import type { SessionUser } from "@/lib/auth/session";
 import { ToastProvider } from "@/components/admin/toast";
+import StagingButton from "@/components/admin/staging-button";
 
 interface NavItem {
   href: string;
@@ -278,7 +279,8 @@ export default function AdminShell({
               Admin Dashboard
             </span>
 
-            <div className="ml-auto">
+            <div className="ml-auto flex items-center gap-3">
+              <StagingButton />
               <UserMenu user={user} />
             </div>
           </header>

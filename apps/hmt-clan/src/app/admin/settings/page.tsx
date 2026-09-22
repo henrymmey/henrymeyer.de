@@ -151,25 +151,32 @@ export default function AdminSettingsPage() {
                   </div>
                   <div>
                     <dt className="text-xs uppercase tracking-[0.1em] text-muted">
-                      Branch
+                      Staging-Branch
                     </dt>
                     <dd className="mt-0.5 font-mono text-foreground">
-                      {data.github.branch}
+                      {data.github.staging?.stagingBranch ?? "admin-stage"}
                     </dd>
                   </div>
                   <div>
                     <dt className="text-xs uppercase tracking-[0.1em] text-muted">
-                      Status
+                      Ziel (deployed)
                     </dt>
-                    <dd className="mt-0.5 font-medium text-grass">Verbunden</dd>
+                    <dd className="mt-0.5 font-mono text-grass">
+                      {data.github.branch}
+                    </dd>
                   </div>
                 </dl>
                 <p className="mt-4 rounded-base border border-black/40 bg-surface-2 px-3 py-2.5 text-xs leading-relaxed text-muted">
-                  Alle Änderungen im Admin-Bereich werden über die GitHub-API als
-                  Commits auf dem Branch{" "}
+                  Admin-Änderungen werden als{" "}
+                  <span className="text-foreground">einzelne Commits</span> auf
+                  dem Staging-Branch{" "}
+                  <code className="text-foreground">
+                    {data.github.staging?.stagingBranch ?? "admin-stage"}
+                  </code>{" "}
+                  gesammelt und nicht sofort deployed. Mit dem „Speichern“-Button
+                  oben rechts werden alle Commits zusammen auf{" "}
                   <code className="text-foreground">{data.github.branch}</code>{" "}
-                  geschrieben. Ein Push auf das Repository deployed die Website
-                  automatisch.
+                  gepusht – genau ein Vercel-Build pro Speichern-Klick.
                 </p>
               </>
             ) : (
