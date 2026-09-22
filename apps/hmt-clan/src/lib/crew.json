@@ -1,25 +1,5 @@
 [
   {
-    "name": "JumpStone4477",
-    "rollen": [
-      "Gründer",
-      "Redstone"
-    ],
-    "minecraftUser": "JumpStone4477",
-    "useskin": true,
-    "showLaby": true,
-    "labySlug": "JumpStone4477",
-    "thescape_slug": "",
-    "priority": 1,
-    "slug": "jumpstone4477",
-    "seasons": [
-      "season-12",
-      "season-13",
-      "season-14"
-    ],
-    "inactive": false
-  },
-  {
     "name": "SchildFlieger",
     "rollen": [
       "Gründer",
@@ -30,8 +10,28 @@
     "showLaby": true,
     "labySlug": "SchildFlieger",
     "thescape_slug": "",
-    "priority": 2,
+    "priority": 1,
     "slug": "schildflieger",
+    "seasons": [
+      "season-12",
+      "season-13",
+      "season-14"
+    ],
+    "inactive": false
+  },
+  {
+    "name": "JumpStone4477",
+    "rollen": [
+      "Gründer",
+      "Redstone"
+    ],
+    "minecraftUser": "JumpStone4477",
+    "useskin": true,
+    "showLaby": true,
+    "labySlug": "JumpStone4477",
+    "thescape_slug": "",
+    "priority": 2,
+    "slug": "jumpstone4477",
     "seasons": [
       "season-12",
       "season-13",
