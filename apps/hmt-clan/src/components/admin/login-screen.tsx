@@ -33,7 +33,7 @@ export function LoginScreen({ configured }: { configured: boolean }) {
                 HMT Clan
               </p>
               <p className="font-pixel text-[10px] uppercase tracking-[0.18em] text-grass">
-                Admin Dashboard
+                Admin
               </p>
             </div>
           </div>
