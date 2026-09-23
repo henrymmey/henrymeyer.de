@@ -1,6 +1,6 @@
 # henrymeyer.de
 
-Monorepo for [henrymeyer.de](https://henrymeyer.de), [gaming.henrymeyer.de](https://gaming.henrymeyer.de) and [hmt-clan.henrymeyer.de](https://hmt-clan.henrymeyer.de) managed with [pnpm](https://pnpm.io) workspaces.
+Monorepo for [henrymeyer.de](https://henrymeyer.de), [gaming.henrymeyer.de](https://gaming.henrymeyer.de) and [hmtclan.de](https://hmtclan.de) managed with [pnpm](https://pnpm.io) workspaces.
 
 ## Structure
 
