@@ -16,7 +16,7 @@ info:
     - Die Statistiken werden      abgerufen und für eine Stunde zwischengespeichert. Ist ein
       Spieler nicht (mehr) auffindbar, werden `null`-Werte geliefert.
 servers:
-  - url: https://hmt-clan.henrymeyer.de
+  - url: https://hmtclan.de
     description: Produktion
   - url: http://localhost:3000
     description: Lokale Entwicklung

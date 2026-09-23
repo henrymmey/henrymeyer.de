@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Datenschutzerklärung",
     description: "Datenschutzerklärung für die HMT Clan Website.",
     type: "website",
-    url: `${process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app"}/legal/privacy`,
+    url: `${process.env.NEXT_PUBLIC_URL || "https://hmtclan.de"}/legal/privacy`,
   },
 };
 

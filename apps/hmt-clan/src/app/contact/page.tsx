@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Kontakt | HMT Clan",
     description: "Kontakt zum HMT Clan über Discord und E-Mail.",
     type: "website",
-    url: `${process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app"}/contact`,
+    url: `${process.env.NEXT_PUBLIC_URL || "https://hmtclan.de"}/contact`,
   },
 };
 

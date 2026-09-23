@@ -44,7 +44,7 @@ Google Fonts werden über das Paket next/font/google eingebunden. Die Schriftart
 
 ### Google Kalender
 
-Auf dieser Website wird der Event-Kalender als eingebetteter Kalender des Dienstes Google Kalender (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) eingebunden. Der Kalender ist unter https://hmt-clan.vercel.app/calendar sowie auf der Startseite verfügbar.
+Auf dieser Website wird der Event-Kalender als eingebetteter Kalender des Dienstes Google Kalender (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) eingebunden. Der Kalender ist unter https://hmtclan.de/calendar sowie auf der Startseite verfügbar.
 
 Der Kalender ist standardmäßig deaktiviert. Erst wenn Sie über das Cookie-Banner, die Einstellungen oder direkt am Platzhalter des Kalenders Ihre Einwilligung erteilen, wird die Verbindung zu den Servern von Google hergestellt und der Kalender geladen. Dabei werden personenbezogene Daten (insbesondere Ihre IP-Adresse sowie technische Browserdaten) an Google übertragen.
 

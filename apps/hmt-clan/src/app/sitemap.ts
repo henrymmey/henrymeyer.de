@@ -3,7 +3,7 @@ import { getAllEventSlugs } from "@/lib/events";
 import { getAllSeasonSlugs } from "@/lib/season";
 import { crew } from "@/lib/crew";
 
-const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app";
+const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmtclan.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [

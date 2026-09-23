@@ -81,7 +81,7 @@ export default function SiteFooterContent({
                   Discord
                 </MinecraftButton>
                 <MinecraftButton
-                  href="https://id.hmt-clan.henrymeyer.de"
+                  href="https://id.hmtclan.de"
                   external
                   variant="stone"
                   size="sm"

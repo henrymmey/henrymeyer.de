@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmtclan.de";
 
   return {
     rules: [

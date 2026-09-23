@@ -22,7 +22,7 @@ const pixel = Silkscreen({
   subsets: ["latin"],
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmt-clan.vercel.app";
+const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmtclan.de";
 
 const siteDescription =
   "HMT Clan – Eine Gruppe von Freunden, die gemeinsam auf TheScape Minecraft spielt.";

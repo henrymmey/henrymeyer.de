@@ -204,7 +204,7 @@ export default function SiteHeader({
             />
           </a>
           <span className="ml-auto hidden text-[10px] font-pixel uppercase tracking-widest text-muted sm:block">
-            hmt-clan.vercel.app
+            hmtclan.de
           </span>
         </div>
       </div>
