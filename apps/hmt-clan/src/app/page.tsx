@@ -18,11 +18,11 @@ import {
   getEventTargetLabel,
 } from "@/lib/events";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: {
-    absolute: "HMT Clan – Minecraft Community, die auf dem TheScape-Server spielt",
+    absolute: "HMT Clan – Freunde, die auf TheScape Minecraft spielen",
   },
   description: SITE_DESCRIPTION,
   alternates: {

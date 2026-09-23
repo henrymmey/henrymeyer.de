@@ -180,8 +180,7 @@ export default function SiteFooterContent({
               . Entwickelt mit{" "}
               <Image
                 src="/textures/full-heart.png"
-                alt=""
-                aria-hidden="true"
+                alt="Herz-Symbol"
                 width={16}
                 height={16}
                 className="inline-block size-3.5 align-[-2px]"

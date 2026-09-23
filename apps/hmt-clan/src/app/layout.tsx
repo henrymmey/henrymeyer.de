@@ -40,6 +40,10 @@ export const metadata: Metadata = {
   applicationName: "HMT Clan",
   creator: "Henry Meyer",
   category: "gaming",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   keywords: [
     "HMT Clan",
     "Minecraft Clan",

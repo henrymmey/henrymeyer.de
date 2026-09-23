@@ -22,8 +22,7 @@ export default function CookieBanner() {
         <span className="flex size-10 shrink-0 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_2px_0_rgb(0_0_0/0.5)]">
           <Image
             src="/textures/cookie.png"
-            alt=""
-            aria-hidden="true"
+            alt="Cookie-Symbol"
             width={32}
             height={32}
             className="size-7 object-contain"

@@ -123,8 +123,7 @@ export default function SiteHeader({
           >
             <Image
               src="/badges/discord.png"
-              alt=""
-              aria-hidden="true"
+              alt="HMT Clan Discord-Server"
               width={20}
               height={20}
               className="size-5 object-contain"
@@ -196,8 +195,7 @@ export default function SiteHeader({
           >
             <Image
               src="/badges/discord.png"
-              alt=""
-              aria-hidden="true"
+              alt="HMT Clan Discord-Server"
               width={20}
               height={20}
               className="size-5 object-contain"

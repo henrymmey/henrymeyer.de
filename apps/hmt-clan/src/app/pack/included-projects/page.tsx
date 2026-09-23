@@ -7,7 +7,7 @@ import { softwareAppSchema, breadcrumbSchema } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Included Projects | HMT Pack",
   description:
-    "Alle Mods, Shader und Ressourcenpakete, die im HMT Pack enthalten sind – dem Minecraft-Modpack des HMT Clans zum Spielen auf dem TheScape-Server.",
+    "Alle Mods, Shader und Ressourcenpakete im HMT Pack – dem Modpack des HMT Clans für das Spielen auf TheScape.",
   alternates: {
     canonical: "/pack/included-projects",
   },

@@ -181,6 +181,10 @@ export default function Hero() {
           <span className="text-grass drop-shadow-[0_5px_0_rgb(0_0_0/0.35)]">
             CLAN
           </span>
+          <span className="sr-only">
+            {" "}
+            – Freunde, die auf TheScape Minecraft spielen
+          </span>
         </h1>
 
         <p className="animate-fade-up mx-auto mt-6 max-w-xl text-base leading-relaxed text-foreground/75 [animation-delay:200ms] md:text-lg">

@@ -31,8 +31,7 @@ export default function CalendarWidget({
           <span className="flex items-center gap-2 font-pixel text-[11px] uppercase tracking-[0.14em] text-foreground">
             <Image
               src="/textures/clock.png"
-              alt=""
-              aria-hidden="true"
+              alt="Event-Kalender des HMT Clans"
               width={16}
               height={16}
               className="size-4 object-contain"
@@ -66,8 +65,7 @@ export default function CalendarWidget({
             {snapshot.status === "denied" ? (
               <Image
                 src="/textures/barrier.png"
-                alt=""
-                aria-hidden="true"
+                alt="Kalender blockiert"
                 width={32}
                 height={32}
                 className="size-7 object-contain"
@@ -75,8 +73,7 @@ export default function CalendarWidget({
             ) : (
               <Image
                 src="/textures/cookie.png"
-                alt=""
-                aria-hidden="true"
+                alt="Tracking blockiert"
                 width={32}
                 height={32}
                 className="size-7 object-contain"

@@ -34,11 +34,10 @@ export function EventIconView({
     return (
       <span
         className={cn("relative inline-block select-none", className)}
-        aria-hidden="true"
       >
         <Image
           src={getEventIconImagePath(icon)}
-          alt=""
+          alt="Event-Symbol"
           width={128}
           height={128}
           className="size-full object-contain [image-rendering:pixelated]"

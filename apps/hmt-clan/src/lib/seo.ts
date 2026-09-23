@@ -7,7 +7,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_URL?.replace(/\/$/, "") || "https://hmtclan.de";
 
 export const SITE_DESCRIPTION =
-  "HMT Clan – eine Gruppe von Freunden, die gemeinsam auf dem TheScape-Server Minecraft spielt. Mit Events, Seasons, Crew und dem hauseigenen HMT Pack Modpack.";
+  "HMT Clan – Freunde, die gemeinsam auf dem TheScape-Server Minecraft spielen. Events, Seasons, Crew.";
 
 export const DISCORD_URL = "https://discord.gg/8aWmBuYURK";
 
@@ -17,7 +17,7 @@ export const GITHUB_URL =
 export const THESCAPE_URL = "https://thescape.de";
 
 export const PACK_DESCRIPTION =
-  "Das HMT Pack – performance-optimiertes Fabric-Modpack für Minecraft, das der HMT Clan zum Spielen auf dem TheScape-Server nutzt. Inklusive eigener Server-GUI.";
+  "Das HMT Pack – Modpack vom HMT Clan zum Spielen auf dem TheScape-Server. Inklusive eigener Server-GUI.";
 
 function url(path: string): string {
   return /^https?:\/\//.test(path) ? path : `${SITE_URL}${path}`;

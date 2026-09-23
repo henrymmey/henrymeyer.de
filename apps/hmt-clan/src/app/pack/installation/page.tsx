@@ -7,7 +7,7 @@ import { softwareAppSchema, breadcrumbSchema } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Installation | HMT Pack",
   description:
-    "So installierst du das HMT Pack – das Fabric-Modpack für Minecraft, mit dem der HMT Clan auf dem TheScape-Server spielt – inklusive CurseForge und Modrinth.",
+    "So installierst du das HMT Pack – das Modpack, mit dem der HMT Clan auf dem TheScape-Server spielt.",
   alternates: {
     canonical: "/pack/installation",
   },

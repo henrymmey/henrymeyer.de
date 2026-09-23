@@ -25,8 +25,7 @@ export default function EventsEmpty({
           <span className="mx-auto mb-5 flex size-12 items-center justify-center rounded-block border-2 border-black/70 bg-surface-2 shadow-[inset_0_1px_0_rgb(255_255_255/0.06),inset_0_-3px_0_rgb(0_0_0/0.4),0_2px_0_rgb(0_0_0/0.5)]">
             <Image
               src="/textures/clock.png"
-              alt=""
-              aria-hidden="true"
+              alt="Uhr-Symbol für kommende Events"
               width={32}
               height={32}
               className="size-6 object-contain"
