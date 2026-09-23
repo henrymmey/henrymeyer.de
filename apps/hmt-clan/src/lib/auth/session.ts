@@ -4,11 +4,15 @@ import { cookies } from "next/headers";
 export const SESSION_COOKIE = "hmt_admin_session";
 export const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 Tage
 
+export type AuthProvider = "discord" | "meyerauth";
+
 export interface SessionUser {
   id: string;
   username: string;
   globalName: string | null;
   avatar: string | null;
+  email: string | null;
+  provider: AuthProvider;
 }
 
 function getSecret(): Uint8Array {
@@ -46,6 +50,8 @@ export async function verifySessionToken(
       globalName:
         typeof payload.globalName === "string" ? payload.globalName : null,
       avatar: typeof payload.avatar === "string" ? payload.avatar : null,
+      email: typeof payload.email === "string" ? payload.email : null,
+      provider: payload.provider === "meyerauth" ? "meyerauth" : "discord",
     };
   } catch {
     return null;

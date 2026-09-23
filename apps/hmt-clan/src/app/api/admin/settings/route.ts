@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
-import { guardAdminRequest, getAllowedUserIds, isOAuthConfigured } from "@/lib/auth";
+import {
+  getAllowedEmails,
+  getAllowedUserIds,
+  guardAdminRequest,
+  isMeyerAuthConfigured,
+  isOAuthConfigured,
+} from "@/lib/auth";
 import { getSessionUser } from "@/lib/auth/session";
-import { discordAvatarUrl } from "@/lib/auth/discord";
+import { sessionAvatarUrl } from "@/lib/auth/avatar";
 import { jsonFromError } from "@/lib/admin/http";
 import { getGithubStatus } from "@/lib/admin/overview";
 
@@ -21,6 +27,8 @@ export async function GET(request: Request) {
       auth: {
         discordConfigured: isOAuthConfigured(),
         allowedUserCount: getAllowedUserIds().length,
+        meyerauthConfigured: isMeyerAuthConfigured(),
+        meyerauthAllowedEmailCount: getAllowedEmails().length,
       },
       github,
       currentUser: sessionUser
@@ -28,7 +36,9 @@ export async function GET(request: Request) {
             id: sessionUser.id,
             username: sessionUser.username,
             globalName: sessionUser.globalName,
-            avatarUrl: discordAvatarUrl(sessionUser, 96),
+            email: sessionUser.email,
+            provider: sessionUser.provider,
+            avatarUrl: sessionAvatarUrl(sessionUser, 96),
           }
         : null,
     });

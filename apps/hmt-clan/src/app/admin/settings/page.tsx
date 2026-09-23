@@ -97,8 +97,14 @@ export default function AdminSettingsPage() {
                     {data.currentUser.username}
                   </p>
                   <p className="truncate text-sm text-muted">
-                    {data.currentUser.globalName ?? "Kein Global-Name"} · ID{" "}
-                    {data.currentUser.id}
+                    {data.currentUser.provider === "meyerauth" ? (
+                      <>{data.currentUser.email ?? data.currentUser.id}</>
+                    ) : (
+                      <>
+                        {data.currentUser.globalName ?? "Kein Global-Name"} · ID{" "}
+                        {data.currentUser.id}
+                      </>
+                    )}
                   </p>
                 </div>
                 <div className="ml-auto">
@@ -126,6 +132,27 @@ export default function AdminSettingsPage() {
                   ? "Benutzer-ID"
                   : "Benutzer-IDs"}{" "}
                 in DISCORD_ALLOWED_USER_IDS.
+              </p>
+            </div>
+
+            <div className="rounded-block border border-black/60 bg-surface-3 p-5 shadow-card">
+              <h2 className="text-sm font-medium text-foreground">
+                MeyerAuth (OIDC)
+              </h2>
+              <div className="mt-2 flex items-center gap-2">
+                <StatusBadge ok={data.auth.meyerauthConfigured} />
+              </div>
+              <p className="mt-2 text-sm text-muted">
+                {data.auth.meyerauthConfigured
+                  ? "Login per MeyerAuth/Authentik aktiv. Sessions werden per JWT signiert."
+                  : "Setze MEYERAUTH_ISSUER, MEYERAUTH_CLIENT_ID, MEYERAUTH_CLIENT_SECRET und MEYERAUTH_REDIRECT_URI."}
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                {data.auth.meyerauthAllowedEmailCount} erlaubte{" "}
+                {data.auth.meyerauthAllowedEmailCount === 1
+                  ? "E-Mail-Adresse"
+                  : "E-Mail-Adressen"}{" "}
+                in MEYERAUTH_ALLOWED_EMAILS.
               </p>
             </div>
           </div>

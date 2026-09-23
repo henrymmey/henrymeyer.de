@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isMeyerAuthConfigured } from "./meyerauth";
 import { getSessionUser, type SessionUser } from "./session";
 
 /** Erlaubte Discord-User-IDs (komma-separiert via .env). */
@@ -10,12 +11,28 @@ export function getAllowedUserIds(): string[] {
     .filter((id) => id.length > 0);
 }
 
-export function isAllowedUser(userId: string): boolean {
+/** Erlaubte MeyerAuth-E-Mail-Adressen (komma-separiert via .env). */
+export function getAllowedEmails(): string[] {
+  const raw = process.env.MEYERAUTH_ALLOWED_EMAILS ?? "";
+  return raw
+    .split(",")
+    .map((email) => email.trim().toLowerCase())
+    .filter((email) => email.length > 0);
+}
+
+export function isAllowedUser(user: SessionUser): boolean {
+  if (user.provider === "meyerauth") {
+    const allowed = getAllowedEmails();
+    if (allowed.length === 0) {
+      return false;
+    }
+    return user.email ? allowed.includes(user.email.toLowerCase()) : false;
+  }
   const allowed = getAllowedUserIds();
   if (allowed.length === 0) {
     return false;
   }
-  return allowed.includes(userId);
+  return allowed.includes(user.id);
 }
 
 export function isOAuthConfigured(): boolean {
@@ -25,6 +42,8 @@ export function isOAuthConfigured(): boolean {
       process.env.DISCORD_REDIRECT_URI,
   );
 }
+
+export { isMeyerAuthConfigured };
 
 export function isGithubConfigured(): boolean {
   return Boolean(process.env.HMT_GITHUB_TOKEN);
@@ -54,7 +73,7 @@ type GuardFailure =
 
 /**
  * Authentifizierung + Autorisierung fuer jede Admin-API.
- * Prueft Session-Cookie und Discord-Allowlist serverseitig.
+ * Prueft Session-Cookie und Provider-Allowlist serverseitig.
  */
 export async function guardAdminRequest(
   _request: Request,
@@ -70,7 +89,7 @@ export async function guardAdminRequest(
       user: null,
     };
   }
-  if (!isAllowedUser(user.id)) {
+  if (!isAllowedUser(user)) {
     return {
       error: NextResponse.json(
         { error: "Forbidden" },

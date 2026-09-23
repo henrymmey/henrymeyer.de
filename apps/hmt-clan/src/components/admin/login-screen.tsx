@@ -2,11 +2,17 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { LogOut, ShieldX, TerminalSquare } from "lucide-react";
+import { KeyRound, LogOut, ShieldX, TerminalSquare } from "lucide-react";
 import type { SessionUser } from "@/lib/auth/session";
 import { Button } from "@/components/admin/ui";
 
-export function LoginScreen({ configured }: { configured: boolean }) {
+export function LoginScreen({
+  discordConfigured,
+  meyerauthConfigured,
+}: {
+  discordConfigured: boolean;
+  meyerauthConfigured: boolean;
+}) {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-16">
       <div
@@ -43,12 +49,12 @@ export function LoginScreen({ configured }: { configured: boolean }) {
               Manage the HMT Clan website.
             </p>
 
-            <div className="mt-8">
-              {configured ? (
+            <div className="mt-8 flex flex-col gap-3">
+              {discordConfigured ? (
                 <Button
                   href="/api/admin/auth/login"
                   size="lg"
-                  className="w-full bg-[#5865F2] text-white shadow-[0_3px_0_0_rgb(0_0_0/0.5)] hover:brightness-110"
+                  className="w-full border-0 bg-[#5865F2] text-white shadow-[0_3px_0_0_rgb(0_0_0/0.5)] hover:brightness-110"
                 >
                   <Image
                     src="/badges/discord.png"
@@ -58,12 +64,29 @@ export function LoginScreen({ configured }: { configured: boolean }) {
                     height={20}
                     className="size-5 object-contain"
                   />
-                  Continue with Discord
+                  Discord
                 </Button>
               ) : (
                 <div className="rounded-base border border-redstone/40 bg-redstone/10 px-4 py-3 text-sm text-redstone">
                   Discord OAuth is not configured. Set{" "}
                   <code className="font-mono">DISCORD_*</code> environment
+                  variables first.
+                </div>
+              )}
+
+              {meyerauthConfigured ? (
+                <Button
+                  href="/api/admin/auth/login?provider=meyerauth"
+                  size="lg"
+                  className="w-full border-0 bg-[#F25858] text-[#fff6f2] shadow-[0_3px_0_0_rgb(0_0_0/0.5)] hover:brightness-110"
+                >
+                  <KeyRound className="size-5" aria-hidden="true" />
+                  MeyerAuth
+                </Button>
+              ) : (
+                <div className="rounded-base border border-redstone/40 bg-redstone/10 px-4 py-3 text-sm text-redstone">
+                  MeyerAuth OIDC is not configured. Set{" "}
+                  <code className="font-mono">MEYERAUTH_*</code> environment
                   variables first.
                 </div>
               )}
@@ -104,7 +127,7 @@ export function AccessDeniedScreen({ user }: { user: SessionUser }) {
         </h1>
 
         <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-muted">
-          Your Discord account{" "}
+          Your {user.provider === "meyerauth" ? "MeyerAuth" : "Discord"} account{" "}
           <span className="text-foreground">
             {user.globalName ?? user.username}
           </span>{" "}

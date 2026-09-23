@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { discordAvatarUrl } from "@/lib/auth/discord";
+import { sessionAvatarUrl } from "@/lib/auth/avatar";
 import type { SessionUser } from "@/lib/auth/session";
 import { ToastProvider } from "@/components/admin/toast";
 import StagingButton from "@/components/admin/staging-button";
@@ -131,7 +131,7 @@ function UserMenu({ user }: { user: SessionUser }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const avatarUrl = discordAvatarUrl(user, 64);
+  const avatarUrl = sessionAvatarUrl(user, 64);
   const displayName = user.globalName ?? user.username;
 
   useEffect(() => {

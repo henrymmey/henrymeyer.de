@@ -1,6 +1,8 @@
 const DISCORD_API = "https://discord.com/api/v10";
 const DISCORD_AUTHORIZE_URL = "https://discord.com/oauth2/authorize";
 
+import type { SessionUser } from "./session";
+
 export class OAuthNotConfiguredError extends Error {
   constructor() {
     super("Discord OAuth is not configured");
@@ -121,16 +123,13 @@ export function discordAvatarUrl(
   }?size=${size}`;
 }
 
-export function toSessionUser(user: DiscordUser): {
-  id: string;
-  username: string;
-  globalName: string | null;
-  avatar: string | null;
-} {
+export function toSessionUser(user: DiscordUser): SessionUser {
   return {
     id: user.id,
     username: user.username,
     globalName: user.global_name ?? null,
     avatar: user.avatar ?? null,
+    email: null,
+    provider: "discord",
   };
 }

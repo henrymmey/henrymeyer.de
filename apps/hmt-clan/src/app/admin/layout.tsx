@@ -6,7 +6,11 @@ import {
   LoginScreen,
 } from "@/components/admin/login-screen";
 import { getSessionUser } from "@/lib/auth/session";
-import { isAllowedUser, isOAuthConfigured } from "@/lib/auth";
+import {
+  isAllowedUser,
+  isMeyerAuthConfigured,
+  isOAuthConfigured,
+} from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -26,10 +30,15 @@ export default async function AdminLayout({
   const user = await getSessionUser();
 
   if (!user) {
-    return <LoginScreen configured={isOAuthConfigured()} />;
+    return (
+      <LoginScreen
+        discordConfigured={isOAuthConfigured()}
+        meyerauthConfigured={isMeyerAuthConfigured()}
+      />
+    );
   }
 
-  if (!isAllowedUser(user.id)) {
+  if (!isAllowedUser(user)) {
     return <AccessDeniedScreen user={user} />;
   }
 

@@ -176,12 +176,16 @@ export type SettingsResponse = {
   auth: {
     discordConfigured: boolean;
     allowedUserCount: number;
+    meyerauthConfigured: boolean;
+    meyerauthAllowedEmailCount: number;
   };
   github: Overview["github"];
   currentUser: {
     id: string;
     username: string;
     globalName: string | null;
+    email: string | null;
+    provider: "discord" | "meyerauth";
     avatarUrl: string;
   } | null;
 };
