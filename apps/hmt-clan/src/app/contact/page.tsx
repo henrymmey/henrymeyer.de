@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const discordUsername = "henrymmey";
 const discordId = "1008346032230387752";
 const discordServerInvite = "8aWmBuYURK";
-const contactEmail = "hmt-clan@henrymeyer.de";
+const contactEmail = "moin@hmtclan.de";
 
 function ContactRow({
   label,
