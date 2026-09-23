@@ -14,6 +14,8 @@ import {
 import SiteFooter from "@/components/site-footer";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 import CrewDetailTabs from "@/components/crew/crew-detail-tabs";
+import JsonLd from "@/components/json-ld";
+import { profileSchema, breadcrumbSchema } from "@/lib/seo";
 import { getCrewMemberBySlug, getMemberRoles, getMemberSeasons } from "@/lib/crew";
 import { getSeasonBySlug } from "@/lib/season";
 import { getFullThescapeProfile } from "@/lib/thescape";
@@ -49,7 +51,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${member.name} | HMT Clan`,
-    description: `Crew-Mitglied ${member.name} (${getMemberRoles(member).join(", ")}) beim HMT Clan.`,
+    description: `Crew-Mitglied ${member.name} (${getMemberRoles(member).join(", ")}) beim HMT Clan auf dem TheScape-Server.`,
+    alternates: {
+      canonical: `/crew/${member.slug}`,
+    },
   };
 }
 
@@ -238,6 +243,14 @@ export default async function CrewMemberPage({ params }: Props) {
           )}
         </section>
       </div>
+
+      <JsonLd data={profileSchema(member)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Crew", path: "/crew" },
+          { name: member.name, path: `/crew/${member.slug}` },
+        ])}
+      />
 
       <SiteFooter />
     </main>

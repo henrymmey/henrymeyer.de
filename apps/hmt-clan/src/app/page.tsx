@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import SiteFooter from "@/components/site-footer";
 import Hero from "@/components/hero/hero";
 import Countdown from "@/components/countdown/countdown";
@@ -8,6 +9,7 @@ import Reveal from "@/components/minecraft/reveal";
 import CrewCard from "@/components/crew/crew-card";
 import CrewJoinCard from "@/components/crew/crew-join-card";
 import CalendarWidget from "@/components/calendar/calendar-widget";
+import { SITE_DESCRIPTION } from "@/lib/seo";
 import { crew } from "@/lib/crew";
 import {
   getHomepageEvents,
@@ -17,6 +19,16 @@ import {
 } from "@/lib/events";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "HMT Clan – Minecraft Community, die auf dem TheScape-Server spielt",
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Page() {
   const members = [...crew]

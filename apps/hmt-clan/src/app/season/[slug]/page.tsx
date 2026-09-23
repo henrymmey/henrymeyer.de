@@ -6,6 +6,8 @@ import SiteFooter from "@/components/site-footer";
 import CrewCard from "@/components/crew/crew-card";
 import EventCard from "@/components/event-card";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
+import JsonLd from "@/components/json-ld";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/seo";
 import {
   getSeasonBySlug,
   getSeasonMembers,
@@ -37,6 +39,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${season.name} | HMT Clan`,
     description: `${season.name} beim HMT Clan – ${formatSeasonSpan(season)}.`,
+    alternates: {
+      canonical: `/season/${season.slug}`,
+    },
   };
 }
 
@@ -149,6 +154,16 @@ export default async function SeasonPage({ params }: Props) {
           </section>
         )}
       </div>
+
+      <JsonLd
+        data={collectionPageSchema(season.name, `/season/${season.slug}`)}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Seasons", path: "/season" },
+          { name: season.name, path: `/season/${season.slug}` },
+        ])}
+      />
 
       <SiteFooter />
     </main>

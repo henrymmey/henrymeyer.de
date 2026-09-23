@@ -4,6 +4,12 @@ import { ConsentProvider } from "@/components/consent-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
+import JsonLd from "@/components/json-ld";
+import {
+  SITE_DESCRIPTION,
+  websiteSchema,
+  organizationSchema,
+} from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,28 +30,27 @@ const pixel = Silkscreen({
 
 const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmtclan.de";
 
-const siteDescription =
-  "HMT Clan – Eine Gruppe von Freunden, die gemeinsam auf TheScape Minecraft spielt.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "HMT Clan",
-    template: "%s | HMT Clan",
+    template: "%s",
   },
-  description: siteDescription,
-  alternates: {
-    canonical: baseUrl,
-  },
+  description: SITE_DESCRIPTION,
   applicationName: "HMT Clan",
   creator: "Henry Meyer",
+  category: "gaming",
   keywords: [
     "HMT Clan",
-    "Minecraft",
-    "TheScape",
     "Minecraft Clan",
     "Minecraft Community",
-    "Survival",
+    "TheScape",
+    "TheScape Server",
+    "CraftAttack",
+    "Minecraft Modpack",
+    "HMT Pack",
+    "Survival Minecraft",
+    "Minecraft Server",
   ],
   openGraph: {
     type: "website",
@@ -53,12 +58,12 @@ export const metadata: Metadata = {
     siteName: "HMT Clan",
     url: baseUrl,
     title: "HMT Clan",
-    description: siteDescription,
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "HMT Clan",
-    description: siteDescription,
+    description: SITE_DESCRIPTION,
   },
 };
 
@@ -78,6 +83,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${pixel.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
+        <JsonLd data={websiteSchema()} />
+        <JsonLd data={organizationSchema()} />
         <ConsentProvider>
           <RootChrome>{children}</RootChrome>
 

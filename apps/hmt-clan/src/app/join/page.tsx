@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/site-footer";
 import PageIntro from "@/components/minecraft/page-intro";
 import MinecraftButton from "@/components/minecraft/minecraft-button";
+import JsonLd from "@/components/json-ld";
+import { howToJoinSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "HMT Clan Beitreten | HMT Clan",
   description:
     "Wie du dem HMT Clan beitrittst – über den Discord-Server und den TheScape-Server.",
+  alternates: {
+    canonical: "/join",
+  },
 };
 
 const discordInvite = "https://discord.gg/8aWmBuYURK";
-const thescapeUrl = "https://thescape.de";
 
 export default function JoinPage() {
   return (
@@ -35,14 +39,14 @@ export default function JoinPage() {
                 Info
               </h2>
               <p className="text-base leading-relaxed text-muted">
-                Wir spielen über das Jahr hinweg auf mehreren Servern. Unser
-                Haupt-Server ist jedoch der TheScape-Server. Dieser ist ein
-                Community-CraftAttack-Server, auf dem wir bereits seit einigen
-                Jahren gemeinsam spielen. Um auf diesem Server mitspielen zu
-                können, musst du dich auf TheScape bewerben. Das ist aber kein
-                Problem, das sind nur vier Fragen mit kurzen Antworten. Danach
-                kannst du direkt auf dem Server loslegen und uns im Spiel
-                treffen.
+                Wir spielen über das Jahr hinweg auf mehreren Servern. Am
+                häufigsten sind wir jedoch auf dem TheScape-Server unterwegs,
+                einem Community-CraftAttack-Server, auf dem wir bereits seit
+                einigen Jahren gemeinsam spielen. Um dort mitspielen zu
+                können, musst du dich für den TheScape-Server bewerben. Das
+                ist aber kein Problem, das sind nur vier Fragen mit kurzen
+                Antworten. Danach kannst du direkt auf dem Server loslegen und
+                uns im Spiel treffen.
               </p>
             </section>
 
@@ -114,6 +118,8 @@ export default function JoinPage() {
           </div>
         </div>
       </div>
+
+      <JsonLd data={howToJoinSchema()} />
 
       <SiteFooter />
     </main>

@@ -5,12 +5,17 @@ import EventsEmpty from "@/components/events/events-empty";
 import PageIntro from "@/components/minecraft/page-intro";
 import SectionHeading from "@/components/minecraft/section-heading";
 import Reveal from "@/components/minecraft/reveal";
+import JsonLd from "@/components/json-ld";
 import { getVisibleEvents } from "@/lib/events";
+import { itemListSchema } from "@/lib/seo";
 import type { EventConfig } from "@/lib/events/types";
 
 export const metadata: Metadata = {
   title: "Events | HMT Clan",
   description: "Alle Events und Ankündigungen des HMT Clans auf einen Blick.",
+  alternates: {
+    canonical: "/events",
+  },
 };
 
 function EventGrid({ events }: { events: EventConfig[] }) {
@@ -65,6 +70,16 @@ export default function EventsPage() {
           </>
         )}
       </div>
+
+      <JsonLd
+        data={itemListSchema(
+          getVisibleEvents().map((event) => ({
+            name: event.name,
+            path: `/events/${event.slug}`,
+            type: "Event",
+          })),
+        )}
+      />
 
       <SiteFooter />
     </main>

@@ -5,11 +5,16 @@ import SiteFooter from "@/components/site-footer";
 import PageIntro from "@/components/minecraft/page-intro";
 import SectionHeading from "@/components/minecraft/section-heading";
 import Reveal from "@/components/minecraft/reveal";
+import JsonLd from "@/components/json-ld";
+import { itemListSchema } from "@/lib/seo";
 import { getSeasons, formatSeasonSpan, type SeasonConfig } from "@/lib/season";
 
 export const metadata: Metadata = {
   title: "Seasons | HMT Clan",
   description: "Alle Seasons des HMT Clans auf einen Blick – mit Mitgliedern und Events.",
+  alternates: {
+    canonical: "/season",
+  },
 };
 
 function SeasonCard({ season }: { season: SeasonConfig }) {
@@ -66,6 +71,16 @@ export default function SeasonsPage() {
           </ul>
         </section>
       </div>
+
+      <JsonLd
+        data={itemListSchema(
+          seasons.map((season) => ({
+            name: season.name,
+            path: `/season/${season.slug}`,
+            type: "CollectionPage",
+          })),
+        )}
+      />
 
       <SiteFooter />
     </main>

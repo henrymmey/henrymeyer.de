@@ -9,6 +9,9 @@ import { join } from "path";
 export const metadata: Metadata = {
   title: "Datenschutzerklärung | HMT Clan",
   description: "Datenschutzerklärung für die HMT Clan Website.",
+  alternates: {
+    canonical: "/legal/privacy",
+  },
   robots: {
     index: true,
     follow: true,

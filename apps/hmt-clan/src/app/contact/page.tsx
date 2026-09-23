@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Kontakt | HMT Clan",
   description:
     "Kontakt zum HMT Clan: Discord, Server-Einladung und E-Mail für Anfragen an die Crew.",
+  alternates: {
+    canonical: "/contact",
+  },
   robots: {
     index: true,
     follow: true,

@@ -4,6 +4,8 @@ import CrewOverview, {
   type CrewSearchCard,
 } from "@/components/crew/crew-overview";
 import CrewCard from "@/components/crew/crew-card";
+import JsonLd from "@/components/json-ld";
+import { itemListSchema } from "@/lib/seo";
 import { crew, getMemberRoles } from "@/lib/crew";
 
 export const dynamic = "force-dynamic";
@@ -12,6 +14,9 @@ export const metadata: Metadata = {
   title: "Crew | HMT Clan",
   description:
     "Alle Mitglieder des HMT Clans auf einen Blick – mit Suche nach Spielernamen, Rolle und Minecraft-Namen.",
+  alternates: {
+    canonical: "/crew",
+  },
 };
 
 export default function CrewPage() {
@@ -37,6 +42,17 @@ export default function CrewPage() {
   return (
     <main>
       <CrewOverview cards={cards} inactiveCards={inactiveCards} />
+
+      <JsonLd
+        data={itemListSchema(
+          crew.map((member) => ({
+            name: member.name,
+            path: `/crew/${member.slug}`,
+            type: "Person",
+          })),
+        )}
+      />
+
       <SiteFooter />
     </main>
   );

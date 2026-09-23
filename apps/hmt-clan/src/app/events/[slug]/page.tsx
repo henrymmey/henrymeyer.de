@@ -6,7 +6,9 @@ import SiteFooter from "@/components/site-footer";
 import EventBody from "@/components/event-body";
 import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 import MinecraftButton from "@/components/minecraft/minecraft-button";
+import JsonLd from "@/components/json-ld";
 import { EventIconView } from "@/components/events/event-material";
+import { eventSchema, breadcrumbSchema } from "@/lib/seo";
 import {
   getEventBySlug,
   getEventDescription,
@@ -36,6 +38,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${event.name} | HMT Clan`,
     description: event.description,
+    alternates: {
+      canonical: `/events/${event.slug}`,
+    },
   };
 }
 
@@ -112,6 +117,14 @@ export default async function EventPage({ params }: Props) {
           </div>
         </article>
       </div>
+
+      <JsonLd data={eventSchema(event)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Events", path: "/events" },
+          { name: event.name, path: `/events/${event.slug}` },
+        ])}
+      />
 
       <SiteFooter />
     </main>

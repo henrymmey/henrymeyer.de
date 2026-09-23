@@ -172,7 +172,7 @@ export default function Hero() {
             icon="grass"
             className="gap-2 px-3 py-2"
           >
-            TheScape · Survival · Community
+            Minecraft · Survival · Community
           </MinecraftBadge>
         </div>
 

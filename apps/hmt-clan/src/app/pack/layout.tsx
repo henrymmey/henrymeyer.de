@@ -7,7 +7,7 @@ import SiteFooter from "@/components/site-footer";
 export const metadata: Metadata = {
   title: "HMT Pack | HMT Clan",
   description:
-    "Das HMT Pack – Performance-optimiertes Fabric-Modpack mit benutzerdefinierter Server-GUI für TheScape.de und den HMT Clan.",
+    "Das HMT Pack – performance-optimiertes Fabric-Modpack für Minecraft, das der HMT Clan zum Spielen auf dem TheScape-Server nutzt. Inklusive eigener Server-GUI.",
 };
 
 export default function PackLayout({ children }: { children: ReactNode }) {
