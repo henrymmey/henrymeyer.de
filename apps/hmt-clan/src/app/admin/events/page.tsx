@@ -142,6 +142,7 @@ export default function AdminEventsPage() {
         show: false,
         showDetailsButton: event.showDetailsButton,
         done: event.done,
+        countdown: event.countdown,
         icon: event.icon ?? null,
         season: event.season ?? null,
         links: event.links ?? null,
@@ -268,6 +269,9 @@ export default function AdminEventsPage() {
                     <Pill variant="draft">Entwurf</Pill>
                   )}
                   {event.done && <Pill variant="past">Vergangen</Pill>}
+                  {event.countdown && (
+                    <Pill variant="default">Countdown</Pill>
+                  )}
                   {event.hasMarkdown && (
                     <Pill variant="default">
                       <FileText className="size-3" aria-hidden="true" />

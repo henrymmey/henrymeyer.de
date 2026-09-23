@@ -38,6 +38,7 @@ function toCanonicalEvent(event: EventConfig): JsonRecord {
   result.show = event.show;
   result.showDetailsButton = event.showDetailsButton;
   result.done = event.done;
+  result.countdown = event.countdown;
   if (event.season) {
     result.season = event.season;
   }
@@ -70,6 +71,7 @@ function applyPatch(event: EventConfig, patch: EventPatchInput): EventConfig {
     show: "show",
     showDetailsButton: "showDetailsButton",
     done: "done",
+    countdown: "countdown",
   };
   for (const [field, key] of Object.entries(scalar) as [
     string,
@@ -144,6 +146,7 @@ export async function createEvent(
     show: input.show,
     showDetailsButton: input.showDetailsButton,
     done: input.done,
+    countdown: input.countdown,
     icon: (input.icon ?? undefined) as EventIcon | undefined,
     season: input.season ?? undefined,
     links: normLinks(input.links) ?? undefined,

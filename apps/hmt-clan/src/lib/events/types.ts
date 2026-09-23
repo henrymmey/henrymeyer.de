@@ -27,6 +27,7 @@ export interface EventConfig {
   show: boolean;
   showDetailsButton: boolean;
   done: boolean;
+  countdown: boolean;
   icon?: EventIcon;
   links?: EventLink[];
   /** Season-Slug, falls das Event einer Season zugeordnet ist. */

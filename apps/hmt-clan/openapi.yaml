@@ -85,6 +85,7 @@ paths:
                     show: true
                     showDetailsButton: true
                     done: false
+                    countdown: true
                     icon: /events/wooden_sword.png
                     links:
                       - displayName: TheScape Website
@@ -330,6 +331,9 @@ components:
         done:
           type: boolean
           description: Ob das Event bereits stattgefunden hat.
+        countdown:
+          type: boolean
+          description: Ob für dieses Event ein Countdown auf der Startseite angezeigt wird.
         season:
           type: string
           description: >-
@@ -356,6 +360,7 @@ components:
         - show
         - showDetailsButton
         - done
+        - countdown
     SeasonConfig:
       type: object
       description: Eine einzelne Season des HMT Clans.

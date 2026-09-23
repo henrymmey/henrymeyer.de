@@ -14,7 +14,9 @@ export function getVisibleEvents(): EventConfig[] {
 }
 
 export function getNextEvent(): EventConfig | null {
-  const upcoming = EVENTS.filter((e) => e.show && !e.done).sort(byDateAsc);
+  const upcoming = EVENTS.filter((e) => e.show && !e.done && e.countdown).sort(
+    byDateAsc,
+  );
   return upcoming[0] ?? null;
 }
 

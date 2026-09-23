@@ -40,9 +40,7 @@ export function LoginScreen({ configured }: { configured: boolean }) {
 
           <div className="px-6 py-8 text-center">
             <p className="text-sm leading-relaxed text-muted">
-              Manage the HMT Clan website. Changes are collected as
-              individual commits and pushed together via{" "}
-              <span className="text-foreground">the HMT Clan bot</span>.
+              Manage the HMT Clan website.
             </p>
 
             <div className="mt-8">
@@ -70,10 +68,6 @@ export function LoginScreen({ configured }: { configured: boolean }) {
                 </div>
               )}
             </div>
-
-            <p className="mt-6 text-xs text-muted">
-              Zugriff nur für autorisierte HMT-Clan-Mitglieder.
-            </p>
           </div>
         </div>
       </div>

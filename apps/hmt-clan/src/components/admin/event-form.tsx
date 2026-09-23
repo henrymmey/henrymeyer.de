@@ -62,6 +62,7 @@ interface FormValues {
   showTime: boolean;
   showDetailsButton: boolean;
   done: boolean;
+  countdown: boolean;
   links: LinkRow[];
 }
 
@@ -79,6 +80,7 @@ function initialFromEvent(event: EventConfig | null): FormValues {
     showTime: event?.showTime ?? true,
     showDetailsButton: event?.showDetailsButton ?? true,
     done: event?.done ?? false,
+    countdown: event?.countdown ?? false,
     links: event?.links?.map((link) => ({ ...link })) ?? [],
   };
 }
@@ -142,6 +144,7 @@ export default function EventForm({
       show: values.show,
       showDetailsButton: values.showDetailsButton,
       done: values.done,
+      countdown: values.countdown,
       icon: values.icon.trim() ? values.icon.trim() : null,
       season: values.season ? values.season : null,
       links: links.length > 0 ? links : null,
@@ -312,6 +315,12 @@ export default function EventForm({
             onChange={(checked) => set("done", checked)}
             label="Vergangen"
             description="Event unter den vergangenen Events einordnen."
+          />
+          <Toggle
+            checked={values.countdown}
+            onChange={(checked) => set("countdown", checked)}
+            label="Countdown"
+            description="Zeigt den Countdown auf der Startseite für dieses Event an."
           />
         </div>
       </section>

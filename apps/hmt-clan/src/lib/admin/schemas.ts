@@ -58,6 +58,7 @@ const eventFieldsSchema = z.object({
   show: z.boolean(),
   showDetailsButton: z.boolean(),
   done: z.boolean(),
+  countdown: z.boolean(),
   icon: z.string().trim().max(300).nullable().optional(),
   season: z.string().trim().max(140).nullable().optional(),
   links: z.array(eventLinkSchema).max(25).nullable().optional(),
@@ -90,6 +91,7 @@ export const eventsFileSchema = z.array(
     show: z.boolean(),
     showDetailsButton: z.boolean(),
     done: z.boolean(),
+    countdown: z.boolean(),
     icon: z.string().optional(),
     links: z
       .array(z.object({ displayName: z.string(), url: z.string() }))
