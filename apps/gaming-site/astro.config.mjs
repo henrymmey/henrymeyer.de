@@ -186,6 +186,21 @@ export default defineConfig({
           ],
         },
         {
+          label: "Mods",
+          items: [
+            {
+              label: "Attribute PVP Helper Reforged",
+              collapsed: false,
+              items: [
+                {
+                  label: "Overview",
+                  slug: "projects/mods/attribute-pvp-helper-reforged",
+                },
+              ],
+            },
+          ],
+        },
+        {
           label: "Contribute",
           slug: "contribute",
         },
