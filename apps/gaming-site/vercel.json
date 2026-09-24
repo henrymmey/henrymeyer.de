@@ -64,6 +64,11 @@
       "source": "/js-removed-crosshair",
       "destination": "/projects/resourcepacks/js-removed-crosshair/",
       "permanent": true
+    },
+    {
+      "source": "/attribute-pvp-helper-reforged",
+      "destination": "/projects/mods/attribute-pvp-helper-reforged/",
+      "permanent": true
     }
   ]
 }
