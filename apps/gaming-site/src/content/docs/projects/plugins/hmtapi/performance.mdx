@@ -1,0 +1,104 @@
+---
+title: Performance
+description: How HMTAPI handles load, what request_timeout_seconds does, and how to keep your server responsive under API traffic.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  This plugin hasn’t been approved by Modrinth yet, so you can’t download it
+  from Modrinth right now.
+</Aside>
+
+## How requests are handled
+
+HMTAPI runs its own small pool of worker threads, separate from the Minecraft server's main thread.
+Incoming requests are picked up there and do not queue up on the main thread.
+
+To build a response, HMTAPI needs your server's data — a player lookup and your PlaceholderAPI
+placeholders. Those can only be done on the main thread, so each request hands that work over as a
+single task and waits for the result. The main thread is never blocked waiting for the HTTP client.
+
+The practical consequences:
+
+- **Your server keeps its tick rate** even while the API is being hammered.
+- **Each request costs a little main-thread time.** A large `object` with many placeholders costs
+  more than a small one, because every placeholder is resolved.
+- **Concurrent requests are served in sequence on the main thread.** Ten simultaneous requests do not
+  run in parallel; they queue up like everything else on your server.
+
+## `request_timeout_seconds`
+
+This is the safety valve. If the main thread cannot get to your request within this many seconds,
+HMTAPI gives up on it and answers `503` instead of letting it pile up.
+
+```yaml
+request_timeout_seconds: 5
+```
+
+| Value     | When to use it                                                 |
+| --------- | -------------------------------------------------------------- |
+| `1`–`3`   | You want fast failures and your server is heavily loaded       |
+| `5`       | Sensible default                                               |
+| `10`–`60` | Your server regularly lags and endpoints use many placeholders |
+
+If your API returns `503` and the console shows a timeout warning, the server was not able to answer
+in time. Either the server is overloaded for other reasons, or your endpoint does a lot of work.
+
+```text
+[HMTAPI] Timed out while collecting data for endpoint 'users'. Is the server overloaded?
+```
+
+## Keeping responses cheap
+
+**Resolve fewer placeholders.** Each `{papi:...}` value is a separate lookup, and the cost depends on
+the plugin behind it. Economy and rank lookups often hit a database or a cache file. An endpoint with
+three values is much cheaper than one with thirty.
+
+**Avoid the most expensive data.** Database-backed placeholders such as balances are typically
+slower than in-memory ones. If a public dashboard only needs online counts, request only that.
+
+**Split endpoints by cost.** Serve the cheap, frequently requested data on its own endpoint so a
+single slow endpoint does not slow down everything else.
+
+**Cache on your side.** If a page polls your API every second, have the proxy or your application
+cache the response instead. Most dashboards do not need live data.
+
+## Player lookups
+
+When a request contains a player name, HMTAPI asks the server for that player. Names the server
+already knows are answered from memory. A name the server has never seen triggers a lookup, which is
+slower.
+
+This means:
+
+- **Requesting the same players repeatedly is cheap.**
+- **Requesting thousands of different, unknown names is expensive** and can lag your server, because
+  each one may hit the database.
+- Do not use your API as a random name generator. If you need bulk data, look for a plugin that
+  exports it directly instead.
+
+## Concurrency
+
+HMTAPI serves up to 8 requests at a time and keeps 2 threads warm. Beyond that, requests wait in a
+queue. For a status page or a small website this is more than enough. It is not built for serving
+thousands of requests per second, and it is not meant to be.
+
+## Measuring
+
+- **Server console** — timeouts and failed requests are logged with the endpoint name.
+- **Reverse proxy logs** — response codes and timings per request.
+- **Your own client** — measure how long your requests take and watch for `503`.
+
+## If the API slows your server down
+
+1. Remove placeholders from your endpoints until it is fast again — especially economy and
+   permission lookups.
+2. Lower `request_timeout_seconds` so slow requests fail fast instead of queueing.
+3. Cache responses in your proxy or application.
+4. Check the server is not busy for other reasons; a laggy server makes every API request slow too.
+
+## Next steps
+
+- [Security](/projects/plugins/hmtapi/security) — proxy and access control
+- [Status codes](/projects/plugins/hmtapi/status-codes) — what to do with a `503`

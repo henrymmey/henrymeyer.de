@@ -190,13 +190,62 @@ export default defineConfig({
           items: [
             {
               label: "Attribute PVP Helper Reforged",
-              collapsed: false,
+              slug: "projects/mods/attribute-pvp-helper-reforged",
+            },
+          ],
+        },
+        {
+          label: "Plugins",
+          items: [
+            {
+              label: "HMTAPI",
+              collapsed: true,
               items: [
                 {
                   label: "Overview",
-                  slug: "projects/mods/attribute-pvp-helper-reforged",
+                  slug: "projects/plugins/hmtapi",
+                },
+                {
+                  label: "Installation",
+                  slug: "projects/plugins/hmtapi/installation",
+                },
+                {
+                  label: "Configuration",
+                  slug: "projects/plugins/hmtapi/configuration",
+                },
+                {
+                  label: "Endpoints",
+                  slug: "projects/plugins/hmtapi/endpoints",
+                },
+                {
+                  label: "Placeholders",
+                  slug: "projects/plugins/hmtapi/placeholders",
+                },
+                {
+                  label: "Commands",
+                  slug: "projects/plugins/hmtapi/commands",
+                },
+                {
+                  label: "Status codes",
+                  slug: "projects/plugins/hmtapi/status-codes",
+                },
+                {
+                  label: "Security",
+                  slug: "projects/plugins/hmtapi/security",
+                },
+                {
+                  label: "Performance",
+                  slug: "projects/plugins/hmtapi/performance",
+                },
+                {
+                  label: "Troubleshooting",
+                  slug: "projects/plugins/hmtapi/troubleshooting",
                 },
               ],
+            },
+            {
+              label: "HMTSync",
+              slug: "projects/plugins/hmtsync",
             },
           ],
         },

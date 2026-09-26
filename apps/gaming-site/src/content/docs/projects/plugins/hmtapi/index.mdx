@@ -1,0 +1,87 @@
+---
+title: HMTAPI
+description: Turn your Minecraft server into a REST API. Configure endpoints in YAML and serve live PlaceholderAPI data over plain HTTP and JSON.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  This plugin hasn’t been approved by Modrinth yet, so you can’t download it
+  from Modrinth right now.
+</Aside>
+
+**Turn your Minecraft server into a REST API.**
+
+HMTAPI exposes your Minecraft server over plain HTTP and answers with JSON. You decide what each
+endpoint contains in a small YAML config, and you can pull in live data from any
+[PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) placeholder — player
+balance, rank, online status, or anything else another plugin exposes.
+
+```json
+// GET /api/users/Notch
+{
+  "username": "Notch",
+  "last_login": "2026/09/25 22:13:20",
+  "balance": "1250.42"
+}
+```
+
+## What you get
+
+- **A config, not code.** Define endpoints in `config.yml`. No scripting, no database, no restarts.
+- **Any data you want.** Mix HMTAPI's own placeholders with any PlaceholderAPI placeholder.
+- **Server-wide and per-player endpoints.** Serve global information, or information about one
+  specific player.
+- **Reload without restart.** Update your config in-game and apply it immediately.
+- **Your server stays responsive.** API requests are handled separately and never block the main
+  server thread.
+- **Nothing extra to maintain.** HMTAPI ships no third-party libraries and needs no external services.
+
+## Requirements
+
+|                 |                                                                           |
+| --------------- | ------------------------------------------------------------------------- |
+| Server          | Paper 26.3 or newer                                                       |
+| Java            | 25                                                                        |
+| Required plugin | [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) |
+
+PlaceholderAPI is a hard requirement. HMTAPI will not enable without it. HMTAPI targets
+`api-version: 26.3` and will not load on older servers.
+
+## Get started
+
+1. Install PlaceholderAPI.
+2. Drop the HMTAPI jar into your `plugins` folder.
+3. Start the server once to generate `plugins/HMTAPI/config.yml`.
+4. Define your endpoints.
+5. Run `/hmtapi reload` in-game.
+
+```bash
+curl http://localhost:4567/api/users/Notch
+```
+
+Continue with [Installation](/projects/plugins/hmtapi/installation) and then
+[Configuring endpoints](/projects/plugins/hmtapi/endpoints).
+
+## Documentation
+
+| Page                                                        | What it covers                                 |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| [Installation](/projects/plugins/hmtapi/installation)       | Requirements, install steps, first run         |
+| [Configuration](/projects/plugins/hmtapi/configuration)     | Every setting in `config.yml`                  |
+| [Endpoints](/projects/plugins/hmtapi/endpoints)             | Defining endpoints and the URLs they answer on |
+| [Placeholders](/projects/plugins/hmtapi/placeholders)       | Every value you can put in an endpoint         |
+| [Commands](/projects/plugins/hmtapi/commands)               | Commands and permissions                       |
+| [Status codes](/projects/plugins/hmtapi/status-codes)       | What each HTTP response means                  |
+| [Security](/projects/plugins/hmtapi/security)               | Exposing the API safely                        |
+| [Performance](/projects/plugins/hmtapi/performance)         | Timeouts, load and best practices              |
+| [Troubleshooting](/projects/plugins/hmtapi/troubleshooting) | Error messages and common problems             |
+
+## Credits
+
+HMTAPI is a fork of [APIMachine](https://modrinth.com/project/9eIn1bYM), developed in cooperation
+with HM Gaming for TitanSMP.
+
+## Links
+
+- License: [GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)

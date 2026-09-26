@@ -1,0 +1,139 @@
+---
+title: Status codes
+description: What every HTTP status code and error message from HMTAPI means, and how to react to it.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  This plugin hasn’t been approved by Modrinth yet, so you can’t download it
+  from Modrinth right now.
+</Aside>
+
+Every HMTAPI response is JSON and carries the header
+`Content-Type: application/json; charset=utf-8`.
+
+| Code  | Meaning                                                         |
+| ----- | --------------------------------------------------------------- |
+| `200` | Success, **or** a JSON error describing a configuration problem |
+| `400` | The request is not valid                                        |
+| `404` | No such route                                                   |
+| `405` | The HTTP method is not allowed                                  |
+| `500` | The data could not be collected                                 |
+| `503` | The request timed out, or the server is shutting down           |
+
+## Important: `200` can still be an error
+
+**If your config is incomplete, HMTAPI answers with `200` and an `error` key in the body.** This
+matches the behaviour of the original APIMachine plugin and is kept so existing setups keep working.
+
+```json
+{ "error": "endpoints not found." }
+```
+
+If you build something on top of the API, **check the `error` key in the body, not only the status
+code.** A safe client treats a `200` response containing an `error` key as a failure.
+
+## Configuration errors (`200`)
+
+| Body                                            | Cause                                           | Fix                                                       |
+| ----------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------- |
+| `{"error": "endpoints not found."}`             | No `endpoints` section in the config            | Add an `endpoints` section, then reload                   |
+| `{"error": "Endpoint 'name' not found."}`       | The name in the URL does not match any endpoint | Check the spelling, and remember names are case-sensitive |
+| `{"error": "endpoints.name.object not found."}` | That endpoint has no `object` section           | Add an `object` section under it                          |
+
+The console logs a matching warning at startup and on every reload, so check the server log to find
+out which endpoint is affected.
+
+## `400` Bad Request
+
+| Situation           | Body                                                                        |
+| ------------------- | --------------------------------------------------------------------------- |
+| Malformed URL       | `{"error": "Malformed request path '...'. Available routes: ..."}`          |
+| Missing player name | `{"error": "Endpoint 'name' requires a player name: /api/name/{username}"}` |
+
+A malformed URL means the path does not match a valid shape. Valid shapes are
+`/api/{endpoint}`, `/api/{endpoint}/{username}` and `/favicon.ico`. Common causes:
+
+- More than two path segments, e.g. `/api/users/Notch/extra`
+- An empty segment, e.g. `/api//Notch`
+- A player name with a space or unusual characters
+- An endpoint name with characters other than letters, digits, `_` and `-`
+- A player name longer than 32 characters
+
+## `404` Not Found
+
+The route does not exist. The response lists the available routes:
+
+```json
+{
+  "error": "Not found. Available routes: /api/{endpoint}, /api/{endpoint}/{username}, /favicon.ico"
+}
+```
+
+Note that a request for an endpoint that does not exist returns `200`, not `404`, with the message
+`Endpoint 'name' not found.` — see above.
+
+## `405` Method Not Allowed
+
+Anything other than `GET` and `HEAD` is rejected. `POST`, `PUT`, `DELETE` and friends all return
+`405` with an `Allow: GET, HEAD` header:
+
+```json
+{ "error": "Method POST is not supported, use GET." }
+```
+
+HMTAPI is read-only. It never modifies server or player data, so there is nothing to `POST` to.
+
+`HEAD` is fully supported. It returns the same status code and headers as `GET` but no body, which is
+useful for health checks:
+
+```bash
+curl -I http://localhost:4567/api/users/Notch
+```
+
+## `500` Internal Server Error
+
+Something failed while collecting the data — most often a third-party plugin threw an exception
+while its placeholder was being resolved. The full error is logged to the console, where you will
+find the stack trace and the name of the plugin responsible.
+
+```json
+{ "error": "Failed to collect the requested data." }
+```
+
+If this is persistent, remove the placeholders from that endpoint one at a time to find the culprit.
+
+## `503` Service Unavailable
+
+Either the server was too busy to answer in `request_timeout_seconds`, or the server is shutting
+down.
+
+```json
+{ "error": "Timed out while collecting the requested data." }
+```
+
+```json
+{ "error": "The plugin is shutting down." }
+```
+
+On a busy server, raise `request_timeout_seconds` and see [Performance](/projects/plugins/hmtapi/performance). During
+shutdown, a `503` for a few seconds is expected.
+
+## Checking the response
+
+```bash
+# Full response with headers
+curl -i http://localhost:4567/api/users/Notch
+
+# Only the status code
+curl -o /dev/null -w "%{http_code}\n" http://localhost:4567/api/users/Notch
+
+# Health check
+curl -I http://localhost:4567/api/global
+```
+
+## Next steps
+
+- [Troubleshooting](/projects/plugins/hmtapi/troubleshooting) — step-by-step fixes
+- [Configuration](/projects/plugins/hmtapi/configuration) — fixing the config errors above

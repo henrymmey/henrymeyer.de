@@ -1,0 +1,215 @@
+---
+title: Endpoints
+description: How to define endpoints in HMTAPI, what require_player does, and which URLs your endpoints answer on.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  This plugin hasn’t been approved by Modrinth yet, so you can’t download it
+  from Modrinth right now.
+</Aside>
+
+An endpoint is a named block of data that HMTAPI serves as JSON. You define endpoints in the
+`endpoints` section of `config.yml` and each one becomes part of a URL.
+
+## Defining an endpoint
+
+```yaml
+endpoints:
+  users:
+    require_player: true
+    object:
+      username: "{username}"
+      last_login: "{last_login}"
+      balance: "{papi:%vault_eco_balance%}"
+```
+
+Each endpoint has two settings:
+
+| Setting          | Type             | Description                                       |
+| ---------------- | ---------------- | ------------------------------------------------- |
+| `require_player` | `true` / `false` | Whether the endpoint is about one specific player |
+| `object`         | key/value pairs  | The keys your JSON response contains              |
+
+The key in front of the block (`users` above) is the **endpoint name**. It becomes the name in the
+URL.
+
+## Endpoint names
+
+| Rule               |                              |
+| ------------------ | ---------------------------- |
+| Allowed characters | Letters, digits, `_` and `-` |
+| Length             | 1 to 64 characters           |
+
+Names with other characters, or that are too long, are ignored. HMTAPI logs a warning naming the
+offending entry and serves your other endpoints as normal.
+
+Use lowercase names with underscores. Names are case-sensitive: `users` and `Users` are two different
+endpoints.
+
+## `require_player`
+
+This setting decides both the URL and the placeholders available to you.
+
+### `require_player: false` — server-wide endpoints
+
+Served at `/api/{name}` with no player:
+
+```bash
+curl http://localhost:4567/api/global
+```
+
+```json
+{
+  "server_name": "My Server"
+}
+```
+
+Because no player is involved, `{username}`, `{last_login}` and `{last_seen}` are not available here.
+PlaceholderAPI placeholders are resolved without a player, so player-specific placeholders will not
+have data to work with. Server-wide placeholders such as `%server_online%` or `%server_name%` work
+fine.
+
+### `require_player: true` — player endpoints
+
+Served at `/api/{name}/{username}`:
+
+```bash
+curl http://localhost:4567/api/users/Notch
+```
+
+```json
+{
+  "username": "Notch",
+  "last_login": "2026/09/25 22:13:20",
+  "balance": "1250.42"
+}
+```
+
+The `{username}` in the URL is used for the player lookup and for PlaceholderAPI resolution, so
+player placeholders work as expected.
+
+Requesting a player endpoint **without** a player name returns `400` with an explanation:
+
+```json
+{
+  "error": "Endpoint 'users' requires a player name: /api/users/{username}"
+}
+```
+
+## Player names in URLs
+
+The name after the endpoint is passed to the server as written. It may be at most 32 characters and
+may not contain spaces.
+
+- Percent-encoded names work: `/api/users/Notch%5F42` resolves `Notch_42`.
+- A `+` in a name is treated as a literal plus, not a space.
+- If the name has never joined your server, HMTAPI still answers — date placeholders become
+  `never_seen_value` and player placeholders resolve to whatever PlaceholderAPI returns for an
+  unknown player.
+
+## The `object` section
+
+The `object` section is the body of your JSON response. Each key becomes a JSON key, and its value is
+a template that HMTAPI fills in per request.
+
+```yaml
+endpoints:
+  player_card:
+    require_player: true
+    object:
+      name: "{username}"
+      last_seen: "{last_seen}"
+      online: "{papi:%server_online%}"
+      rank: "{papi:%luckperms_prefix%}"
+```
+
+Becomes:
+
+```json
+{
+  "name": "Notch",
+  "last_seen": "2026/09/25 22:13:20",
+  "online": "42",
+  "rank": "[Admin] "
+}
+```
+
+Things worth knowing:
+
+- **Key order is preserved** exactly as written in your config.
+- **Values are not restricted to text.** Numbers, booleans and lists in the config are turned into
+  their text form. Quote them if they contain characters YAML would otherwise interpret, such as
+  `:` or a leading `%`.
+- **Special characters are escaped automatically.** Quotes, backslashes and newlines in a resolved
+  value cannot break your JSON.
+- **An empty `object`** returns `{}` and logs a warning.
+- **A missing `object`** makes the endpoint return an error object. See
+  [Status codes](/projects/plugins/hmtapi/status-codes).
+
+## Practical examples
+
+### A public server status endpoint
+
+```yaml
+endpoints:
+  status:
+    require_player: false
+    object:
+      online: "{papi:%server_online%}"
+      max_players: "{papi:%server_max_players%}"
+      version: "{papi:%server_version%}"
+```
+
+```bash
+curl http://localhost:4567/api/status
+```
+
+```json
+{
+  "online": "42",
+  "max_players": "200",
+  "version": "26.3"
+}
+```
+
+### A leaderboard entry
+
+```yaml
+endpoints:
+  top_balance:
+    require_player: true
+    object:
+      rank: "{papi:%vault_eco_position%}"
+      player: "{username}"
+      balance: "{papi:%vault_eco_balance%}"
+```
+
+### A Minecraft account lookup
+
+```yaml
+endpoints:
+  account:
+    require_player: true
+    object:
+      username: "{username}"
+      first_seen: "{last_seen}"
+      last_login: "{last_login}"
+      status: "{papi:%player_world%}"
+```
+
+## Reloading
+
+Add or change endpoints, then apply them without restarting:
+
+```text
+/hmtapi reload
+```
+
+The new endpoints are available immediately. See [Commands](/projects/plugins/hmtapi/commands).
+
+## Next steps
+
+- [Placeholders](/projects/plugins/hmtapi/placeholders) — everything you can use as a value
+- [Security](/projects/plugins/hmtapi/security) — before exposing player data

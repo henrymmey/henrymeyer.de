@@ -1,0 +1,78 @@
+---
+title: Installation
+description: Requirements, installation steps and the first run of HMTAPI on your Paper server.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+   This plugin hasn’t been approved by Modrinth yet, so you can’t download it from Modrinth right now.
+</Aside>
+
+## Requirements
+
+Check these before you start.
+
+| | |
+|---|---|
+| Server | Paper 26.3 or newer |
+| Java | 25 |
+| Required plugin | [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) |
+
+HMTAPI does not work on CraftBukkit or Spigot. It targets `api-version: 26.3`, so Paper will refuse to
+load it on an older server.
+
+PlaceholderAPI is a **hard requirement**. HMTAPI declares it as a dependency and will not enable if
+it is missing, so install and enable PlaceholderAPI first.
+
+## Install
+
+1. **Install PlaceholderAPI.** Download it, drop it into `plugins/`, and make sure it starts without
+   errors. HMTAPI cannot enable without it.
+
+2. **Install HMTAPI.** Drop the HMTAPI jar into your `plugins` folder alongside the other plugins.
+
+3. **Start the server once.** HMTAPI creates `plugins/HMTAPI/config.yml` on first start. Nothing else
+   is generated.
+
+4. **Check the console.** On a successful start you will see a line like:
+
+   ```
+   [HMTAPI] HMTAPI is serving the API on 0.0.0.0:4567 (2 endpoints, PlaceholderAPI available).
+   ```
+
+5. **Try the default endpoint.** The shipped config contains a `users` and a `global` endpoint:
+
+   ```bash
+   curl http://localhost:4567/api/global
+   ```
+
+If that returns JSON, HMTAPI is working. You can now edit your config and continue with
+[Configuration](/projects/plugins/hmtapi/configuration).
+
+## Updating
+
+Replace the jar and restart the server. Your `config.yml` is never overwritten, so your endpoints
+survive an update.
+
+If a future version adds new settings, they will fall back to their defaults until you add them
+yourself. The console logs a warning for any value it could not read.
+
+## Upgrading from another version
+
+- **From an older HMTAPI:** replace the jar, start the server, and check the console for warnings
+  about settings that changed.
+
+## Uninstalling
+
+1. Remove the HMTAPI jar.
+2. Restart the server.
+3. Delete `plugins/HMTAPI/` if you do not plan to reinstall.
+
+No other files are created outside of `plugins/HMTAPI/`.
+
+## Next steps
+
+- [Configuration](/projects/plugins/hmtapi/configuration) — every setting explained
+- [Endpoints](/projects/plugins/hmtapi/endpoints) — building your first endpoints
+- [Security](/projects/plugins/hmtapi/security) — before you expose anything to the internet

@@ -1,0 +1,133 @@
+---
+title: Placeholders
+description: Every placeholder HMTAPI supports, including the built-in username and date placeholders and any PlaceholderAPI placeholder.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  This plugin hasn’t been approved by Modrinth yet, so you can’t download it
+  from Modrinth right now.
+</Aside>
+
+A placeholder is a piece of text in your `object` values that HMTAPI replaces with real data when
+someone requests the endpoint.
+
+## Built-in placeholders
+
+| Placeholder    | Where            | Description                                 |
+| -------------- | ---------------- | ------------------------------------------- |
+| `{username}`   | Player endpoints | The player name from the URL                |
+| `{last_login}` | Player endpoints | When the player last logged in              |
+| `{last_seen}`  | Player endpoints | When the player was last seen on the server |
+
+All three need a player, so they only work on endpoints with `require_player: true`.
+
+### `{username}`
+
+The player name exactly as it appeared in the URL. It is not corrected or reformatted, so
+`/api/users/NoTcH` answers with `"username": "NoTcH"`.
+
+### `{last_login}`
+
+The last time the player logged into the server, formatted with `date_format` in `time_zone` from
+your config. With the default settings it looks like `2026/09/25 22:13:20`.
+
+See [Configuration](/projects/plugins/hmtapi/configuration) for changing the format or time zone.
+
+### `{last_seen}`
+
+The last time the player was seen on the server. For a player who is online this is roughly the
+current time.
+
+### Players who never joined
+
+A player who has never logged in has no dates. HMTAPI replaces both `{last_login}` and `{last_seen}`
+with your `never_seen_value` — `never` by default:
+
+```json
+{
+  "username": "SomeNewPlayer",
+  "last_login": "never",
+  "last_seen": "never"
+}
+```
+
+## PlaceholderAPI placeholders
+
+To use any [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) placeholder,
+wrap it in `{papi:...}`:
+
+```yaml
+object:
+  balance: "{papi:%vault_eco_balance%}"
+```
+
+**Keep the `%` signs inside.** The placeholder itself is `%vault_eco_balance%`, and the curly braces
+around it tell HMTAPI to resolve it.
+
+| You write                    | HMTAPI asks PlaceholderAPI for |
+| ---------------------------- | ------------------------------ |
+| `{papi:%vault_eco_balance%}` | `%vault_eco_balance%`          |
+| `{papi:%luckperms_prefix%}`  | `%luckperms_prefix%`           |
+| `{papi:%player_world%}`      | `%player_world%`               |
+
+You can use several in one value:
+
+```yaml
+object:
+  summary: "{username} is on {papi:%player_world%} with {papi:%vault_eco_balance%} coins"
+```
+
+### Player context
+
+On a **player endpoint** (`require_player: true`), placeholders are resolved for the requested
+player, so player-specific placeholders work.
+
+On a **server-wide endpoint** (`require_player: false`), there is no player, so placeholders are
+resolved without one. Server-wide placeholders such as `%server_name%`, `%server_online%` and
+`%server_max_players%` work; player placeholders such as `%vault_eco_balance%` will not have data.
+
+### Placeholders that cannot be resolved
+
+If PlaceholderAPI does not know a placeholder, or the plugin that provides it is missing, HMTAPI
+leaves the text as it is:
+
+```json
+{
+  "balance": "%some_unknown_placeholder%"
+}
+```
+
+This is intentional: one broken placeholder never takes down your whole endpoint. If a value comes
+back as raw `%placeholder%` text, check that the plugin providing it is installed and that it
+returns something for the player you queried.
+
+## Order of resolution
+
+HMTAPI fills in its own placeholders first, then resolves `{papi:...}`. A value produced by
+PlaceholderAPI is therefore never re-processed, which means a player name that happens to contain
+`{username}` cannot cause surprises.
+
+## Common placeholders to start with
+
+These need a player endpoint and the plugin that provides them.
+
+| Placeholder                   | Needs                                         |
+| ----------------------------- | --------------------------------------------- |
+| `{papi:%vault_eco_balance%}`  | Vault + an economy plugin                     |
+| `{papi:%luckperms_prefix%}`   | LuckPerms                                     |
+| `{papi:%player_world%}`       | Nothing, provided by PlaceholderAPI expansion |
+| `{papi:%server_name%}`        | Nothing, works on server-wide endpoints       |
+| `{papi:%server_online%}`      | Nothing, works on server-wide endpoints       |
+| `{papi:%server_max_players%}` | Nothing, works on server-wide endpoints       |
+| `{papi:%player_level%}`       | Nothing, provided by the server               |
+
+PlaceholderAPI's own expansion placeholders are documented on the
+[PlaceholderAPI wiki](https://wiki.placeholderapi.com/users/placeholder-list/). To see everything
+your server offers, use the `/papi parse` or `/papi list` commands in-game.
+
+## Next steps
+
+- [Endpoints](/projects/plugins/hmtapi/endpoints) — where placeholders are used
+- [Troubleshooting](/projects/plugins/hmtapi/troubleshooting) — if a value looks wrong
