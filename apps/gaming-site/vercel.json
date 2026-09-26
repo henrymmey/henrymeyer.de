@@ -69,6 +69,16 @@
       "source": "/attribute-pvp-helper-reforged",
       "destination": "/projects/mods/attribute-pvp-helper-reforged/",
       "permanent": true
+    },
+    {
+      "source": "/hmtsync",
+      "destination": "/projects/plugins/hmtsync/",
+      "permanent": true
+    },
+    {
+      "source": "/hmtapi",
+      "destination": "/projects/plugins/hmtapi/",
+      "permanent": true
     }
   ]
 }
