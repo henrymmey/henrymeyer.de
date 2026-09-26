@@ -28,8 +28,8 @@ type ProjectSortOptions = {
 
 const projectInfos: ProjectInfo[] = [
   {
-    slug: "js-gaming",
-    title: "HM Gaming",
+    slug: "hmlabs-gaming",
+    title: "HMLabs Gaming",
     description: "Modpacks, resource packs, and mods for Minecraft.",
     role: "Founder",
     showRole: true,
@@ -40,11 +40,15 @@ const projectInfos: ProjectInfo[] = [
     links: [
       {
         label: "Website",
-        href: "https://gaming.henrymeyer.de",
+        href: "https://gaming.hmlabs.eu",
       },
       {
         label: "Modrinth",
-        href: "https://modrinth.com/user/Fg5L4UzB",
+        href: "https://modrinth.com/organization/9zYhowm8",
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/HMLabs-Gaming",
       },
     ],
     priority: 2,
