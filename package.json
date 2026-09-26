@@ -6,8 +6,6 @@
     "dev:main": "pnpm --filter main-site dev",
     "build:main": "pnpm --filter main-site build",
     "dev:hmt-clan": "pnpm --filter hmt-clan dev",
-    "build:hmt-clan": "pnpm --filter hmt-clan build",
-    "dev:gaming-site": "pnpm --filter gaming-site dev",
-    "build:gaming-site": "pnpm --filter gaming-site build"
+    "build:hmt-clan": "pnpm --filter hmt-clan build"
   }
 }
