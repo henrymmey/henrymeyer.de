@@ -45,12 +45,12 @@ export default function PackNav() {
         <p className="text-xs leading-relaxed text-muted">
           Zur Verfügung gestellt von unserem Partner{" "}
           <a
-            href="https://gaming.henrymeyer.de/"
+            href="https://gaming.hmlabs.eu/"
             target="_blank"
             rel="noreferrer"
             className="underline decoration-emerald/40 underline-offset-2 transition-colors hover:text-foreground hover:decoration-emerald"
           >
-            HM Gaming
+            HMLabs Gaming
           </a>
           .
         </p>

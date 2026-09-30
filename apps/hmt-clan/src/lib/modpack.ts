@@ -1,5 +1,3 @@
-import { readFile } from "fs/promises";
-import { join } from "path";
 import {
   PACK_PAGES,
   type PackBlock,
@@ -11,10 +9,8 @@ export type { PackBlock, PackTab, PackPage };
 
 export { PACK_PAGES };
 
-const PACK_DIR = join(
-  process.cwd(),
-  "../gaming-site/src/content/docs/projects/modpacks/hmt-pack",
-);
+const PACK_CONTENT_BASE_URL =
+  "https://cdn.jsdelivr.net/gh/HMLabs-Gaming/gaming.hmlabs.eu@main/src/content/docs/projects/modpacks/hmt-pack";
 
 function parseFrontmatter(raw: string): {
   title?: string;
@@ -42,8 +38,7 @@ function parseFrontmatter(raw: string): {
 function stripStrays(raw: string): string {
   let content = raw;
 
-  const multilineImport =
-    /import\s*\{[\s\S]*?\}\s*from\s*"[^"]*"\s*;\s*/g;
+  const multilineImport = /import\s*\{[\s\S]*?\}\s*from\s*"[^"]*"\s*;\s*/g;
   content = content.replace(multilineImport, "");
   content = content.replace(/^import .*$/gm, "");
 
@@ -116,7 +111,8 @@ function tokenize(input: string): Token[] {
       });
     last = re.lastIndex;
   }
-  if (last < input.length) tokens.push({ kind: "text", value: input.slice(last) });
+  if (last < input.length)
+    tokens.push({ kind: "text", value: input.slice(last) });
   return tokens;
 }
 
@@ -223,7 +219,16 @@ export async function getPackPage(slug: string): Promise<{
     throw new Error(`Unknown pack page: ${JSON.stringify(slug)}`);
   }
 
-  const raw = await readFile(join(PACK_DIR, page.file), "utf-8");
+  const response = await fetch(`${PACK_CONTENT_BASE_URL}/${page.file}`, {
+    cache: "force-cache",
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch pack page ${JSON.stringify(slug)}: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  const raw = await response.text();
   const { title, description, body } = parseFrontmatter(raw);
   const blocks = parseBlocks(stripStrays(body));
 
