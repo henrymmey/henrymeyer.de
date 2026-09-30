@@ -232,17 +232,20 @@
     "inactive": false
   },
   {
-    "name": "Dubairegelt",
+    "name": "Dubairegelt1",
     "rollen": [
       "Spieler"
     ],
     "minecraftUser": "Dubairegelt",
     "useskin": true,
     "showLaby": true,
-    "labySlug": "Dubairegelt",
+    "labySlug": "Dubairegelt1",
     "thescape_slug": "",
     "priority": 14,
-    "slug": "dubairegelt",
+    "slug": "dubairegelt1",
+    "seasons": [
+      "season-14"
+    ],
     "inactive": false
   },
   {
