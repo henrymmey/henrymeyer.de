@@ -278,5 +278,22 @@
     "priority": 16,
     "slug": "saugstaube013",
     "inactive": false
+  },
+  {
+    "name": "Beno2312",
+    "slug": "beno2312",
+    "rollen": [
+      "Spieler"
+    ],
+    "minecraftUser": "Beno2312",
+    "useskin": true,
+    "showLaby": true,
+    "labySlug": "Beno2312",
+    "thescape_slug": "",
+    "priority": 17,
+    "seasons": [
+      "season-14"
+    ],
+    "inactive": false
   }
 ]
