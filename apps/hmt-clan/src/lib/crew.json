@@ -295,5 +295,22 @@
       "season-14"
     ],
     "inactive": false
+  },
+  {
+    "name": "Haki_Games",
+    "slug": "haki-games",
+    "rollen": [
+      "Spieler"
+    ],
+    "minecraftUser": "Haki_Games",
+    "useskin": true,
+    "showLaby": true,
+    "labySlug": "Haki_Games",
+    "thescape_slug": "",
+    "priority": 18,
+    "seasons": [
+      "season-14"
+    ],
+    "inactive": false
   }
 ]
