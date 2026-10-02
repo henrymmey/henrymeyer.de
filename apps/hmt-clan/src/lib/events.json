@@ -9,8 +9,8 @@
     "showTime": true,
     "show": true,
     "showDetailsButton": true,
-    "done": false,
-    "countdown": true,
+    "done": true,
+    "countdown": false,
     "season": "season-14",
     "icon": "/events/wooden_sword.png",
     "links": [
