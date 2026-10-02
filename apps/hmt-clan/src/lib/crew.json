@@ -298,7 +298,6 @@
   },
   {
     "name": "Haki_Games",
-    "slug": "haki-games",
     "rollen": [
       "Spieler"
     ],
@@ -306,8 +305,9 @@
     "useskin": true,
     "showLaby": true,
     "labySlug": "Haki_Games",
-    "thescape_slug": "",
+    "thescape_slug": "haki-games-dc71ed49-a57e-40fc-8ba7-0902646bc36c",
     "priority": 18,
+    "slug": "haki-games",
     "seasons": [
       "season-14"
     ],
