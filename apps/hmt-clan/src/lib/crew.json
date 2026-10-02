@@ -281,7 +281,6 @@
   },
   {
     "name": "Beno2312",
-    "slug": "beno2312",
     "rollen": [
       "Spieler"
     ],
@@ -289,8 +288,9 @@
     "useskin": true,
     "showLaby": true,
     "labySlug": "Beno2312",
-    "thescape_slug": "",
+    "thescape_slug": "beno2312-5fa77cad-570a-491c-b692-d6530eba189d",
     "priority": 17,
+    "slug": "beno2312",
     "seasons": [
       "season-14"
     ],
