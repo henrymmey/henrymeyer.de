@@ -202,6 +202,14 @@ export default function Hero() {
           >
             Events
           </MinecraftButton>
+          <MinecraftButton
+            href="https://map.thescape.de/#craftattack:-3255:99:5118:37:0:0:0:0:perspective"
+            variant="secondary"
+            size="lg"
+            className="w-52 sm:w-auto"
+          >
+            Map
+          </MinecraftButton>
           <MinecraftButton href="/pack" variant="stone" size="lg" className="w-52 sm:w-auto">
             Modpack
           </MinecraftButton>

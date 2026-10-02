@@ -9,6 +9,16 @@
       "source": "/modpack",
       "destination": "pack",
       "permanent": true
+    },
+    {
+      "source": "/map",
+      "destination": "https://map.thescape.de/#craftattack:-3255:99:5118:37:0:0:0:0:perspective",
+      "permanent": true
+    },
+    {
+      "source": "/base",
+      "destination": "https://map.thescape.de/#craftattack:-3255:99:5118:37:0:0:0:0:perspective",
+      "permanent": true
     }
   ]
 }

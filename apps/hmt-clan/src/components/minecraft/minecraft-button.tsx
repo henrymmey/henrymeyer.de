@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "stone" | "ghost";
+type Variant = "primary" | "stone" | "ghost" | "secondary";
 
 const baseClasses =
   "inline-flex select-none items-center justify-center gap-2 rounded-[2px] font-pixel text-xs uppercase tracking-[0.08em] transition-all duration-150 will-change-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald disabled:pointer-events-none disabled:opacity-50 md:text-sm";
@@ -11,6 +11,8 @@ const variantClasses: Record<Variant, string> = {
     "border border-grass-deep/70 bg-grass px-5 py-2.5 text-night shadow-[0_3px_0_0_var(--hmt-grass-deep)] hover:-translate-y-px hover:shadow-[0_4px_0_0_var(--hmt-grass-deep)] hover:brightness-110 active:translate-y-px active:shadow-[0_1px_0_0_var(--hmt-grass-deep)]",
   stone:
     "border border-black/50 bg-surface-3 px-5 py-2.5 text-foreground shadow-[0_3px_0_0_rgb(0_0_0/0.55)] hover:-translate-y-px hover:bg-surface-hover hover:shadow-[0_4px_0_0_rgb(0_0_0/0.55)] active:translate-y-px active:shadow-[0_1px_0_0_rgb(0_0_0/0.55)]",
+  secondary:
+    "border border-dirt-dark/80 bg-sand px-5 py-2.5 text-night shadow-[0_3px_0_0_var(--hmt-dirt-dark)] hover:-translate-y-px hover:brightness-110 hover:shadow-[0_4px_0_0_var(--hmt-dirt-dark)] active:translate-y-px active:shadow-[0_1px_0_0_var(--hmt-dirt-dark)]",
   ghost:
     "border border-border bg-secondary-background/80 px-4 py-2 text-muted shadow-[0_2px_0_0_rgb(0_0_0/0.4)] backdrop-blur-sm hover:-translate-y-px hover:border-border hover:text-foreground active:translate-y-px active:shadow-none",
 };

@@ -10,6 +10,11 @@ const fullBleed = "ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]";
 const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/events", label: "Events" },
+  {
+    href: "https://map.thescape.de/#craftattack:-3255:99:5118:37:0:0:0:0:perspective",
+    label: "Map",
+    external: true,
+  },
   { href: "/season", label: "Seasons" },
   { href: "/crew", label: "Crew" },
   { href: "/calendar", label: "Kalender" },
