@@ -21,6 +21,7 @@ interface FormValues {
   minecraftUser: string;
   useskin: boolean;
   showLaby: boolean;
+  showThescapeProfile: boolean;
   labySlug: string;
   thescape_slug: string;
   priority: string;
@@ -36,6 +37,7 @@ function initialFromMember(member: CrewMember | null): FormValues {
     minecraftUser: member?.minecraftUser ?? "",
     useskin: member?.useskin ?? true,
     showLaby: member?.showLaby ?? false,
+    showThescapeProfile: member?.showThescapeProfile ?? false,
     labySlug: member?.labySlug ?? "",
     thescape_slug: member?.thescape_slug ?? "",
     priority: member?.priority != null ? String(member.priority) : "",
@@ -81,6 +83,7 @@ export default function CrewForm({
       minecraftUser: values.minecraftUser.trim(),
       useskin: values.useskin,
       showLaby: values.showLaby,
+      showThescapeProfile: values.showThescapeProfile,
       labySlug: values.labySlug.trim(),
       thescape_slug: values.thescape_slug.trim(),
       priority: values.priority.trim() ? Number(values.priority) : 0,
@@ -241,6 +244,12 @@ export default function CrewForm({
             onChange={(checked) => set("showLaby", checked)}
             label="LabyMod anzeigen"
             description="Zeigt den Laby-Link auf der Detailseite."
+          />
+          <Toggle
+            checked={values.showThescapeProfile}
+            onChange={(checked) => set("showThescapeProfile", checked)}
+            label="TheScape-Profil anzeigen"
+            description="Zeigt den TheScape-Link auf der Detailseite."
           />
           <Toggle
             checked={values.inactive}

@@ -16,7 +16,11 @@ import MinecraftBadge from "@/components/minecraft/minecraft-badge";
 import CrewDetailTabs from "@/components/crew/crew-detail-tabs";
 import JsonLd from "@/components/json-ld";
 import { profileSchema, breadcrumbSchema } from "@/lib/seo";
-import { getCrewMemberBySlug, getMemberRoles, getMemberSeasons } from "@/lib/crew";
+import {
+  getCrewMemberBySlug,
+  getMemberRoles,
+  getMemberSeasons,
+} from "@/lib/crew";
 import { getSeasonBySlug } from "@/lib/season";
 import { getFullThescapeProfile } from "@/lib/thescape";
 
@@ -96,6 +100,10 @@ export default async function CrewMemberPage({ params }: Props) {
   const labyUrl =
     member.showLaby && member.labySlug
       ? `https://laby.net/de/@${member.labySlug}`
+      : null;
+  const thescapeProfileUrl =
+    member.showThescapeProfile && member.thescape_slug
+      ? `https://thescape.de/spielersuche/${encodeURIComponent(member.thescape_slug)}`
       : null;
 
   return (
@@ -199,16 +207,31 @@ export default async function CrewMemberPage({ params }: Props) {
                 </div>
               )}
 
-              {labyUrl && (
-                <a
-                  href={labyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 rounded-block border border-lapis-deep bg-lapis/10 px-4 py-2.5 font-pixel text-xs uppercase tracking-[0.12em] text-lapis shadow-[0_2px_0_rgb(0_0_0/0.5)] transition-all duration-150 hover:-translate-y-px hover:bg-lapis/20 hover:text-lapis active:translate-y-px active:shadow-none"
-                >
-                  <ExternalLink className="size-4" aria-hidden="true" />
-                  Laby Profil
-                </a>
+              {(labyUrl || thescapeProfileUrl) && (
+                <div className="mt-5 flex flex-wrap justify-center gap-3 md:justify-start">
+                  {labyUrl && (
+                    <a
+                      href={labyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-block border border-lapis-deep bg-lapis/10 px-4 py-2.5 font-pixel text-xs uppercase tracking-[0.12em] text-lapis shadow-[0_2px_0_rgb(0_0_0/0.5)] transition-all duration-150 hover:-translate-y-px hover:bg-lapis/20 hover:text-lapis active:translate-y-px active:shadow-none"
+                    >
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                      Laby Profil
+                    </a>
+                  )}
+                  {thescapeProfileUrl && (
+                    <a
+                      href={thescapeProfileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-block border border-emerald/60 bg-emerald/10 px-4 py-2.5 font-pixel text-xs uppercase tracking-[0.12em] text-emerald shadow-[0_2px_0_rgb(0_0_0/0.5)] transition-all duration-150 hover:-translate-y-px hover:bg-emerald/20 hover:text-emerald active:translate-y-px active:shadow-none"
+                    >
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                      TheScape Profil
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           </div>

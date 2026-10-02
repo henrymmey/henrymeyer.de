@@ -13,17 +13,16 @@ export const slugSchema = z
 
 export const isoDateSchema = z
   .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, "Datum muss dem Format YYYY-MM-DD entsprechen.");
+  .regex(
+    /^\d{4}-\d{2}-\d{2}$/,
+    "Datum muss dem Format YYYY-MM-DD entsprechen.",
+  );
 
 export const timeSchema = z
   .string()
   .regex(/^\d{2}:\d{2}$/, "Zeit muss dem Format HH:mm entsprechen.");
 
-export const prioritySchema = z
-  .number()
-  .int()
-  .min(-1_000_000)
-  .max(1_000_000);
+export const prioritySchema = z.number().int().min(-1_000_000).max(1_000_000);
 
 function isHttpUrl(value: string): boolean {
   try {
@@ -111,6 +110,7 @@ export const crewCreateSchema = z.object({
   minecraftUser: z.string().trim().max(64),
   useskin: z.boolean(),
   showLaby: z.boolean(),
+  showThescapeProfile: z.boolean(),
   labySlug: z.string().trim().max(120),
   thescape_slug: z.string().trim().max(255),
   priority: prioritySchema,
@@ -131,6 +131,7 @@ export const crewFileSchema = z.array(
     minecraftUser: z.string(),
     useskin: z.boolean().optional(),
     showLaby: z.boolean().optional(),
+    showThescapeProfile: z.boolean().optional(),
     labySlug: z.string().optional(),
     thescape_slug: z.string().optional(),
     priority: z.number().int(),

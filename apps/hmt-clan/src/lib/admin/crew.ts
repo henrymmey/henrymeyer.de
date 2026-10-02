@@ -1,10 +1,7 @@
 import type { CrewMember } from "@/lib/crew";
 import { CONTENT_FILES } from "./paths";
 import { ContentError, readJsonList, writeJsonList } from "./content";
-import type {
-  CrewCreateInput,
-  CrewPatchInput,
-} from "./schemas";
+import type { CrewCreateInput, CrewPatchInput } from "./schemas";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -28,6 +25,7 @@ function toCanonicalMember(member: CrewMember): JsonRecord {
     minecraftUser: member.minecraftUser,
     useskin: member.useskin ?? false,
     showLaby: member.showLaby ?? false,
+    showThescapeProfile: member.showThescapeProfile ?? false,
     labySlug: member.labySlug ?? "",
     thescape_slug: member.thescape_slug ?? "",
     priority: member.priority,
@@ -83,6 +81,7 @@ export async function createMember(
     minecraftUser: input.minecraftUser,
     useskin: input.useskin,
     showLaby: input.showLaby,
+    showThescapeProfile: input.showThescapeProfile,
     labySlug: input.labySlug,
     thescape_slug: input.thescape_slug,
     priority,
@@ -118,6 +117,7 @@ export async function updateMember(
     minecraftUser: "minecraftUser",
     useskin: "useskin",
     showLaby: "showLaby",
+    showThescapeProfile: "showThescapeProfile",
     labySlug: "labySlug",
     thescape_slug: "thescape_slug",
     priority: "priority",
@@ -143,7 +143,10 @@ export async function updateMember(
 
   const slugChanged = merged.slug !== slug;
   if (slugChanged) {
-    assertUniqueSlug(merged.slug, members.filter((_, i) => i !== index));
+    assertUniqueSlug(
+      merged.slug,
+      members.filter((_, i) => i !== index),
+    );
   }
 
   const next = [...members];

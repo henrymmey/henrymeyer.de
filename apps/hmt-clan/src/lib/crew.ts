@@ -8,6 +8,7 @@ export interface CrewMember {
   minecraftUser: string;
   useskin?: boolean;
   showLaby?: boolean;
+  showThescapeProfile?: boolean;
   labySlug?: string;
   priority: number;
   slug: string;
