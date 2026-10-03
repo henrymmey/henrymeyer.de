@@ -85,9 +85,7 @@ function decodeEntities(value: string): string {
     .trim();
 }
 
-async function fetchProfileHtml(
-  slug: string,
-): Promise<string | null> {
+async function fetchProfileHtml(slug: string): Promise<string | null> {
   const now = Date.now();
   const cached = htmlCache.get(slug);
   if (cached && cached.expiresAt > now) {
@@ -147,7 +145,7 @@ function extractLastSeen(html: string): string | null {
 
 function extractLevel(html: string): string | null {
   const match = html.match(
-    /InGame-Level:\s*<span[^>]*>([^<]+)<\/span>/,
+    /id="tab-ubersicht"[\s\S]*?data-content-namespace="craftattack"[\s\S]*?<li\b[^>]*aria-current="step"[\s\S]*?<span[^>]*>\s*Level\s*<\/span>[\s\S]*?<span[^>]*>(\d+)<\/span>/,
   );
   return match ? decodeEntities(match[1]) : null;
 }
@@ -185,7 +183,10 @@ function extractCategories(html: string): StatCategory[] {
     const rawTitle =
       titleClose === -1 ? afterSvg : afterSvg.slice(0, titleClose);
     const title = decodeEntities(
-      rawTitle.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
+      rawTitle
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim(),
     );
     if (!title || seen.has(title)) {
       continue;
@@ -201,10 +202,7 @@ function extractCategories(html: string): StatCategory[] {
   return categories;
 }
 
-function extractCategoryStats(
-  segment: string,
-  segmentEnd: number,
-): StatCard[] {
+function extractCategoryStats(segment: string, segmentEnd: number): StatCard[] {
   const cardRe = /class="flex flex-col items-center bg-\[#121212\][^"]*py-4"/g;
   const stats: StatCard[] = [];
 
@@ -267,16 +265,18 @@ function extractAdvancementCards(ulHtml: string): Advancement[] {
     const html = card[1];
     const unlocked = /advancement-done/.test(card[0]);
 
-    const iconMatch =
-      html.match(
-        /(?:data-src|src)="https:\/\/thescape\.de\/fileadmin\/advancement\/([^"]+)"/,
-      );
+    const iconMatch = html.match(
+      /(?:data-src|src)="https:\/\/thescape\.de\/fileadmin\/advancement\/([^"]+)"/,
+    );
     const icon = iconMatch ? advancementIcon(iconMatch[1]) : "";
 
     const h4Match = html.match(/<h4 class="text-brand">([\s\S]*?)<\/h4>/);
     const rawTitle = h4Match
       ? decodeEntities(
-          h4Match[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
+          h4Match[1]
+            .replace(/<[^>]+>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim(),
         )
           .replace(/^(Freigeschaltet|Gesperrt):/, "")
           .trim()
@@ -353,9 +353,7 @@ export function extractAchievementProgress(
     const ulMatch = after.match(
       /<ul class="grid[^"]*list-none[^"]*">([\s\S]*?)<\/ul>/,
     );
-    const advancements = ulMatch
-      ? extractAdvancementCards(ulMatch[1])
-      : [];
+    const advancements = ulMatch ? extractAdvancementCards(ulMatch[1]) : [];
 
     groups.push({ title, ...count, advancements });
   }
