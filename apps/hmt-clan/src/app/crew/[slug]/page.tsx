@@ -172,7 +172,7 @@ export default async function CrewMemberPage({ params }: Props) {
               </h1>
 
               {profile.level && (
-                <p className="mt-4 flex items-center justify-center gap-2 border-b border-white/5 pb-4 text-sm md:justify-start">
+                <p className="mt-4 flex items-center justify-center gap-2 pb-4 text-sm md:justify-start">
                   <Gamepad2 className="size-4 text-muted" aria-hidden="true" />
                   <span className="text-muted">InGame-Level:</span>
                   <span className="font-bold text-emerald">
