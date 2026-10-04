@@ -20,9 +20,9 @@ interface FormValues {
   rollen: string;
   minecraftUser: string;
   useskin: boolean;
-  showLaby: boolean;
+  showNameMC: boolean;
   showThescapeProfile: boolean;
-  labySlug: string;
+  nameMCSlug: string;
   thescape_slug: string;
   priority: string;
   seasons: string;
@@ -36,9 +36,9 @@ function initialFromMember(member: CrewMember | null): FormValues {
     rollen: member?.rollen?.join(", ") ?? "",
     minecraftUser: member?.minecraftUser ?? "",
     useskin: member?.useskin ?? true,
-    showLaby: member?.showLaby ?? false,
+    showNameMC: member?.showNameMC ?? false,
     showThescapeProfile: member?.showThescapeProfile ?? false,
-    labySlug: member?.labySlug ?? "",
+    nameMCSlug: member?.nameMCSlug ?? "",
     thescape_slug: member?.thescape_slug ?? "",
     priority: member?.priority != null ? String(member.priority) : "",
     seasons: member?.seasons?.join(", ") ?? "",
@@ -82,9 +82,9 @@ export default function CrewForm({
       rollen: splitList(values.rollen),
       minecraftUser: values.minecraftUser.trim(),
       useskin: values.useskin,
-      showLaby: values.showLaby,
+      showNameMC: values.showNameMC,
       showThescapeProfile: values.showThescapeProfile,
-      labySlug: values.labySlug.trim(),
+      nameMCSlug: values.nameMCSlug.trim(),
       thescape_slug: values.thescape_slug.trim(),
       priority: values.priority.trim() ? Number(values.priority) : 0,
       seasons: splitList(values.seasons),
@@ -199,14 +199,14 @@ export default function CrewForm({
             />
           </Field>
           <Field
-            label="Laby-Slug"
-            htmlFor="crew-laby"
-            hint="Nur wenn showLaby aktiviert ist."
+            label="NameMC-Slug"
+            htmlFor="crew-namemc"
+            hint="Nur wenn NameMC angezeigt wird."
           >
             <Input
-              id="crew-laby"
-              value={values.labySlug}
-              onChange={(event) => set("labySlug", event.target.value)}
+              id="crew-namemc"
+              value={values.nameMCSlug}
+              onChange={(event) => set("nameMCSlug", event.target.value)}
               placeholder="z. B. henry"
             />
           </Field>
@@ -240,10 +240,10 @@ export default function CrewForm({
             description="Rendert den Minecraft-Skin."
           />
           <Toggle
-            checked={values.showLaby}
-            onChange={(checked) => set("showLaby", checked)}
-            label="LabyMod anzeigen"
-            description="Zeigt den Laby-Link auf der Detailseite."
+            checked={values.showNameMC}
+            onChange={(checked) => set("showNameMC", checked)}
+            label="NameMC anzeigen"
+            description="Zeigt den NameMC-Link auf der Detailseite."
           />
           <Toggle
             checked={values.showThescapeProfile}

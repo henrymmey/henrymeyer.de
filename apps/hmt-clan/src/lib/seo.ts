@@ -101,12 +101,12 @@ export function eventSchema(event: EventConfig): Schema {
 }
 
 export function profileSchema(member: CrewMember): Schema {
-  const labyUrl =
-    member.showLaby && member.labySlug
-      ? `https://laby.net/de/@${member.labySlug}`
+  const nameMCUrl =
+    member.showNameMC && member.nameMCSlug
+      ? `https://de.namemc.com/profile/${member.nameMCSlug}`
       : null;
 
-  const sameAs = [...(labyUrl ? [labyUrl] : [])];
+  const sameAs = [...(nameMCUrl ? [nameMCUrl] : [])];
   if (member.thescape_slug) {
     sameAs.push(`https://www.thescape.de/${member.thescape_slug}`);
   }
@@ -153,8 +153,7 @@ export function howToJoinSchema(): Schema {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: "Dem HMT Clan beitreten",
-    description:
-      "In drei Schritten Teil des HMT Clans auf TheScape werden.",
+    description: "In drei Schritten Teil des HMT Clans auf TheScape werden.",
     totalTime: "PT15M",
     step: [
       {

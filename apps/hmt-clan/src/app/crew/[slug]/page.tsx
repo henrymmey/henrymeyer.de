@@ -97,9 +97,9 @@ export default async function CrewMemberPage({ params }: Props) {
   const roles = getMemberRoles(member);
   const seasons = getMemberSeasons(member);
 
-  const labyUrl =
-    member.showLaby && member.labySlug
-      ? `https://laby.net/de/@${member.labySlug}`
+  const nameMCUrl =
+    member.showNameMC && member.nameMCSlug
+      ? `https://de.namemc.com/profile/${member.nameMCSlug}`
       : null;
   const thescapeProfileUrl =
     member.showThescapeProfile && member.thescape_slug
@@ -207,17 +207,17 @@ export default async function CrewMemberPage({ params }: Props) {
                 </div>
               )}
 
-              {(labyUrl || thescapeProfileUrl) && (
+              {(nameMCUrl || thescapeProfileUrl) && (
                 <div className="mt-5 flex flex-wrap justify-center gap-3 md:justify-start">
-                  {labyUrl && (
+                  {nameMCUrl && (
                     <a
-                      href={labyUrl}
+                      href={nameMCUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-block border border-lapis-deep bg-lapis/10 px-4 py-2.5 font-pixel text-xs uppercase tracking-[0.12em] text-lapis shadow-[0_2px_0_rgb(0_0_0/0.5)] transition-all duration-150 hover:-translate-y-px hover:bg-lapis/20 hover:text-lapis active:translate-y-px active:shadow-none"
                     >
                       <ExternalLink className="size-4" aria-hidden="true" />
-                      Laby Profil
+                      NameMC Profil
                     </a>
                   )}
                   {thescapeProfileUrl && (
