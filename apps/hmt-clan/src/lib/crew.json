@@ -212,7 +212,7 @@
     "minecraftUser": "Antxn11756",
     "useskin": true,
     "showLaby": false,
-    "showThescapeProfile": false,
+    "showThescapeProfile": true,
     "labySlug": "",
     "thescape_slug": "antxn11756-00000000-0000-0000-0009-01f72c171caa",
     "priority": 12,
