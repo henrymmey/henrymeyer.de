@@ -330,5 +330,23 @@
       "season-14"
     ],
     "inactive": false
+  },
+  {
+    "name": "Cutebathroom7650",
+    "slug": "cutebathroom7650",
+    "rollen": [
+      "Spieler"
+    ],
+    "minecraftUser": "Cutebathroom7650",
+    "useskin": false,
+    "showLaby": true,
+    "showThescapeProfile": false,
+    "labySlug": "Cutebathroom7650",
+    "thescape_slug": "",
+    "priority": 19,
+    "seasons": [
+      "season-14"
+    ],
+    "inactive": false
   }
 ]
