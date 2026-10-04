@@ -342,5 +342,23 @@
       "season-14"
     ],
     "inactive": false
+  },
+  {
+    "name": "CodestroyYT",
+    "slug": "codestroyyt",
+    "rollen": [
+      "Spieler"
+    ],
+    "minecraftUser": "CodestroyYT",
+    "useskin": true,
+    "showNameMC": true,
+    "showThescapeProfile": true,
+    "nameMCSlug": "CodestroyYT",
+    "thescape_slug": "codestroyyt-004d370f-258d-46d7-90dd-cb5272a396f3",
+    "priority": 20,
+    "seasons": [
+      "season-14"
+    ],
+    "inactive": false
   }
 ]
