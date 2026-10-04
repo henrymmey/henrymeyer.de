@@ -309,13 +309,23 @@ function extractAdvancementCards(ulHtml: string): Advancement[] {
 export function extractAchievementProgress(
   html: string,
 ): AchievementProgress | null {
+  const craftAttackStart = html.indexOf('data-content-namespace="craftattack"');
   const containerStart = html.indexOf(
     'data-content-progress-type="advancement"',
+    craftAttackStart,
   );
-  if (containerStart === -1) {
+  if (craftAttackStart === -1 || containerStart === -1) {
     return null;
   }
-  const container = html.slice(containerStart);
+
+  const survivalStart = html.indexOf(
+    'data-content-namespace="survival"',
+    containerStart,
+  );
+  const container = html.slice(
+    containerStart,
+    survivalStart === -1 ? html.length : survivalStart,
+  );
 
   let overall: AchievementProgress | null = null;
   const groups: AdvancementGroup[] = [];
