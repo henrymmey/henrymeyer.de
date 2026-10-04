@@ -128,9 +128,10 @@
     "priority": 7,
     "slug": "fischfarmer",
     "seasons": [
-      "season-13"
+      "season-13",
+      "season-14"
     ],
-    "inactive": true
+    "inactive": false
   },
   {
     "name": "Jänem",
