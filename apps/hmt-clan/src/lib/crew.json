@@ -122,9 +122,9 @@
     "minecraftUser": "Fischfarmer",
     "useskin": true,
     "showNameMC": true,
-    "showThescapeProfile": false,
+    "showThescapeProfile": true,
     "nameMCSlug": "Fischfarmer",
-    "thescape_slug": "",
+    "thescape_slug": "fischfarmer-06cc1436-2105-4a55-b407-5251f28e8f3e",
     "priority": 7,
     "slug": "fischfarmer",
     "seasons": [
