@@ -363,5 +363,23 @@
       "season-14"
     ],
     "inactive": false
+  },
+  {
+    "name": "paul3191",
+    "slug": "paul3191",
+    "rollen": [
+      "Spieler"
+    ],
+    "minecraftUser": "paul3191",
+    "useskin": true,
+    "showNameMC": true,
+    "showThescapeProfile": true,
+    "nameMCSlug": "paul3191",
+    "thescape_slug": "paul3191-e9cf7836-a306-4543-be08-9b0e14775539",
+    "priority": 21,
+    "seasons": [
+      "season-14"
+    ],
+    "inactive": false
   }
 ]
