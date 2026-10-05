@@ -170,18 +170,21 @@
     "inactive": false
   },
   {
-    "name": "Thies_OG",
+    "name": "Nooloxx",
     "rollen": [
       "Spieler"
     ],
-    "minecraftUser": "Thies_OG",
+    "minecraftUser": "Nooloxx",
     "useskin": true,
     "showNameMC": true,
-    "showThescapeProfile": false,
-    "nameMCSlug": "Thies_OG",
-    "thescape_slug": "",
+    "showThescapeProfile": true,
+    "nameMCSlug": "Nooloxx",
+    "thescape_slug": "nooloxx-4517df97-d9fc-4ae0-9fa3-ec9369192636",
     "priority": 10,
-    "slug": "thies-og",
+    "slug": "nooloxx",
+    "seasons": [
+      "season-14"
+    ],
     "inactive": false
   },
   {
