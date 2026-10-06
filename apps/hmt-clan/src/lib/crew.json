@@ -381,5 +381,23 @@
       "season-14"
     ],
     "inactive": false
+  },
+  {
+    "name": "tom_tt",
+    "slug": "tom-tt",
+    "rollen": [
+      "Spieler"
+    ],
+    "minecraftUser": "tom_tt",
+    "useskin": true,
+    "showNameMC": true,
+    "showThescapeProfile": false,
+    "nameMCSlug": "tom_tt",
+    "thescape_slug": "",
+    "priority": 22,
+    "seasons": [
+      "season-14"
+    ],
+    "inactive": false
   }
 ]
