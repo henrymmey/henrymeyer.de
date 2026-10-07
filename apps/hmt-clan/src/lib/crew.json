@@ -387,7 +387,6 @@
   },
   {
     "name": "tom_tt",
-    "slug": "tom-tt",
     "rollen": [
       "Spieler"
     ],
@@ -396,8 +395,9 @@
     "showNameMC": true,
     "showThescapeProfile": false,
     "nameMCSlug": "tom_tt",
-    "thescape_slug": "",
+    "thescape_slug": "tom-tt-9ed428d8-de4d-4763-8aac-1a0936b8d229",
     "priority": 22,
+    "slug": "tom-tt",
     "seasons": [
       "season-14"
     ],
