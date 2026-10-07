@@ -22,11 +22,6 @@ const socialLinks = [
     label: "Codeberg",
   },
   {
-    href: "https://instagram.com/henrymmey",
-    iconName: "instagram",
-    label: "Instagram",
-  },
-  {
     href: "https://modrinth.com/user/HenryMMey",
     iconName: "modrinth",
     label: "Modrinth",
@@ -116,12 +111,13 @@ export default function SiteHeader({
               Projects
             </Link>
             <a
-              href="https://gaming.henrymeyer.de"
+              href="https://hmlabs.eu"
+              target="_blank"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
                 isCompact ? "text-sm" : "text-base"
               }`}
             >
-              HM Gaming
+              HMLabs
             </a>
             <Link
               href="/links"

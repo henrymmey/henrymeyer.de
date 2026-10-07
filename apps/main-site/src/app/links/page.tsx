@@ -17,12 +17,6 @@ const LINKS = [
     badge: "codeberg-color.png",
   },
   {
-    id: "instagram",
-    label: "Instagram",
-    href: "https://instagram.com/henrymmey",
-    badge: "instagram-color.png",
-  },
-  {
     id: "discord",
     label: "Discord",
     href: "https://discord.com/users/1008346032230387752",
@@ -61,8 +55,8 @@ const LINKS = [
   },
   {
     id: "hm-gaming",
-    label: "HM Gaming",
-    href: "https://gaming.henrymeyer.de",
+    label: "HMLabs Gaming",
+    href: "https://gaming.hmlabs.eu",
     badge: "hm.png",
   },
 ];
