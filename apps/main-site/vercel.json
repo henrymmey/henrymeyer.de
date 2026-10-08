@@ -14,6 +14,56 @@
       "source": "/meyerwolke/legal/privacy",
       "destination": "/legal/privacy",
       "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/legal/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/imprint",
+      "destination": "/legal/imprint",
+      "permanent": true
+    },
+    {
+      "source": "/impressum",
+      "destination": "/legal/imprint",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz",
+      "destination": "/legal/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutzerklaerung",
+      "destination": "/legal/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/github",
+      "destination": "https://github.com/henrymmey",
+      "permanent": false
+    },
+    {
+      "source": "/gh",
+      "destination": "https://github.com/henrymmey",
+      "permanent": false
+    },
+    {
+      "source": "/codeberg",
+      "destination": "https://codeberg.org/henrymmey",
+      "permanent": false
+    },
+    {
+      "source": "/discord",
+      "destination": "https://discord.com/users/1008346032230387752",
+      "permanent": false
+    },
+    {
+      "source": "/dc",
+      "destination": "https://discord.com/users/1008346032230387752",
+      "permanent": false
     }
   ],
   "headers": [
