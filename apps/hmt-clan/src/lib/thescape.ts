@@ -51,8 +51,7 @@ export interface FullPlayerProfile {
 }
 
 const BASE_URL = "https://thescape.de/spielersuche";
-export const STATS_REVALIDATE_SECONDS = 3600;
-const TTL_MS = STATS_REVALIDATE_SECONDS * 1000;
+const TTL_MS = 3600 * 1000;
 
 const ERFOLGE_DIR = join(process.cwd(), "public", "erfolge");
 
@@ -96,7 +95,7 @@ async function fetchProfileHtml(slug: string): Promise<string | null> {
   try {
     const url = `${BASE_URL}/${encodeURIComponent(slug)}`;
     const response = await fetch(url, {
-      next: { revalidate: STATS_REVALIDATE_SECONDS },
+      cache: "no-store",
       headers: {
         "User-Agent": "Mozilla/5.0 (compatible; HMT-Clan-Bot/1.0)",
       },
