@@ -51,7 +51,7 @@ export interface FullPlayerProfile {
 }
 
 const BASE_URL = "https://thescape.de/spielersuche";
-const TTL_MS = 3600 * 1000;
+const CACHE_SECONDS = 60 * 60;
 
 const ERFOLGE_DIR = join(process.cwd(), "public", "erfolge");
 
@@ -60,13 +60,6 @@ function advancementIcon(name: string): string {
     ? `/erfolge/${name}`
     : `https://thescape.de/fileadmin/advancement/${name}`;
 }
-
-type HtmlCacheEntry = {
-  html: string;
-  expiresAt: number;
-};
-
-const htmlCache = new Map<string, HtmlCacheEntry>();
 
 const EMPTY_STATS: ThescapeStats = {
   level: null,
@@ -86,16 +79,13 @@ function decodeEntities(value: string): string {
 }
 
 async function fetchProfileHtml(slug: string): Promise<string | null> {
-  const now = Date.now();
-  const cached = htmlCache.get(slug);
-  if (cached && cached.expiresAt > now) {
-    return cached.html;
-  }
-
   try {
     const url = `${BASE_URL}/${encodeURIComponent(slug)}`;
     const response = await fetch(url, {
-      cache: "no-store",
+      // Use Next's persistent Data Cache so this also works across Vercel
+      // function invocations and instances. Each player's profile has its own
+      // cache key and is refreshed on the first request after one hour.
+      next: { revalidate: CACHE_SECONDS },
       headers: {
         "User-Agent": "Mozilla/5.0 (compatible; HMT-Clan-Bot/1.0)",
       },
@@ -106,7 +96,6 @@ async function fetchProfileHtml(slug: string): Promise<string | null> {
     }
 
     const html = await response.text();
-    htmlCache.set(slug, { html, expiresAt: now + TTL_MS });
     return html;
   } catch {
     return null;
