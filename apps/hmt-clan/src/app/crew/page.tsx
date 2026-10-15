@@ -8,7 +8,7 @@ import JsonLd from "@/components/json-ld";
 import { itemListSchema } from "@/lib/seo";
 import { crew, getMemberRoles } from "@/lib/crew";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Crew | HMT Clan",

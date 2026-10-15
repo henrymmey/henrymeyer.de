@@ -42,6 +42,8 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const member = getCrewMemberBySlug(slug);
