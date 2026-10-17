@@ -29,11 +29,11 @@
     "time": "20:00",
     "showTime": true,
     "show": true,
-    "showDetailsButton": true,
+    "showDetailsButton": false,
     "done": false,
     "countdown": true,
-    "icon": "ender-pearl",
     "season": "season-14",
+    "icon": "ender-pearl",
     "links": [
       {
         "displayName": "TheScape Website",
