@@ -3,7 +3,7 @@
     "name": "TheScape Projektstart",
     "slug": "thescape-server-launch",
     "description": "Der TheScape Server startet nach einem Jahr wieder. Und wir spielen mit.",
-    "priority": 1,
+    "priority": 2,
     "date": "2026-10-02",
     "time": "20:00",
     "showTime": true,
@@ -24,7 +24,7 @@
     "name": "TheScape End Event",
     "slug": "thescape-end-event",
     "description": "Die dritte Diemension - das Ende - wird eröffnet.",
-    "priority": 2,
+    "priority": 1,
     "date": "2026-10-17",
     "time": "20:00",
     "showTime": true,
@@ -33,7 +33,7 @@
     "done": false,
     "countdown": true,
     "season": "season-14",
-    "icon": "ender-pearl",
+    "icon": "/events/ender_eye.png",
     "links": [
       {
         "displayName": "TheScape Website",
