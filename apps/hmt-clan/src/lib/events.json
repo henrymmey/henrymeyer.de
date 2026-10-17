@@ -33,7 +33,7 @@
     "done": false,
     "countdown": true,
     "season": "season-14",
-    "icon": "ender-pearl",
+    "icon": "/events/ender_eye.png",
     "links": [
       {
         "displayName": "TheScape Website",
