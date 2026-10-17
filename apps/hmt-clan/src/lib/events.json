@@ -8,7 +8,7 @@
     "time": "20:00",
     "showTime": true,
     "show": true,
-    "showDetailsButton": true,
+    "showDetailsButton": false,
     "done": true,
     "countdown": false,
     "season": "season-14",
