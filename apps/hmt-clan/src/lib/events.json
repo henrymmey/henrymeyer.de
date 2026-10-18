@@ -30,8 +30,8 @@
     "showTime": true,
     "show": true,
     "showDetailsButton": false,
-    "done": false,
-    "countdown": true,
+    "done": true,
+    "countdown": false,
     "season": "season-14",
     "icon": "/events/ender_eye.png",
     "links": [
