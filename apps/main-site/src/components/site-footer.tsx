@@ -111,15 +111,6 @@ export default function SiteFooter() {
               <li>
                 <a
                   className="underline underline-offset-2"
-                  href="https://instagram.com/henrymmey"
-                  target="_blank"
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline underline-offset-2"
                   href="https://modrinth.com/user/HenryMMey"
                   target="_blank"
                 >
