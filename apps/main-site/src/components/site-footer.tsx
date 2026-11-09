@@ -32,9 +32,9 @@ export default function SiteFooter() {
               <li>
                 <a
                   className="underline underline-offset-2"
-                  href="https://gaming.henrymeyer.de"
+                  href="https://hmlabs.eu"
                 >
-                  HM Gaming
+                  HMLabs
                 </a>
               </li>
               <li>

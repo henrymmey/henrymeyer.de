@@ -111,7 +111,7 @@ export default function Page() {
         id="codingtime"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="03" title="Coding Time" />
+        <SectionHeading index="03" title="Stats" />
 
         <div className="mt-6 space-y-8 text-foreground">
           <div>
@@ -124,7 +124,7 @@ export default function Page() {
         id="skills"
         className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm"
       >
-        <SectionHeading index="04" title="Skills" />
+        <SectionHeading index="04" title="Tools" />
 
         <div className="mt-6 space-y-8 text-foreground">
           <div>
