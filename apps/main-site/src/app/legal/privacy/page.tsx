@@ -24,10 +24,6 @@ export default function PrivacyPage() {
         <h1 className="mb-2 text-3xl font-heading md:text-4xl">
           Datenschutzerklärung
         </h1>
-        <p className="max-w-3xl text-sm leading-relaxed md:text-base">
-          Informationen zur Verarbeitung personenbezogener Daten und zu Ihren
-          Datenschutzrechten.
-        </p>
       </section>
 
       <article className="mb-8 rounded-base border border-border/30 bg-secondary-background p-6 shadow-sm md:p-8">
