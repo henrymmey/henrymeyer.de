@@ -30,7 +30,7 @@ export default function TorNetworkPage() {
           <br />
           <b>
             <code>
-              2bhhtuncptca3p3spmvs3ctgz4s533fomrhotw32lavqko4emr7ruoid.onion
+              henryfy2g2cxdqx2gezavo33mojshy2bathrntb33uvasktacghhq5qd.onion
             </code>
           </b>
         </p>
