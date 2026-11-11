@@ -67,7 +67,7 @@ export default function LinksPage() {
       <div className="flex flex-col items-center text-center py-16 sm:py-24">
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-3xl sm:text-4xl font-semibold text-white">
-            Hi, I'm Henry
+            Hi, I'm Henry.
           </h1>
           <p className="text-zinc-400 mt-1">
             Software Developer & Hardware Enthusiast
