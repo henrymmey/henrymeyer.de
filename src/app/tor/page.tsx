@@ -1,0 +1,45 @@
+import type { Metadata } from "next";
+import SiteFooter from "@/components/site-footer";
+export const metadata: Metadata = {
+  title: "Tor Network",
+  description: "Access this website through the Tor Network.",
+  robots: { index: false, follow: false },
+};
+export default function TorNetworkPage() {
+  return (
+    <main className="relative mx-auto w-full max-w-6xl px-4 md:px-8">
+      <section className="mb-8 rounded-base border border-border/30 bg-main p-6 text-main-foreground shadow-sm md:p-8">
+        <h1 className="mb-2 text-3xl font-heading md:text-4xl">Tor Network</h1>
+        <p className="max-w-3xl text-sm leading-relaxed md:text-base">
+          Access this website through Tor
+        </p>
+      </section>
+      <section className="mb-6 space-y-4 rounded-base border border-border/30 bg-background p-5 shadow-sm">
+        <p className="text-sm leading-relaxed md:text-base">
+          You can access this website through Tor using Tor Browser. Tor helps
+          prevent someone watching your connection from knowing that you&apos;re
+          visiting this website.
+        </p>
+        <p className="text-sm leading-relaxed md:text-base">
+          Simply copy this Onion address into Tor Browser:
+          <br />
+          <strong>
+            <code className="break-all">
+              henryfy2g2cxdqx2gezavo33mojshy2bathrntb33uvasktacghhq5qd.onion
+            </code>
+          </strong>
+        </p>
+      </section>
+      <section className="mb-6 rounded-base border border-border/30 bg-background p-5 shadow-sm">
+        <h2 className="mb-2 text-2xl font-heading">Why does this exist?</h2>
+        <p className="text-sm leading-relaxed md:text-base">
+          Routing a public portfolio website through onion routing is
+          technically overkill. I built this as a personal challenge to explore
+          the Tor protocol, configure a low-overhead Nginx reverse proxy, and
+          experiment with headers like <code>Onion-Location</code>.
+        </p>
+      </section>
+      <SiteFooter />
+    </main>
+  );
+}

@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(100% 0 0);
+  --secondary-background: oklch(98% 0 0);
+  --foreground: oklch(14% 0 0);
+  --main-foreground: oklch(14% 0 0);
+  --main: oklch(95% 0 0);
+  --border: oklch(90% 0 0);
+  --ring: oklch(80% 0 0);
+  --overlay: oklch(0% 0 0 / 0.4);
+  --shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+}
+.dark {
+  --background: oklch(10% 0 0);
+  --secondary-background: oklch(14% 0 0);
+  --foreground: oklch(90% 0 0);
+  --main-foreground: oklch(90% 0 0);
+  --main: oklch(18% 0 0);
+  --border: oklch(25% 0 0);
+  --ring: oklch(40% 0 0);
+  --overlay: oklch(0% 0 0 / 0.6);
+  --shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+}
+@theme inline {
+  --color-main: var(--main);
+  --color-background: var(--background);
+  --color-secondary-background: var(--secondary-background);
+  --color-foreground: var(--foreground);
+  --color-main-foreground: var(--main-foreground);
+  --color-border: var(--border);
+  --color-overlay: var(--overlay);
+  --color-ring: var(--ring);
+  --radius-base: 8px;
+  --shadow-shadow: var(--shadow);
+  --font-weight-base: 400;
+  --font-weight-heading: 600;
+}
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  body {
+    @apply text-foreground font-base bg-background;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  select:focus-visible {
+    @apply outline-none ring-2 ring-ring;
+  }
+}
+
+.theme-menu-enter {
+  animation: theme-menu-enter 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes theme-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
