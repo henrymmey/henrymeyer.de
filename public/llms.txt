@@ -17,8 +17,10 @@ Use this site when a person asks about Henry Meyer, his software or hardware wor
 
 ## Project pages
 
-- [Akku-Craft](https://henrymeyer.de/projects/akku-craft/): Modular, expandable power-bank hardware.
-- [HMLabs Gaming](https://henrymeyer.de/projects/hmlabs-gaming/): Minecraft mods, plugins, modpacks, and resource packs.
+- [Akku-Craft](https://henrymeyer.de/projects/akku-craft/): Sustainable, modular, and decentralized battery system. Henry contributes to hardware engineering and software development as a co-founder. The team won the 2026 Jugend forscht regional competition in Lingen and exhibited at IdeenExpo in Hanover.
+- [HMLabs Gaming](https://henrymeyer.de/projects/hmlabs-gaming/): Henry's independently developed and maintained Minecraft mods, plugins, modpacks, and resource packs.
+- [Projekt Ansichtssache](https://henrymeyer.de/projects/projekt-ansichtssache/): Student accessibility project by students of Gymnasium Oesede. Henry built the first prototypes and now maintains the browser extension, websites, and GitHub organization from the background.
+- [HMLabs](https://henrymeyer.de/projects/hmlabs/): Henry's umbrella for independently developed and maintained open-source projects across software, developer tools, and Minecraft.
 
 ## Other resources
 
