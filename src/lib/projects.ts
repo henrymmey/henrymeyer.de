@@ -38,12 +38,41 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "projekt-ansichtssache",
+    title: "Projekt Ansichtssache",
+    description:
+      "Projekt Ansichtssache is a student project focused on digital accessibility. Our goal is to make the web more inclusive through simple, accessible and easy-to-use tools.",
+    hasDetails: true,
+    role: "Developer, Maintainer",
+    priority: 3,
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/Projekt-Ansichtssache",
+      },
+      { label: "Website", href: "https://projekt-ansichtssache.github.io/" },
+    ],
+  },
+  {
+    slug: "hmlabs",
+    title: "HMLabs",
+    description:
+      "HMLabs is home to open source projects across software, tools, and Minecraft. Explore what we are building and find each project in its own space.",
+    role: "Founder",
+    priority: 4,
+    hasDetails: true,
+    links: [
+      { label: "Website", href: "https://hmlabs.eu" },
+      { label: "GitHub", href: "https://github.com/HMLabs-HQ" },
+    ],
+  },
+  {
     slug: "awesome-ai-for-beginners",
     title: "Awesome AI for Beginners",
     description:
       "A curated list of resources to understand and use AI without any technical background.",
     hasDetails: false,
-    priority: 4,
+    priority: 5,
     links: [
       {
         label: "Repository",
@@ -53,19 +82,31 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "projekt-ansichtssache",
-    title: "Projekt Ansichtssache",
+    slug: "untis-plan-dashboard",
+    title: "Untis Plan Dashboard",
     description:
-      "Projekt Ansichtssache is a student project focused on digital accessibility. Our goal is to make the web more inclusive through simple, accessible and easy-to-use tools.",
+      "A modern dashboard and JSON API for parsing Untis substitution plan PDFs and serving class schedules.",
     hasDetails: false,
-    role: "Developer",
-    priority: 3,
+    priority: 6,
     links: [
       {
-        label: "GitHub",
-        href: "https://github.com/Projekt-Ansichtssache",
+        label: "Repository",
+        href: "https://github.com/henrymmey/untis-plan-dashboard",
       },
-      { label: "Website", href: "https://projekt-ansichtssache.github.io/" },
+    ],
+  },
+  {
+    slug: "authentik-users-to-improvmx-sync",
+    title: "Authentik Users to Improvmx Sync",
+    description:
+      "Synchronize members of an Authentik group with ImprovMX email forwarding aliases.",
+    hasDetails: false,
+    priority: 7,
+    links: [
+      {
+        label: "Repository",
+        href: "https://github.com/henrymmey/authentik-users-to-improvmx-sync",
+      },
     ],
   },
 ];
