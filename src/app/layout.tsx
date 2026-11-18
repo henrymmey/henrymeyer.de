@@ -7,11 +7,19 @@ const baseUrl = "https://henrymeyer.de";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Henry Meyer — Software Developer",
+    default: "Henry Meyer — Software Development & Hardware Projects",
     template: "%s | Henry Meyer",
   },
   description:
     "Personal website of Henry Meyer, a self-taught software developer and hardware enthusiast from Germany. Explore software, gaming, and hardware projects.",
+  keywords: [
+    "Henry Meyer",
+    "software development",
+    "hardware projects",
+    "Minecraft mods and tools",
+    "Akku-Craft",
+    "HMLabs Gaming",
+  ],
   alternates: { canonical: "/" },
   robots: {
     index: true,
@@ -51,6 +59,13 @@ export default function RootLayout({
     alternateName: ["HenryMM", "JumpStone"],
     url: baseUrl,
     jobTitle: "Software Developer",
+    knowsAbout: [
+      "Software development",
+      "Hardware engineering",
+      "Minecraft modding",
+      "Digital accessibility",
+      "Modular electronics",
+    ],
     description:
       "Self-taught software developer and hardware enthusiast from Germany.",
     sameAs: [

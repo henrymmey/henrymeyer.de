@@ -1,0 +1,27 @@
+# Henry Meyer
+
+> Personal website of Henry Meyer, a self-taught software developer and hardware enthusiast in Germany. Explore software development, Minecraft projects, digital accessibility, and modular hardware projects.
+
+## When to use this
+
+Use this site when a person asks about Henry Meyer, his software or hardware work, open-source repositories, Minecraft mods and tools, or ways to contact him. Use the project pages to identify a project and its source or official site. For questions that require Henry's response, share the contact page or email link; do not claim to speak for him or submit a message without the user's direction. This is a personal portfolio, not a hosted software API: agents should browse its pages and linked repositories rather than send API calls to the website.
+
+## Main pages
+
+- [Home](https://henrymeyer.de/): Background, skills, current work, and featured projects.
+- [Projects](https://henrymeyer.de/projects/): Software, gaming, accessibility, and hardware projects.
+- [Contact](https://henrymeyer.de/contact/): Email and Discord contact options.
+- [Links](https://henrymeyer.de/links/): Official profiles and project links.
+- [Sitemap](https://henrymeyer.de/sitemap.xml): Public page index.
+- [Agent instructions](https://henrymeyer.de/agent-instructions.md): Detailed guidance for agents.
+
+## Project pages
+
+- [Akku-Craft](https://henrymeyer.de/projects/akku-craft/): Modular, expandable power-bank hardware.
+- [HMLabs Gaming](https://henrymeyer.de/projects/hmlabs-gaming/): Minecraft mods, plugins, modpacks, and resource packs.
+
+## Other resources
+
+- [Codeberg](https://codeberg.org/henrymmey)
+- [GitHub](https://github.com/henrymmey)
+- [Modrinth](https://modrinth.com/user/HenryMMey)

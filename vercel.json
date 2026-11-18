@@ -1,77 +1,117 @@
 {
-  "redirects": [
-    { "source": "/connect", "destination": "/links/", "permanent": true },
-    { "source": "/legal", "destination": "/legal/imprint/", "permanent": true },
+  "routes": [
     {
-      "source": "/meyerwolke/legal/imprint",
-      "destination": "/legal/imprint/",
-      "permanent": true
+      "src": "^/(.*)$",
+      "headers": {
+        "Onion-Location": "http://henryfy2g2cxdqx2gezavo33mojshy2bathrntb33uvasktacghhq5qd.onion/$1"
+      },
+      "continue": true
     },
     {
-      "source": "/meyerwolke/legal/privacy",
-      "destination": "/legal/privacy/",
-      "permanent": true
+      "src": "^/$",
+      "has": [{ "type": "header", "key": "accept", "value": "text/markdown" }],
+      "dest": "/agent/home.md",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept"
+      }
     },
     {
-      "source": "/privacy",
-      "destination": "/legal/privacy/",
-      "permanent": true
+      "src": "^/connect/?$",
+      "headers": { "Location": "/links/" },
+      "status": 308
     },
     {
-      "source": "/imprint",
-      "destination": "/legal/imprint/",
-      "permanent": true
+      "src": "^/legal/?$",
+      "headers": { "Location": "/legal/imprint/" },
+      "status": 308
     },
     {
-      "source": "/impressum",
-      "destination": "/legal/imprint/",
-      "permanent": true
+      "src": "^/meyerwolke/legal/imprint/?$",
+      "headers": { "Location": "/legal/imprint/" },
+      "status": 308
     },
     {
-      "source": "/datenschutz",
-      "destination": "/legal/privacy/",
-      "permanent": true
+      "src": "^/meyerwolke/legal/privacy/?$",
+      "headers": { "Location": "/legal/privacy/" },
+      "status": 308
     },
     {
-      "source": "/datenschutzerklaerung",
-      "destination": "/legal/privacy/",
-      "permanent": true
+      "src": "^/privacy/?$",
+      "headers": { "Location": "/legal/privacy/" },
+      "status": 308
     },
     {
-      "source": "/github",
-      "destination": "https://github.com/henrymmey",
-      "permanent": false
+      "src": "^/imprint/?$",
+      "headers": { "Location": "/legal/imprint/" },
+      "status": 308
     },
     {
-      "source": "/gh",
-      "destination": "https://github.com/henrymmey",
-      "permanent": false
+      "src": "^/impressum/?$",
+      "headers": { "Location": "/legal/imprint/" },
+      "status": 308
     },
     {
-      "source": "/codeberg",
-      "destination": "https://codeberg.org/henrymmey",
-      "permanent": false
+      "src": "^/datenschutz/?$",
+      "headers": { "Location": "/legal/privacy/" },
+      "status": 308
     },
     {
-      "source": "/discord",
-      "destination": "https://discord.com/users/1008346032230387752",
-      "permanent": false
+      "src": "^/datenschutzerklaerung/?$",
+      "headers": { "Location": "/legal/privacy/" },
+      "status": 308
     },
     {
-      "source": "/dc",
-      "destination": "https://discord.com/users/1008346032230387752",
-      "permanent": false
-    }
-  ],
-  "headers": [
+      "src": "^/github/?$",
+      "headers": { "Location": "https://github.com/henrymmey" },
+      "status": 307
+    },
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Onion-Location",
-          "value": "http://henryfy2g2cxdqx2gezavo33mojshy2bathrntb33uvasktacghhq5qd.onion/$1"
-        }
-      ]
+      "src": "^/gh/?$",
+      "headers": { "Location": "https://github.com/henrymmey" },
+      "status": 307
+    },
+    {
+      "src": "^/codeberg/?$",
+      "headers": { "Location": "https://codeberg.org/henrymmey" },
+      "status": 307
+    },
+    {
+      "src": "^/discord/?$",
+      "headers": {
+        "Location": "https://discord.com/users/1008346032230387752"
+      },
+      "status": 307
+    },
+    {
+      "src": "^/dc/?$",
+      "headers": {
+        "Location": "https://discord.com/users/1008346032230387752"
+      },
+      "status": 307
+    },
+    {
+      "src": "^/$",
+      "headers": { "Vary": "Accept" },
+      "continue": true
+    },
+    { "handle": "filesystem" },
+    {
+      "src": "^/.*$",
+      "has": [{ "type": "header", "key": "accept", "value": "text/markdown" }],
+      "dest": "/agent/404.md",
+      "status": 404,
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept"
+      }
+    },
+    {
+      "src": "^/.*$",
+      "dest": "/404.html",
+      "status": 404,
+      "headers": { "Vary": "Accept" }
     }
   ]
 }
