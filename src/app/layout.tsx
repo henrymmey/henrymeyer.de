@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "Personal website of Henry Meyer, a self-taught software developer and hardware enthusiast from Germany. Explore software, gaming, and hardware projects.",
   keywords: [
     "Henry Meyer",
+    "Henry Meyer personal portfolio",
+    "Henry Meyer developer",
+    "software developer portfolio",
     "software development",
     "hardware projects",
     "Minecraft mods and tools",

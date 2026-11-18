@@ -17,6 +17,7 @@
         "Vary": "Accept"
       }
     },
+    { "src": "^/about/?$", "headers": { "Location": "/" }, "status": 308 },
     {
       "src": "^/connect/?$",
       "headers": { "Location": "/links/" },

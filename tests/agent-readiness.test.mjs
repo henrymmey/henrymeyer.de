@@ -49,6 +49,7 @@ test("static Markdown representations include usable homepage and 404 content", 
 test("Vercel routes negotiate homepage Markdown and retain a Markdown 404", async () => {
   const config = JSON.parse(await read("vercel.json"));
   const routes = config.routes;
+  const aboutRedirect = routes.find((route) => route.src === "^/about/?$");
   const homeMarkdown = routes.find((route) => route.dest === "/agent/home.md");
   const filesystem = routes.findIndex((route) => route.handle === "filesystem");
   const markdown404 = routes.find((route) => route.dest === "/agent/404.md");
@@ -58,6 +59,8 @@ test("Vercel routes negotiate homepage Markdown and retain a Markdown 404", asyn
   ]);
   assert.equal(homeMarkdown.headers["Content-Type"], "text/markdown; charset=utf-8");
   assert.equal(homeMarkdown.headers.Vary, "Accept");
+  assert.equal(aboutRedirect.headers.Location, "/");
+  assert.equal(aboutRedirect.status, 308);
   assert.equal(htmlHomeHeaders.headers.Vary, "Accept");
   assert.ok(filesystem > routes.indexOf(homeMarkdown));
   assert.ok(routes.indexOf(markdown404) > filesystem);
@@ -72,6 +75,8 @@ test("Vercel routes negotiate homepage Markdown and retain a Markdown 404", asyn
 test("homepage metadata identifies Henry's actual project areas", async () => {
   const layout = await read("src/app/layout.tsx");
   assert.match(layout, /Software Development & Hardware Projects/);
+  assert.match(layout, /Henry Meyer personal portfolio/);
+  assert.match(layout, /software developer portfolio/);
   assert.match(layout, /"Minecraft modding"/);
   assert.match(layout, /"Hardware engineering"/);
 });
@@ -84,6 +89,7 @@ test("sitemap and robots metadata keep the public machine-readable routes discov
   for (const route of ["/projects/", "/contact/", "/links/", "/legal/privacy/"]) {
     assert.ok(sitemap.includes(`"${route}"`), `sitemap should include ${route}`);
   }
+  assert.doesNotMatch(sitemap, /\/about\//);
   assert.match(robots, /sitemap\.xml/);
   assert.match(robots, /allow: "\/"/);
 });
