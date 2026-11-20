@@ -25,10 +25,10 @@ test("agent discovery files follow llms.txt conventions and provide task guidanc
     read("public/llms.txt"),
     read("public/agent-instructions.md"),
   ]);
-  assert.match(llms, /^# Henry Meyer\n/m);
-  assert.match(llms, /^## When to use this\n/m);
+  assert.match(llms, /^# Henry Meyer\r?\n/m);
+  assert.match(llms, /^## When to use this\r?\n/m);
   assert.match(llms, /https:\/\/henrymeyer\.de\/sitemap\.xml/);
-  assert.match(instructions, /^## When to use this site\n/m);
+  assert.match(instructions, /^## When to use this site\r?\n/m);
   assert.match(instructions, /not an API/);
   assert.match(instructions, /Do not send messages/);
 });

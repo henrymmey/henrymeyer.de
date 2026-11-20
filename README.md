@@ -4,11 +4,17 @@ Standalone, statically exported Next.js application for `henrymeyer.de`.
 
 ## Local development
 
-From the monorepo root, run `pnpm dev:henrymeyer-de`. Build the static site with `pnpm build:henrymeyer-de`; Next.js writes the deployable files to `out/`.
+Install dependencies with `npm install`. Start the local development server with `npm run dev`. Build the static site with `npm run build`; Next.js writes the deployable files to `out/`.
+
+Additional commands:
+
+- `npm run start` serves a production Next.js build locally.
+- `npm run lint` runs the TypeScript type check.
+- `npm test` runs the repository's Node.js tests.
 
 ## Vercel
 
-Set this app as the Vercel project's Root Directory (`apps/henrymeyer-de`). The project uses the repository's pnpm workspace lockfile. Build command: `pnpm build`; output directory: `out` (or allow Vercel to detect Next.js static export). No runtime functions are required for the site pages.
+Set this repository as the Vercel project's Root Directory. The project uses `package-lock.json` and npm. Build command: `npm run build`; output directory: `out` (or allow Vercel to detect Next.js static export). No runtime functions are required for the site pages.
 
 GitHub profile statistics are fetched during the build and included in the static output. The contribution streak, Hackatime statistics, and skill icons are requested directly by the browser from their image providers. The deployed site does not make server-side runtime API calls.
 
