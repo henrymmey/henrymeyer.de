@@ -23,6 +23,112 @@
   --overlay: oklch(0% 0 0 / 0.6);
   --shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
 }
+.neo-brutalist {
+  --background: oklch(12% 0.035 145);
+  --secondary-background: oklch(17% 0.045 145);
+  --foreground: oklch(94% 0.035 145);
+  --main-foreground: oklch(12% 0.04 145);
+  --main: oklch(82% 0.24 145);
+  --border: oklch(82% 0.24 145);
+  --ring: oklch(74% 0.22 145);
+  --overlay: oklch(4% 0.03 145 / 0.75);
+  --shadow: 5px 5px 0 oklch(82% 0.24 145);
+  --radius-base: 0px;
+  --font-weight-heading: 900;
+}
+.neo-brutalist body {
+  background-image:
+    linear-gradient(rgba(126, 255, 158, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 255, 158, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.neo-brutalist .border,
+.neo-brutalist [class*="border-"] {
+  border-style: solid;
+  border-color: var(--border);
+}
+.neo-brutalist [class*="rounded-base"] {
+  border-radius: 0;
+}
+.neo-brutalist [class*="rounded-lg"],
+.neo-brutalist [class*="rounded-xl"],
+.neo-brutalist [class*="rounded-md"] {
+  border-radius: 0;
+}
+.neo-brutalist .shadow-sm,
+.neo-brutalist [class*="shadow-xl"],
+.neo-brutalist [class*="shadow-"] {
+  box-shadow: var(--shadow) !important;
+}
+.neo-brutalist h1,
+.neo-brutalist h2,
+.neo-brutalist h3 {
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+.neo-brutalist h1 span.text-foreground {
+  color: oklch(12% 0 0);
+}
+.neo-brutalist .theme-switcher-option-icon {
+  color: oklch(94% 0.035 145);
+}
+.neo-brutalist a,
+.neo-brutalist button,
+.neo-brutalist select {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.one-dark-pro {
+  --background: oklch(25% 0.015 255);
+  --secondary-background: oklch(21% 0.012 255);
+  --foreground: oklch(82% 0.012 255);
+  --main-foreground: oklch(22% 0.012 255);
+  --main: oklch(72% 0.12 245);
+  --border: oklch(35% 0.018 255);
+  --ring: oklch(70% 0.14 245);
+  --overlay: oklch(12% 0.01 255 / 0.7);
+  --shadow: 0 8px 24px oklch(12% 0.01 255 / 0.28);
+  --radius-base: 6px;
+  --font-weight-base: 400;
+  --font-weight-heading: 600;
+}
+.one-dark-pro body {
+  background: var(--background);
+}
+.one-dark-pro h2,
+.one-dark-pro h3,
+.one-dark-pro h4,
+.one-dark-pro h5,
+.one-dark-pro h6 {
+  color: oklch(82% 0.012 255);
+}
+.one-dark-pro h1 span.text-foreground {
+  color: oklch(12% 0 0);
+}
+.one-dark-pro section.bg-main h1,
+.one-dark-pro section.bg-main p {
+  color: oklch(12% 0 0);
+}
+.one-dark-pro [class*="border-border"] {
+  border-color: var(--border);
+}
+.one-dark-pro [class*="bg-main"] {
+  background-color: var(--main);
+}
+.one-dark-pro [class*="text-main-foreground"] {
+  color: oklch(22% 0.012 255);
+}
+.one-dark-pro a,
+.one-dark-pro button,
+.one-dark-pro select {
+  transition-duration: 120ms;
+}
+.one-dark-pro .theme-switcher-trigger-icon {
+  color: oklch(12% 0 0);
+}
+.one-dark-pro .theme-switcher-option-icon {
+  color: oklch(91% 0.018 255);
+}
 @theme inline {
   --color-main: var(--main);
   --color-background: var(--background);
@@ -62,6 +168,101 @@
 
 .theme-menu-enter {
   animation: theme-menu-enter 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-social-button,
+.header-theme-switcher,
+.header-theme-button,
+.header-social-icon,
+.header-theme-icon {
+  transition:
+    width 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    min-width 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    min-height 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.header-social-button,
+.header-theme-button {
+  width: 44px;
+  height: 44px;
+}
+.header-social-button.is-compact,
+.header-theme-button.is-compact {
+  width: 32px;
+  height: 32px;
+}
+.header-theme-switcher {
+  width: 44px;
+  height: 44px;
+}
+.header-theme-switcher.is-compact {
+  width: 32px;
+  height: 32px;
+}
+.header-social-icon {
+  width: 20px;
+  height: 20px;
+  transition:
+    width 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.header-social-button.is-compact .header-social-icon {
+  width: 16px;
+  height: 16px;
+}
+.header-theme-icon {
+  width: 20px;
+  height: 20px;
+  transition:
+    width 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.header-theme-button.is-compact .header-theme-icon {
+  width: 16px;
+  height: 16px;
+}
+.neo-brutalist .mobile-theme-button {
+  box-shadow: none;
+}
+@media (max-width: 767px) {
+  .mobile-theme-switcher,
+  .mobile-theme-button {
+    width: 44px;
+    height: 44px;
+  }
+  .mobile-theme-button .header-theme-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+.neo-brutalist .mobile-header-link {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.neo-brutalist .mobile-header-link:hover,
+.neo-brutalist .mobile-header-link:focus-visible {
+  background: transparent;
+  color: var(--main);
+}
+.neo-brutalist .mobile-header-social-button {
+  background: var(--secondary-background);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+  color: var(--main-foreground);
+}
+.neo-brutalist .header-theme-button.mobile-theme-button {
+  background: var(--secondary-background);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+  color: var(--foreground);
+}
+.one-dark-pro .mobile-header-social-button,
+.one-dark-pro .header-theme-button.mobile-theme-button {
+  background: oklch(72% 0.12 245);
+  border-color: oklch(35% 0.018 255);
+  color: oklch(22% 0.012 255);
 }
 
 @keyframes theme-menu-enter {

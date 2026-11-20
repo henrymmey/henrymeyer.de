@@ -93,7 +93,8 @@ export default function PrivacyPage() {
               auswählen, wird Ihre Auswahl lokal im Browserspeicher
               (<code>localStorage</code>) unter dem Schlüssel{" "}
               <code>theme-mode</code> abgelegt. Mögliche Werte sind{" "}
-              <code>light</code>, <code>dark</code> und <code>auto</code>. Die
+              <code>light</code>, <code>dark</code>, <code>auto</code>,{" "}
+              <code>neo-brutalist</code> und <code>one-dark-pro</code>. Die
               Auswahl wird nicht an mich übertragen. Bei <code>auto</code>{" "}
               richtet sich die Darstellung nach der Systemeinstellung Ihres
               Browsers. Die Speicherung erfolgt, um die von Ihnen gewünschte

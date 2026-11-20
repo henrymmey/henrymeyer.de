@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
 };
 
-const themeInit = `(()=>{try{const saved=localStorage.getItem('theme-mode');const dark=saved==='dark'||(saved!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',dark)}catch{}})()`;
+const themeInit = `(()=>{try{if(location.pathname.startsWith('/links'))return;const saved=localStorage.getItem('theme-mode');const root=document.documentElement;const neo=saved==='neo-brutalist';const one=saved==='one-dark-pro';root.classList.toggle('neo-brutalist',neo);root.classList.toggle('one-dark-pro',one);const dark=neo||one||saved==='dark'||(saved!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);root.classList.toggle('dark',dark)}catch{}})()`;
 
 export default function RootLayout({
   children,

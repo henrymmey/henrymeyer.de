@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LinksThemeLock from "@/components/links-theme-lock";
 
 export const metadata: Metadata = {
   title: "Links",
@@ -21,6 +22,7 @@ const LINKS = [
 export default function LinksPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#070707]">
+      <LinksThemeLock />
       <main className="w-full max-w-3xl px-6">
         <div className="flex flex-col items-center text-center py-16 sm:py-24">
           <div className="flex flex-col items-center gap-4">
