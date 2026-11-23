@@ -14,68 +14,88 @@ const LINKS = [
     label: "GitHub",
     href: "https://github.com/henrymmey",
     badge: "github.png",
+    category: "Development",
   },
   {
     id: "gitlab",
     label: "GitLab",
     href: "https://gitlab.com/henrymmey",
     badge: "gitlab-color.png",
+    category: "Development",
   },
   {
     id: "codeberg",
     label: "Codeberg",
     href: "https://codeberg.org/henrymmey",
     badge: "codeberg-color.png",
+    category: "Development",
   },
   {
-    id: "crowdin",
-    label: "Crowdin",
-    href: "https://crowdin.com/profile/henrymmey",
-    badge: "crowdin.png",
+    id: "forgejo",
+    label: "Forgejo (Self-Hosted)",
+    href: "https://forgejo.meyerwolke.de/henrymmey",
+    badge: "forgejo-color.png",
+    category: "Development",
   },
   {
     id: "discord",
     label: "Discord",
     href: "https://discord.com/users/1008346032230387752",
     badge: "discord-color.png",
+    category: "Contact",
   },
   {
     id: "modrinth",
     label: "Modrinth",
     href: "https://modrinth.com/user/Fg5L4UzB",
     badge: "modrinth-color.png",
+    category: "Modding",
   },
   {
     id: "curseforge",
     label: "CurseForge",
     href: "https://www.curseforge.com/members/henrymmey",
     badge: "curseforge.svg",
+    category: "Modding",
   },
   {
     id: "website",
     label: "Website",
     href: "https://henrymeyer.de",
-    badge: "icons8-globe.png",
+    badge: "hm.png",
+    category: "Other",
   },
   {
     id: "projects",
     label: "Projects",
     href: "https://henrymeyer.de/projects",
-    badge: "icons8-globe.png",
+    badge: "hm.png",
+    category: "Other",
   },
   {
     id: "contact",
     label: "Contact (Mail)",
     href: "mailto:hello@henrymeyer.de",
     badge: "icons8-email.png",
+    category: "Contact",
   },
   {
     id: "hm-gaming",
     label: "HMLabs Gaming",
     href: "https://gaming.hmlabs.eu",
-    badge: "hm.png",
+    badge: "hmlabs.png",
+    category: "Modding",
+  },
+  {
+    id: "crowdin",
+    label: "Crowdin",
+    href: "https://crowdin.com/profile/henrymmey",
+    badge: "crowdin.png",
+    category: "Other",
   },
 ];
+
+const CATEGORIES = ["Development", "Modding", "Contact", "Other"];
 
 export default function LinksPage() {
   return (
@@ -91,63 +111,76 @@ export default function LinksPage() {
               Software Developer &amp; Hardware Enthusiast
             </p>
           </div>
-          <div className="mt-10 w-full flex justify-center">
-            <div className="w-full max-w-125">
-              <div className="flex flex-col gap-3">
-                {LINKS.map(({ id, label, href, badge }) => (
-                  <a
-                    key={id}
-                    href={href}
-                    target={href.startsWith("/") ? undefined : "_blank"}
-                    rel={
-                      href.startsWith("/") ? undefined : "noopener noreferrer"
-                    }
-                    className="group flex items-center justify-between w-full px-4 py-4 bg-zinc-900/60 border border-zinc-800 rounded-lg transition-colors hover:border-emerald-400/60"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 overflow-hidden">
-                        <img
-                          src={`/badges/${badge}`}
-                          alt={`${label} badge`}
-                          width="28"
-                          height="28"
-                        />
-                      </div>
-                      <span className="text-white text-sm sm:text-base">
-                        {label}
-                      </span>
-                    </div>
-                    <div className="text-zinc-400 group-hover:text-emerald-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        className="w-4 h-4"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M14 3h7v7"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M10 14L21 3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M21 3v7"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
+          <div className="mt-10 w-full max-w-2xl space-y-8">
+            {CATEGORIES.map((category) => {
+              const categoryLinks = LINKS.filter(
+                (link) => link.category === category,
+              );
+
+              return (
+                <section key={category} className="w-full text-left">
+                  <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-zinc-500">
+                    {category}
+                  </h2>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    {categoryLinks.map(({ id, label, href, badge }) => {
+                      const isExternal = href.startsWith("http");
+
+                      return (
+                        <a
+                          key={id}
+                          href={href}
+                          target={isExternal ? "_blank" : undefined}
+                          rel={isExternal ? "noopener noreferrer" : undefined}
+                          className="group flex items-center justify-between w-full px-4 py-4 bg-zinc-900/60 border border-zinc-800 rounded-lg transition-colors hover:border-emerald-400/60"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 shrink-0 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 overflow-hidden">
+                              <img
+                                src={`/badges/${badge}`}
+                                alt={`${label} badge`}
+                                width="28"
+                                height="28"
+                              />
+                            </div>
+                            <span className="text-white text-sm sm:text-base">
+                              {label}
+                            </span>
+                          </div>
+                          <div className="ml-3 shrink-0 text-zinc-400 group-hover:text-emerald-300">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              className="w-4 h-4"
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M14 3h7v7"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                              <path
+                                d="M10 14L21 3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                              <path
+                                d="M21 3v7"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })}
           </div>
           <footer className="mt-12 flex flex-col items-center gap-4 text-xs text-zinc-500 sm:text-sm">
             <div className="flex items-center gap-4">
