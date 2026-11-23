@@ -81,6 +81,14 @@ test("homepage metadata identifies Henry's actual project areas", async () => {
   assert.match(layout, /"Hardware engineering"/);
 });
 
+test("Next.js build configuration exposes the deployed or local commit SHA", async () => {
+  const config = await read("next.config.ts");
+  assert.match(config, /VERCEL_GIT_COMMIT_SHA/);
+  assert.match(config, /git/, "should fall back to the local git HEAD");
+  assert.match(config, /NEXT_PUBLIC_COMMIT_SHA/);
+  assert.match(config, /\[0-9a-f\]\{40\}/);
+});
+
 test("sitemap and robots metadata keep the public machine-readable routes discoverable", async () => {
   const [sitemap, robots] = await Promise.all([
     read("src/app/sitemap.ts"),
